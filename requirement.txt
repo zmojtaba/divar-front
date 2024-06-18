@@ -39,6 +39,12 @@ ng add @angular/material
 
 
 
+
+npm install @nebular/theme @nebular/eva-icons
+
+
+
+
 --------------------------------------services
 ng generate service core/services/user --skip-tests
 ng generate service core/services/product --skip-tests
@@ -60,3 +66,6 @@ ng generate component features/cart/cart --standalone
 -----------------------------------------------create layout
 ng generate component layout/header --standalone
 ng generate component layout/sidebar --standalone
+
+
+------------------------------------------------ create nebular

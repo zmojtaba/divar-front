@@ -1,1 +1,20 @@
-<p>header works!</p>
+<nav class="navbar">
+    <ul class="navbar-list">
+      <li class="navbar-item" [class.active]="activeIndex === 0" (click)="setActive(0)">
+        <span class="icon">👤</span>
+      </li>
+      <li class="navbar-item" [class.active]="activeIndex === 1" (click)="setActive(1)">
+        <span class="icon">🔔</span>
+      </li>
+      <li class="navbar-item" [class.active]="activeIndex === 2" (click)="setActive(2)">
+        <span class="icon">✉️</span>
+      </li>
+      <li class="navbar-item" [class.active]="activeIndex === 3" (click)="setActive(3)">
+        <span class="icon">📁</span>
+      </li>
+      <li class="navbar-item" [class.active]="activeIndex === 4" (click)="setActive(4)">
+        <span class="icon">⚙️</span>
+      </li>
+    </ul>
+  </nav>
+  
