@@ -42,7 +42,9 @@ ng add @angular/material
 
 npm install @nebular/theme @nebular/eva-icons
 
-
+npm i eva-icons @nebular/eva-icon
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbIconModule } from '@nebular/theme';
 
 
 --------------------------------------services

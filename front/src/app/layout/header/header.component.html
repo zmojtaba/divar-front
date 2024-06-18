@@ -1,19 +1,19 @@
 <nav class="navbar">
     <ul class="navbar-list">
       <li class="navbar-item" [class.active]="activeIndex === 0" (click)="setActive(0)">
-        <span class="icon">👤</span>
+        <span class="icon"><nb-icon icon="home-outline"></nb-icon></span>
       </li>
       <li class="navbar-item" [class.active]="activeIndex === 1" (click)="setActive(1)">
-        <span class="icon">🔔</span>
+        <span class="icon"><nb-icon icon="credit-card-outline"></nb-icon></span>
       </li>
       <li class="navbar-item" [class.active]="activeIndex === 2" (click)="setActive(2)">
-        <span class="icon">✉️</span>
+        <span class="icon"><nb-icon icon="plus-circle-outline"></nb-icon></span>
       </li>
       <li class="navbar-item" [class.active]="activeIndex === 3" (click)="setActive(3)">
-        <span class="icon">📁</span>
+        <span class="icon"><nb-icon icon="message-circle-outline"></nb-icon></span>
       </li>
       <li class="navbar-item" [class.active]="activeIndex === 4" (click)="setActive(4)">
-        <span class="icon">⚙️</span>
+        <span class="icon"> <nb-icon icon="person-outline"></nb-icon> </span>
       </li>
     </ul>
   </nav>

@@ -20,6 +20,10 @@
     text-align: center;
     flex-grow: 1;
     cursor: pointer;
+    ::ng-deep svg {
+      height: 2rem;
+      width: 2rem;
+    }
   }
   
   .navbar-item .icon {
@@ -28,7 +32,7 @@
   }
   
   .navbar-item.active .icon {
-    background-color: blue;
+    color: blue;
   }
   
   .navbar-item:hover .icon {

@@ -1,6 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NbIconConfig } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons'
+import { NbIconModule } from '@nebular/theme';
 import { NbThemeModule, NbTabsetModule, NbCardModule, NbStatusService } from '@nebular/theme';
+import {MatIconModule} from '@angular/material/icon'
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,10 @@ import { NbThemeModule, NbTabsetModule, NbCardModule, NbStatusService } from '@n
   imports: [    
     NbThemeModule,
     NbTabsetModule,
-    NbCardModule
+    NbCardModule, 
+    MatIconModule, 
+    NbEvaIconsModule, 
+    NbIconModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
