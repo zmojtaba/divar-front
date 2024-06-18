@@ -1,0 +1,62 @@
+ng new frontend --standalone
+
+
+npm install bootstrap jquery
+
+
+
+Open the angular.json file in your project root directory. Find the "styles" and "scripts" sections under "build" options and add Bootstrap styles and scripts:
+"styles": [
+  "src/styles.css",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+"scripts": [
+  "node_modules/jquery/dist/jquery.min.js",
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
+
+
+
+npm install @angular/core@17.3.11 @angular/common@17.3.11 @angular/cdk@17.3.10 @angular/animations@17.3.11 @nebular/theme@13.0.0
+or
+npm install @nebular/theme @angular/cdk @angular/animations --force
+or
+npm install @nebular/theme @angular/cdk @angular/animations --legacy-peer-deps
+
+"styles": [
+  "src/styles.css",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/@nebular/theme/styles/prebuilt/default.css"
+]
+
+
+
+ng add @angular/material
+"styles": [
+              "src/styles.css",
+              "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css"  // This line is added
+            ],
+
+
+
+--------------------------------------services
+ng generate service core/services/user --skip-tests
+ng generate service core/services/product --skip-tests
+ng generate service core/services/cart --skip-tests
+ng generate service core/services/category --skip-tests
+
+
+
+
+------------------------------------------components
+ng generate component features/home --standalone
+ng generate component features/user/register --standalone
+ng generate component features/user/login --standalone
+ng generate component features/product/product-list --standalone
+ng generate component features/product/product-detail --standalone
+ng generate component features/cart/cart --standalone
+
+
+-----------------------------------------------create layout
+ng generate component layout/header --standalone
+ng generate component layout/sidebar --standalone
