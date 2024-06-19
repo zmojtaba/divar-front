@@ -3,6 +3,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons'
 import { NbIconModule } from '@nebular/theme';
 import { NbThemeModule, NbTabsetModule, NbCardModule, NbStatusService } from '@nebular/theme';
 import {MatIconModule} from '@angular/material/icon'
+import { RouterOutlet,RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,9 @@ import {MatIconModule} from '@angular/material/icon'
     NbCardModule, 
     MatIconModule, 
     NbEvaIconsModule, 
-    NbIconModule
+    NbIconModule, 
+    RouterOutlet,
+    RouterLink 
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -23,7 +26,7 @@ import {MatIconModule} from '@angular/material/icon'
   ]
 })
 export class HeaderComponent {
-  activeIndex: number = 0;
+  activeIndex: number ;
 
   setActive(index: number) {
     this.activeIndex = index;

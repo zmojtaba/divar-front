@@ -70,4 +70,16 @@ ng generate component layout/header --standalone
 ng generate component layout/sidebar --standalone
 
 
------------------------------------------------- create nebular
+
+
+
+
+##########################################errors:
+Property 'activeIndex' has no initializer and is not definitely assigned in the constructor.
+
+Just go to tsconfig.json and set
+
+"compilerOptions": {
+    "strictPropertyInitialization": false,
+    ...
+}
