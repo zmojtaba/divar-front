@@ -1,53 +1,55 @@
+<ng-template #elseBlock>
+    <app-register *ngIf="formStatus=='register'" ></app-register>
+    <app-login *ngIf="formStatus=='login'" ></app-login>
+</ng-template>
 
-<!-- if user does not register -->
 
+<div *ngIf="userIsLogedIn; else elseBlock">
+    <div class="profile_bio" >
+        <div class="img"> <img src="assets/profile_img/profile.png" alt=""> </div>
+        <div class="content" > <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
+        <div class="icon"> <nb-icon  icon="more-vertical-outline"></nb-icon>  </div>
+    </div>
 
+    <div class="items-list">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="items">
+                    <p> My Ad </p>
+                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                </div>
+            </li>
 
-<!-- if user is registered  -->
-<div class="profile_bio" >
-    <div class="img"> <img src="assets/profile_img/profile.png" alt=""> </div>
-    <div class="content" > <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
-    <div class="icon"> <nb-icon  icon="more-vertical-outline"></nb-icon>  </div>
-</div>
+            <li class="list-group-item">
+                <div class="items">
+                    <p> Saved </p>
+                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                </div>
+            </li>
 
-<div class="items-list">
-    <ul class="list-group">
-        <li class="list-group-item">
-            <div class="items">
-                <p> My Ad </p>
-                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-            </div>
-        </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p> Payment </p>
+                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                </div>
+            </li>
 
-        <li class="list-group-item">
-            <div class="items">
-                <p> Saved </p>
-                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-            </div>
-        </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p> My Visits </p>
+                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                </div>
+            </li>
 
-        <li class="list-group-item">
-            <div class="items">
-                <p> Payment </p>
-                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-            </div>
-        </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p> identity </p>
+                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                </div>
+            </li>
 
-        <li class="list-group-item">
-            <div class="items">
-                <p> My Visits </p>
-                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-            </div>
-        </li>
-
-        <li class="list-group-item">
-            <div class="items">
-                <p> identity </p>
-                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-            </div>
-        </li>
-
-      </ul>
+        </ul>
+    </div>
 </div>
 
 
