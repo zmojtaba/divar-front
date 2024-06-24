@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
        (data : SignUpModel) => {
         this.snippingLoading = false
         this.signupSuccess = data['message']
-        this.router.navigate(['/'])
+        this.router.navigate(['/user'])
     }, 
       error: (errorMessage) => {
         this.snippingLoading = false

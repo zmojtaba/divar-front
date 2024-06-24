@@ -17,20 +17,21 @@ export class UserService {
 
 
   signUpService(email:string, password:string, password1:string) {
-    return this.http.post(this.apiUrl + "account/api-vi/sign-up/", {
-      email: email,
+    console.log('========================user service===========', email, password, password1)
+    return this.http.post<any>(`${this.apiUrl}/account/api-vi/sign-up/`, {
+      username: email,
       password: password, 
       password1: password1
     }).pipe(
-        catchError(this.handleError),
+        
         tap( (data:any)=> {
           console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', data)
           // get access token to get the hash code
-          localStorage.setItem('refresh_token', data['refresh_token'])
-          localStorage.setItem('access_token', data['access_token'])
+          localStorage.setItem('refresh_token', data.detail['refresh_token'])
+          localStorage.setItem('access_token', data.detail['access_token'])
           localStorage.setItem('user_email', email)
-          }
-        )
+          }),
+          catchError(this.handleError),
       
       )
   }
