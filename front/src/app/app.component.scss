@@ -5,13 +5,15 @@
     margin-top: 15px;
     margin-bottom: 5px;
     height: calc(100% - 80px  );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 100vh; /* Full viewport height */
+    flex-direction: column;
 }
 
 
 ::ng-deep app-user{
-    display: flex;
-    // height: calc(100% - ) ;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-around;
+
+    width: 100%;
 }

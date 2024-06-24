@@ -7,6 +7,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { UserService } from '../../../core/services/user.service';
+import { SignUpModel } from '../../../models/user.model';
 
 
 
@@ -60,15 +62,19 @@ export class RegisterComponent implements OnInit {
     const password = form.value.password
     const password1 = form.value.password1
     
-    // this.authService.signUpService(email, password, password1)
-    // .subscribe((data : SignUpModel) => {
-    //   this.snippingLoading = false
-    //   this.signupSuccess = data['message']
-    //   this.router.navigate(['/'])
-    // }, errorMessage => {
-    //   this.snippingLoading = false
-    //   this.signupError = errorMessage
-    // }); 
+    this.userService.signUpService(email, password, password1)
+    .subscribe({
+      next:
+       (data : SignUpModel) => {
+        this.snippingLoading = false
+        this.signupSuccess = data['message']
+        this.router.navigate(['/'])
+    }, 
+      error: (errorMessage) => {
+        this.snippingLoading = false
+        this.signupError = errorMessage
+    }
+  }); 
     form.reset()   
     
   }
@@ -79,7 +85,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public userService: UserService
 
   ){
 

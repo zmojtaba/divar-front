@@ -17,13 +17,14 @@ export class UserService {
 
 
   signUpService(email:string, password:string, password1:string) {
-    return this.http.post(this.apiUrl + "/account/api-vi/sign-up/", {
+    return this.http.post(this.apiUrl + "account/api-vi/sign-up/", {
       email: email,
       password: password, 
       password1: password1
     }).pipe(
         catchError(this.handleError),
         tap( (data:any)=> {
+          console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', data)
           // get access token to get the hash code
           localStorage.setItem('refresh_token', data['refresh_token'])
           localStorage.setItem('access_token', data['access_token'])

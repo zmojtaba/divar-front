@@ -7,7 +7,7 @@ form{
 
     button{
         background: $button_submit_color;
-        margin-top: 10px !important;
+        margin-top: 30px !important;
         color:  $button_font_color;
         width:  $button_width;
         height: $button_height;
@@ -22,6 +22,10 @@ form{
     .valid, .valid:focus{
         border-color: $input_success_border_color;
     }
+    label{
+        margin-top: 15px;
+    }
+
 }
 
 
