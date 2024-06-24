@@ -1,4 +1,17 @@
+
+@import url("./styles/them.scss");
+
 .container{
     margin-top: 15px;
     margin-bottom: 5px;
+    height: calc(100% - 80px  );
+}
+
+
+::ng-deep app-user{
+    display: flex;
+    // height: calc(100% - ) ;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
 }

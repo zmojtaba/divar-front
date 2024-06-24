@@ -1,6 +1,6 @@
 <ng-template #elseBlock>
-    <app-register *ngIf="formStatus=='register'" ></app-register>
-    <app-login *ngIf="formStatus=='login'" ></app-login>
+    <app-register *ngIf="formStatus=='register'"  (formChanger)="receiveValue($event)"></app-register>
+    <app-login *ngIf="formStatus=='login'" (formChanger)="receiveValue($event)" ></app-login>
 </ng-template>
 
 
@@ -51,6 +51,8 @@
         </ul>
     </div>
 </div>
+
+
 
 
 

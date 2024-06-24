@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, Output, output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl,FormBuilder, Validators } from '@angular/forms';
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 
 
 
@@ -17,7 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatPasswordStrengthModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink,
+    RouterOutlet,
 
   ],
   templateUrl: './register.component.html',
@@ -30,6 +33,7 @@ export class RegisterComponent implements OnInit {
   snippingLoading: boolean = false;
   showPasswordStatus: boolean = false;
   showDetails: boolean=true;
+  @Output() formChanger = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -68,10 +72,15 @@ export class RegisterComponent implements OnInit {
     form.reset()   
     
   }
+  onLoginForm(){
+    this.formChanger.emit('login')
+  }
 
 
   constructor(
     private fb: FormBuilder,
+    private router: Router
+
   ){
 
   }

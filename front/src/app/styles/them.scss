@@ -3,7 +3,12 @@
     src: url("../../assets/fonts/times_new_roman.ttf");
 
   }
-$brand_font_family: 'GreatVibes';
+
+
+$light_backgrond_color: #fff;
+
+$small_font_color: #212529;
+$brand_font_family: 'TimeNewRoman';
 $brand_font_size: 2.1rem;
 $side_bar_expanded_width:256px;
 $header_navbar_height : 3rem;
@@ -12,9 +17,13 @@ $header_font_color: #ffff;
 $header_navbar_background : #748DA6;
 $header_navbar_color: #536066c7;
 
+
 $side-bar_background_color: #9CB4CC;
 
-$button_submit_color: #8ecae6;
+$button_submit_color: #0d6efd;
+$button_font_color: #ffff;
+$button_width: 90px;
+$button_height: 40px;
 
 $input_success_border_color: #588157;
 $input_wrong_border_color: #e76f51;
@@ -24,5 +33,13 @@ $font_color_light : #ffff;
 
 $warning_background : #e76f51;
 $success_background : #588157;
+
+$icon_success_color: #588157;
+$icon_warning_color: #e76f51;
+
+$refrence_tag_color: #0d6efd;
+
+$new_height: 50px;
+
 
 // D3CEDF, F2D7D9

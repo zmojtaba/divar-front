@@ -1,0 +1,143 @@
+@import "../../../styles/them.scss";
+
+form{
+    .form-control:focus{
+        box-shadow: none;
+    }
+
+    button{
+        background: $button_submit_color;
+        margin-top: 10px !important;
+        color:  $button_font_color;
+        width:  $button_width;
+        height: $button_height;
+    }
+    .hide{
+        display: none;
+    }
+
+    .invalid{
+        border-color: $input_wrong_border_color;
+    }
+    .valid, .valid:focus{
+        border-color: $input_success_border_color;
+    }
+}
+
+
+.error{
+    background:$input_wrong_border_color ;
+    margin: 3px 0;
+    border-radius: 4px;
+    color: $font_color_light;
+
+    small{
+        padding: 13px;
+        
+    };
+}
+
+.success{
+    background:$input_success_border_color ;
+    margin: 3px 0;
+    border-radius: 4px;
+    color: $font_color_light;
+
+    small, p{
+        padding: 13px;
+        
+    };
+}
+
+::ng-deep .pass-input{
+    span{
+        height: 40px;
+        justify-content: center;
+    }
+    position: relative;
+    .pass-visible{
+        height: 40px;
+        
+
+        button{
+            padding: 0;
+            height: 40px;
+            position: absolute;
+            top: 3px;
+            right: 0;
+            
+        }
+
+    }
+
+}
+
+::ng-deep mat-slide-toggle{
+    small{
+        color: $small_font_color;
+    }
+    .mdc-switch__track::after {
+        background: $button_submit_color!important;
+    }
+    .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
+        background:#598bff !important ;
+    }
+
+}
+
+.password_hint{
+    
+    margin-bottom: 10px;
+    ::ng-deep mat-password-strength{
+        .mdc-linear-progress__buffer{
+            display: none !important;
+    
+        }
+        mat-progress-bar{
+            &.mat-primary{
+                span{
+                    border-color: $success_background;
+                }
+            }
+            &.mat-warn{
+                span{
+                    border-color: $warning_background;
+                }
+            }
+
+        }
+    }
+    ::ng-deep mat-password-strength-info{
+        mat-card{
+            background-color: $light_backgrond_color;
+            .mat-primary{
+                color: $icon_success_color;
+            }
+            .mat-warn{
+                color: $icon_warning_color;
+            }
+
+
+        }
+    }
+}
+
+.form-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5px
+
+    a{
+        text-decoration: underline !important;
+        color: $refrence_tag_color !important;
+    }
+    a :hover{
+        cursor: pointer;
+    }
+    a:not([href]):not([class]), a:not([href]):not([class]):hover {
+        color: $refrence_tag_color !important;
+        text-decoration: underline !important;
+        cursor: pointer;
+    }
+}

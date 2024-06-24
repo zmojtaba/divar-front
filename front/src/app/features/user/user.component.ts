@@ -8,6 +8,9 @@ import { UserService } from '../../core/services/user.service';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-user',
@@ -30,17 +33,22 @@ import { LoginComponent } from './login/login.component';
 export class UserComponent implements OnInit {
 
   userIsLogedIn:boolean;
-  formStatus: string = 'register'
+  formStatus: string = 'login'
 
 
   ngOnInit(): void {
-    // if (!userIsLogedIn){
 
-    // }
   }
 
-  constructor( private userService: UserService ){
+  constructor( 
+    private userService: UserService,
+    private router: Router
+    ){
     this.userIsLogedIn = userService.userIsLogedIn()
     console.log('------------+++----------------',this.userIsLogedIn)
+  }
+  receiveValue(value:any){
+    this.formStatus = value
+    console.log('------------------', value)
   }
 }

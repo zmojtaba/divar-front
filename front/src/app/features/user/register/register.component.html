@@ -77,11 +77,14 @@
                         && password.value !== password1.value" >
                   <small> password does not match </small>
             </div>
-          </div> 
+        </div> 
 
-          <button type="submit" class="btn mt-1" [disabled]="!signUpForm.valid || password.value !== password1.value ">Submit</button>
+        <div class="form-info">
+          <small (click)="onLoginForm()" >  <a >Do you have an account? login instead.</a> </small>
 
+        </div>
 
+        <button type="submit" class="btn mt-1" [disabled]="!signUpForm.valid || password.value !== password1.value " >Submit</button>
 
 
     </form>
