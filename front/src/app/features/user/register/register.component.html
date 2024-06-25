@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-md-6 col-md-offser-3">
+<div class="col-xs-12 col-md-6 col-md-offser-3 register">
     <ng-container *ngIf="signupError" >
     <div class="alert alert-danger error" role="alert"  *ngFor="let err of signupError" >
         {{err}}
@@ -88,6 +88,8 @@
 
 
     </form>
-    <mat-spinner class="col-xs-12 col-md-6 col-md-offser-3" *ngIf="snippingLoading"></mat-spinner>
+    <mat-spinner class="col-xs-12 col-md-6 col-md-offser-3 spinner" *ngIf="snippingLoading"></mat-spinner>
   </ng-container>
 </div>
+
+<!-- <button nbButton (click)="dismiss()">Close</button> -->

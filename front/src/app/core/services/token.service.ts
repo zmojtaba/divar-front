@@ -10,6 +10,11 @@ export class TokenService {
 
   apiUrl = environment.apiUrl
 
+  decodeJwt(token:string){
+    const jwt_data: any = JSON.parse( atob(token.split('.')[1]) )
+    return jwt_data
+  }
+
   check_token_expire(token:string) {
 
     // JSON.parse convert string to json

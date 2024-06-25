@@ -8,8 +8,8 @@ import { UserService } from '../../core/services/user.service';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -33,7 +33,7 @@ import { filter } from 'rxjs/operators';
 export class UserComponent implements OnInit {
 
   userIsLogedIn:boolean;
-  formStatus: string = 'login'
+  formStatus: string = 'register'
 
 
   ngOnInit(): void {
@@ -49,6 +49,5 @@ export class UserComponent implements OnInit {
   }
   receiveValue(value:any){
     this.formStatus = value
-    console.log('------------------', value)
   }
 }

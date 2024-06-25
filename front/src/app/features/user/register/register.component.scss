@@ -1,6 +1,7 @@
 @import "../../../styles/them.scss";
 
 form{
+    width: 100%;
     .form-control:focus{
         box-shadow: none;
     }
@@ -138,5 +139,28 @@ form{
         color: $refrence_tag_color !important;
         text-decoration: underline !important;
         cursor: pointer;
+    }
+}
+
+.register{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+::ng-deep .code_box-dialog {
+    .mat-mdc-dialog-surface{
+        background-color: $light_backgrond_color !important;
+        display: flex;
+        align-content: space-around;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+
+::ng-deep .spinner{
+    svg{
+        stroke: $spinner_color !important;
     }
 }

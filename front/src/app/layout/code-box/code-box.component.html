@@ -1,0 +1,8 @@
+<code-input [isCodeHidden]="true"
+[class]="{'succes' : (isCorrect) , 'wrong': (!isCorrect)}"
+class="code-box"
+[codeLength]="5"
+[isCodeHidden]="false"
+(codeChanged)="onCodeChanged($event)"
+(codeCompleted)="onCodeCompleted($event)">
+</code-input>

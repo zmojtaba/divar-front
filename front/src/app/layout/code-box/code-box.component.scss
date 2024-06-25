@@ -1,0 +1,12 @@
+@import url("../../styles/them.scss");
+.code-box{
+    width: 50%;
+}
+
+::ng-deep code-input.succes{
+    input{
+        border-color: #588157 !important ;
+    }
+
+}
+

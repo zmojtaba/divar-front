@@ -5,15 +5,14 @@ import { catchError, map, take, tap } from 'rxjs/operators';
 import { LoginModel, SignUpModel } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
 import {TokenService} from './token.service'
-import { DOCUMENT } from '@angular/common';
-import { Inject } from '@angular/core';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl              = environment.apiUrl 
+  apiUrl              = environment.apiUrl
+  
 
 
   signUpService(email:string, password:string, password1:string) {
@@ -25,8 +24,6 @@ export class UserService {
     }).pipe(
         
         tap( (data:any)=> {
-          console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', data)
-          // get access token to get the hash code
           localStorage.setItem('refresh_token', data.detail['refresh_token'])
           localStorage.setItem('access_token', data.detail['access_token'])
           localStorage.setItem('user_email', email)
