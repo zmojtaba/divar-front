@@ -40,8 +40,7 @@ import { TokenService } from '../../../core/services/token.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
-  signupError: string = '';
-  signupSuccess: string = '';
+  signupError: string;
   signUpForm: FormGroup;
   snippingLoading: boolean = false;
   showPasswordStatus: boolean = false;
@@ -70,16 +69,6 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}') ]],
       password1: ['', [Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')]],
     });
-
-    const dialogRef = this.dialog.open(CodeBoxComponent, {
-      height: '400px',
-      width: '600px',
-      data: {hash_code: '5912850bfb31eadec452b53386c9a9bb9039761cc2bd0220e47b39e8e8b8eaa4',},
-      panelClass: 'code_box-dialog'
-  });
-
-
-
   }
   
   onStrengthChanged(strength: number) {
@@ -100,8 +89,8 @@ export class RegisterComponent implements OnInit {
       next:
        (data : any) => {
         this.snippingLoading = false
+        this.userService.userLoggedIn.next(true)
         const response = JSON.parse(JSON.stringify(data)) 
-        this.signupSuccess = response.detail['message']
         const hash_code = this.tokenService.decodeJwt(response.detail['access_token']).hash_code
         console.log('================================hash doce=====', hash_code)
         const dialogRef = this.dialog.open(CodeBoxComponent, {
@@ -114,10 +103,12 @@ export class RegisterComponent implements OnInit {
     }, 
       error: (errorMessage) => {
         this.snippingLoading = false
-        this.signupError = errorMessage
+        console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', JSON.parse(JSON.stringify(errorMessage)).error.username[0] )
+        console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+        this.signupError = JSON.parse(JSON.stringify(errorMessage)).error.username[0]
     }
   }); 
-    form.reset()   
+    // form.reset()   
     
   }
   onLoginForm(){

@@ -1,8 +1,13 @@
-<code-input [isCodeHidden]="true"
-[class]="{'succes' : (isCorrect) , 'wrong': (!isCorrect)}"
-class="code-box"
-[codeLength]="5"
-[isCodeHidden]="false"
-(codeChanged)="onCodeChanged($event)"
-(codeCompleted)="onCodeCompleted($event)">
-</code-input>
+<div class="resend-dialog">
+    <span><p>Please Enter the code has sent to your email </p></span>
+    <code-input [isCodeHidden]="true"
+    [class]="{'succes' : (codeStatus == 'correct') , 'wrong': (codeStatus == 'incorrect')}"
+    class="code-box"
+    [codeLength]="5"
+    [isCodeHidden]="false"
+    (codeChanged)="onCodeChanged($event)"
+    (codeCompleted)="onCodeCompleted($event)">
+    </code-input>
+    <span><p>Didn't get a code? click <a > here </a> to resend. </p> </span>
+
+</div>

@@ -5,6 +5,7 @@ import { catchError, map, take, tap } from 'rxjs/operators';
 import { LoginModel, SignUpModel } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
 import {TokenService} from './token.service'
+import { stringify } from 'querystring';
 
 
 @Injectable({
@@ -12,7 +13,32 @@ import {TokenService} from './token.service'
 })
 export class UserService {
   apiUrl              = environment.apiUrl
+  userLoggedIn        = new BehaviorSubject<boolean>(false)
+
+  save_user_data(refresh_token:string, access_token:string, user_email:string, is_verified:boolean){
+    let str_is_verified:string = String(is_verified)
+    localStorage.setItem('refresh_token',refresh_token)
+    localStorage.setItem('access_token', access_token)
+    localStorage.setItem('user_email', user_email)
+    localStorage.setItem('is_verified', str_is_verified)
+  }
   
+  saveVerifyUser(is_verified:boolean){
+    let str_is_verified:string = String(is_verified)
+    localStorage.setItem('is_verified', str_is_verified)
+  }
+
+  CheckVerifyUser(){
+     
+    if ( localStorage.getItem('is_verified') == 'true' ){
+      return true
+    }else  {
+      return false
+    }
+
+
+
+  }
 
 
   signUpService(email:string, password:string, password1:string) {
@@ -24,11 +50,9 @@ export class UserService {
     }).pipe(
         
         tap( (data:any)=> {
-          localStorage.setItem('refresh_token', data.detail['refresh_token'])
-          localStorage.setItem('access_token', data.detail['access_token'])
-          localStorage.setItem('user_email', email)
-          }),
           catchError(this.handleError),
+          this.save_user_data(data.detail['refresh_token'],  data.detail['access_token'], email, false)
+          }),
       
       )
   }
@@ -64,10 +88,11 @@ export class UserService {
     let errorMessage = 'an unknown error occurred'
     console.log('-----------',errorRes)
     if (!errorRes.error){
+      
       return throwError(() => new Error(errorMessage))
     }
-    if(errorRes.error.email){
-      errorMessage=errorRes.error['email']
+    if(errorRes.error.username){
+      errorMessage=errorRes.error['username']
     }
     if(errorRes.error['password']){
       errorMessage=errorRes.error['password']
@@ -78,6 +103,7 @@ export class UserService {
     if (errorRes.error['detail']){
       errorMessage=errorRes.error['detail']
     }
+    console.log('=========================================',errorMessage)
     return throwError(() => new Error(errorMessage))
   }
 

@@ -1,16 +1,10 @@
+<ng-container  >
+<div class="alert alert-danger error" role="alert" *ngIf="!!signupError"   >
+  {{signupError}}
+  </div> 
+ </ng-container> 
 <div class="col-xs-12 col-md-6 col-md-offser-3 register">
-    <ng-container *ngIf="signupError" >
-    <div class="alert alert-danger error" role="alert"  *ngFor="let err of signupError" >
-        {{err}}
-      </div>
-    </ng-container>
-  <div class="mt-3 mb-3" *ngIf="signupSuccess">
-      <div class="alert alert-success success" role="alert"    >
-          <p>{{signupSuccess}}</p>
-      </div><br>
-      <small class="text-success">an email has sent to your email account please check it for activating your account</small>
-  </div>
-  <ng-container *ngIf="!signupSuccess">
+  <ng-container>
     <form class="form-group"  [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm)" *ngIf="!snippingLoading">
 
       <label for="email"> email</label>

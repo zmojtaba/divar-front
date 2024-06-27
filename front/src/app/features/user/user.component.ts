@@ -1,4 +1,4 @@
-import { Component ,  OnInit} from '@angular/core';
+import { Component ,  OnInit, SimpleChanges } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router'
 import { NbEvaIconsModule } from '@nebular/eva-icons'
 import { NbIconModule, NbListModule } from '@nebular/theme';
@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 
@@ -34,20 +35,36 @@ export class UserComponent implements OnInit {
 
   userIsLogedIn:boolean;
   formStatus: string = 'register'
-
-
-  ngOnInit(): void {
-
-  }
+  registerSubscription: Subscription = new Subscription()
+  userIsVerified: boolean;
 
   constructor( 
     private userService: UserService,
     private router: Router
     ){
-    this.userIsLogedIn = userService.userIsLogedIn()
-    console.log('------------+++----------------',this.userIsLogedIn)
+      console.log('=================ng on cons when true===================')
+    }
+
+  ngOnInit(): void {
+    this.registerSubscription = this.userService.userLoggedIn.subscribe( data =>{
+      if (data){
+        console.log('=================ng on init when true===================')
+        this.userIsLogedIn = true
+      }else{
+        this.userIsLogedIn = this.userService.userIsLogedIn()
+      }
+    } )
+    
   }
+
   receiveValue(value:any){
     this.formStatus = value
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('---------------- in user ngonchanges ------------------')
+    console.log('---------------- in user ngonchanges ------------------', this.userService.userIsLogedIn())
+    this.userIsLogedIn = this.userService.userIsLogedIn()
+  }
+
 }
