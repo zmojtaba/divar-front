@@ -5,7 +5,9 @@ import { MatPasswordStrengthModule } from "@angular-material-extensions/password
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { RouterLink, RouterOutlet, Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../core/services/user.service';
+import { UserComponent } from '../user.component';
 
 
 
@@ -20,6 +22,8 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
     ReactiveFormsModule,
     RouterLink,
     RouterOutlet,
+    RouterModule,
+    UserComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -31,7 +35,10 @@ export class LoginComponent {
   @Output() formChanger = new EventEmitter<string>();
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit() {
@@ -49,16 +56,20 @@ export class LoginComponent {
     const email = form.value.email
     const password = form.value.password
     this.loadingSpinner = true
-    // this.authService.logInService(email, password)
-    // .subscribe(data => {
-    //   console.log(data)
-    //   this.loadingSpinner = false;
-    //   this.router.navigate([''])
-    // }, err => {
-    //   this.loginError = err
-    //   this.loadingSpinner = false
-    
-    // })
+    this.userService.logInService(email, password)
+    .subscribe({
+      next:
+      (data:any) => {
+        this.loadingSpinner = false;
+        this.router.navigate(['user'], { relativeTo: this.route });
+      }, 
+      error: (errorMessage) => {
+        const response = JSON.parse(JSON.stringify(errorMessage)) 
+        this.loadingSpinner = false
+        this.loginError = response.error.detail[0]
+    }
+    }
+      )
     
   }
 

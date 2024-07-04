@@ -1,5 +1,5 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { NbThemeModule } from '@nebular/theme';
@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
     RouterOutlet, 
     HomeComponent, 
     HeaderComponent,
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -47,12 +48,11 @@ export class AppComponent implements OnInit {
     if ( this.userIsloggedIn ){
 
 
-      if (this.userService.CheckVerifyUser()){
+      if (!this.userService.CheckVerifyUser()){
         this.verifySatus = 'not_verified'
 
       }
     }
-    // this.verifySatus = 'verified'
 
   }
 }

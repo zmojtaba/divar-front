@@ -35,9 +35,6 @@ export class UserService {
     }else  {
       return false
     }
-
-
-
   }
 
 
@@ -61,20 +58,47 @@ export class UserService {
     let refresh_token:any = localStorage.getItem( 'refresh_token' )
     if (refresh_token){
 
+
       if (this.tokenService.check_token_expire(refresh_token)){
+
         return true
       }else{
+
         return false
       }
-    }else{
-      return false
+    }else{      return false
     }
+
+  }
+
+  logOutService(refresh:any) {
+    return this.http.post(this.apiUrl + "/account/api-vi/log-out/",{refresh}).pipe(
+      tap( (data:any) => {
+        // this.userIsLoggedIn.next(false)
+        // this.logoutResponseData.next(data.detail)
+        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('user_email')
+        localStorage.removeItem('is_verified')
+    }),
+  )}
+
+  logInService(email:string, password:string){
+    // ######################################## need to do in backend ############################################
+    // #################### give the verification status from back and save in local storage######################
+    return this.http.post<any>(`${this.apiUrl}/account/api-vi/log-in/`, {
+      username: email,
+      password: password, 
+    }).pipe(
+        tap( (data:any)=> {
+          const response = JSON.parse(JSON.stringify(data)) 
+          catchError(this.handleError);
+          // this.save_user_data(response['refresh'],  response['access'], email, true)
+        }),
+        )
+
   }
  
-
-
-
-
   constructor(
     private http:HttpClient,
     private tokenService: TokenService,

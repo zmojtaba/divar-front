@@ -3,11 +3,13 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http"
 import {  BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map, take, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { jwtDecode } from "jwt-decode";
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-
   apiUrl = environment.apiUrl
 
   decodeJwt(token:string){
@@ -16,10 +18,14 @@ export class TokenService {
   }
 
   check_token_expire(token:string) {
-
+    let decoded :any = jwtDecode(token);
     // JSON.parse convert string to json
+    console.log('==========================================1', token )
     const jwt_data: any = JSON.parse( atob(token.split('.')[1]) )
+    console.log('==========================================2')
     const now : number = Math.trunc( Date.now() / 1000 )
+    console.log('==========================================3')
+
 
     if ( jwt_data.exp - now > 0 ){
       return true

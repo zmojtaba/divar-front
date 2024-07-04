@@ -145,3 +145,12 @@ form{
         cursor: pointer;
     }
 }
+
+::ng-deep .spinner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    svg{
+        stroke: $spinner_color !important;
+    }
+}

@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-md-6 col-md-offser-3" >
-    <ng-container *ngIf="loginError" >
-        <div class="alert alert-danger error" role="alert"  *ngFor="let err of loginError" >
-            {{err}}
+    <ng-container *ngIf="(loginError && !loadingSpinner )" >
+        <div class="alert alert-danger error" role="alert"   >
+            {{loginError}}
           </div>
     </ng-container> 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)" *ngIf="!loadingSpinner" >
@@ -43,6 +43,8 @@
             <button type="submit" class="btn mt-1"  [disabled]="!loginForm.valid">LogIn</button>
         </div>
     </form>
-    <mat-spinner  *ngIf="loadingSpinner" ></mat-spinner>
+    <div class="spinner">
+        <mat-spinner class="col-xs-12 col-md-6 col-md-offser-3" *ngIf="loadingSpinner"></mat-spinner>
+    </div>
 
 </div>
