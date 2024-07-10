@@ -1,0 +1,11 @@
+@import "../../styles/them.scss";
+
+.search_box{
+    ::ng-deep svg{
+        color: $icon_color;
+        height: 2rem;
+        width: 2rem;
+    }
+}
+
+

@@ -14,6 +14,7 @@ import { stringify } from 'querystring';
 export class UserService {
   apiUrl              = environment.apiUrl
   userLoggedIn        = new BehaviorSubject<boolean>(false)
+  userRegistered        = new BehaviorSubject<boolean>(false)
 
   save_user_data(refresh_token:string, access_token:string, user_email:string, is_verified:boolean){
     let str_is_verified:string = String(is_verified)
@@ -93,7 +94,7 @@ export class UserService {
         tap( (data:any)=> {
           const response = JSON.parse(JSON.stringify(data)) 
           catchError(this.handleError);
-          // this.save_user_data(response['refresh'],  response['access'], email, true)
+          this.save_user_data(response['refresh'],  response['access'], email, true)
         }),
         )
 

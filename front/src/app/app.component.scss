@@ -1,15 +1,11 @@
 
 @import "./styles/them.scss";
 
-.container{
-    margin-top: 15px;
+.app_box{
+    // margin-top: 1rem;
     margin-bottom: 5px;
     height: calc(100% - 80px  );
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // height: 100vh; /* Full viewport height */
-    flex-direction: column;
+
 }
 
 

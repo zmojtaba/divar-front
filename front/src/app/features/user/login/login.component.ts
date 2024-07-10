@@ -28,7 +28,7 @@ import { UserComponent } from '../user.component';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loadingSpinner: boolean = false;
   loginError : string = ''
   loginForm : FormGroup;
@@ -61,7 +61,10 @@ export class LoginComponent {
       next:
       (data:any) => {
         this.loadingSpinner = false;
-        this.router.navigate(['user'], { relativeTo: this.route });
+        
+        this.router.navigate(['user']).then(() => {
+          window.location.reload();
+        });;
       }, 
       error: (errorMessage) => {
         const response = JSON.parse(JSON.stringify(errorMessage)) 

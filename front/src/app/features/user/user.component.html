@@ -1,72 +1,65 @@
-<ng-template #elseBlock>
-    <app-register *ngIf="formStatus=='register'"  (formChanger)="receiveValue($event)"></app-register>
-    <app-login *ngIf="formStatus=='login'" (formChanger)="receiveValue($event)" ></app-login>
-</ng-template>
-
-
-<div *ngIf="userIsLogedIn; else elseBlock">
-    <div class="profile_bio" >
-        <div class="img"> <img src="assets/profile_img/profile.png" alt=""> </div>
-        <div class="content" > <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
-        <div class="icon"> 
-            <div class="drop_down_menu">
-                <button mat-button [matMenuTriggerFor]="menu"><nb-icon  icon="more-vertical-outline"></nb-icon></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="onLogout()">Logout</button>
-                    <button mat-menu-item>item1</button>
-                    <button mat-menu-item>item2</button>
-                    <button mat-menu-item>item3</button>
-                </mat-menu>
-            </div> 
+<div class="user_box">
+    <ng-template #elseBlock>
+        <app-register *ngIf="formStatus=='register'"  (formChanger)="receiveValue($event)"></app-register>
+        <app-login *ngIf="formStatus=='login'" (formChanger)="receiveValue($event)" ></app-login>
+    </ng-template>
+    
+    
+    <div *ngIf="userIsLogedIn; else elseBlock">
+        <div class="profile_bio" >
+            <div class="img"> <img src="assets/profile_img/profile.png" alt=""> </div>
+            <div class="content" > <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
+            <div class="icon"> 
+                <div class="drop_down_menu">
+                    <button mat-button [matMenuTriggerFor]="menu"><nb-icon  icon="more-vertical-outline"></nb-icon></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onLogout()">Logout</button>
+                        <button mat-menu-item>item1</button>
+                        <button mat-menu-item>item2</button>
+                        <button mat-menu-item>item3</button>
+                    </mat-menu>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="items-list">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> My Ad </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> Saved </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> Payment </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> My Visits </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> identity </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+            </ul>
         </div>
     </div>
-
-    <div class="items-list">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <div class="items">
-                    <p> My Ad </p>
-                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="items">
-                    <p> Saved </p>
-                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="items">
-                    <p> Payment </p>
-                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="items">
-                    <p> My Visits </p>
-                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-                </div>
-            </li>
-
-            <li class="list-group-item">
-                <div class="items">
-                    <p> identity </p>
-                    <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
-                </div>
-            </li>
-
-        </ul>
-    </div>
 </div>
-
-
-
-
-
-
-
-
-

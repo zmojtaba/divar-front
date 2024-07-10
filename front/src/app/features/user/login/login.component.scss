@@ -146,6 +146,13 @@ form{
     }
 }
 
+.login{
+    width: 100%;
+    // display: flex;
+    // justify-content: space-around;
+    // flex-direction: row;
+}
+
 ::ng-deep .spinner{
     display: flex;
     flex-direction: row;

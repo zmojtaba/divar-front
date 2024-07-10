@@ -50,19 +50,16 @@ export class UserComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    console.log('=================ng on init ===================')
     this.registerSubscription = this.userService.userLoggedIn.subscribe( data =>{
       if (data){
-        console.log('=================ng on init when true===================')
+
         this.userIsLogedIn = true
       }else{
         this.userIsLogedIn = this.userService.userIsLogedIn()
       }
     } )
 
-    console.log('=================ng on init ===================', this.userIsLogedIn)
     this.userIsLogedIn = this.userService.userIsLogedIn()
-    console.log('=================ng on init ===================111', this.userIsLogedIn)
     
   }
 
@@ -70,7 +67,8 @@ export class UserComponent implements OnInit {
     const refresh_token = localStorage.getItem('refresh_token')
     this.userService.logOutService(refresh_token).subscribe(
       data =>{
-        this.userIsLogedIn = false
+        this.userIsLogedIn = false,
+        this.router.navigate(['home'])
       }
     )
   }
@@ -80,8 +78,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('---------------- in user ngonchanges ------------------')
-    console.log('---------------- in user ngonchanges ------------------', this.userService.userIsLogedIn())
     this.userIsLogedIn = this.userService.userIsLogedIn()
   }
 
