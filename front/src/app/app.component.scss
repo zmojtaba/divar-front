@@ -1,6 +1,10 @@
 
 @import "./styles/them.scss";
 
+::ng-deep body{
+    background: $body_background_color ;
+}
+
 .app_box{
     // margin-top: 1rem;
     margin-bottom: 5px;

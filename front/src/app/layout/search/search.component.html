@@ -1,7 +1,27 @@
-<div class="input-group rounded search_box">
-    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <span class="input-group-text border-0" id="search-addon">
-        <nb-icon  icon="search"></nb-icon>
-    </span>
-</div>
-
+<form class="form-group search_form" >
+    <div class="search_box">
+        <div class="search_in-box" >
+            <div class="search_input">
+                <input type="text" class="input" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            </div>
+        </div>
+        <div class="search_other-box">
+            <div class="search_icon">
+                    <nb-icon  icon="search"></nb-icon>
+            </div>
+            <div class="sep_icon" >
+                    <p>|</p>
+            </div>
+            <div class="choice_in">
+                <select class="input" aria-label="Default select example">
+                        <option class="city" value="1">gorgan</option>
+                        <option class="city" value="2">tehran</option>
+                        <option class="city" value="3">shiraz</option>
+                  </select>
+            </div>
+            <div class="loc_icon">
+                    <nb-icon icon="map" ></nb-icon>
+            </div>
+        </div>
+    </div>
+</form>
