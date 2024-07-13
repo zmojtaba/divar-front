@@ -5,6 +5,11 @@
     background: $body_background_color ;
 }
 
+@media (max-width: 450px) {
+    ::ng-deep body {
+      display: flex; /* Change this to whatever display property you want */
+    }
+  }
 .app_box{
     // margin-top: 1rem;
     margin-bottom: 5px;
