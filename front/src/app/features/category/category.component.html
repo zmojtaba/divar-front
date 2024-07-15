@@ -1,1 +1,77 @@
-<p>category works!</p>
+
+<div class="title">
+    <div class="cat_title" >
+        <p>Ads Category</p>
+    </div>
+</div>
+
+<div class="cat-box" >
+    <div class="items-list">
+                <div class="items" (click)="setCategory('vehicle')" >
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="title"> Real State </mat-panel-title>
+
+                          </mat-expansion-panel-header>
+                            <div class="sub_cat-box" >
+                                <div class="items-list">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" *ngFor="let cat of realStateCats">
+                                            <div class="items">
+                                                <p> {{cat}} </p>
+                                                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                </div>
+                <div class="items" (click)="setCategory('vehicle')" >
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="title"> Vehicle </mat-panel-title>
+                          </mat-expansion-panel-header>
+                            <div class="sub_cat-box" >
+                                <div class="items-list">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" *ngFor="let cat of CarCats">
+                                            <div class="items">
+                                                <p> {{cat}} </p>
+                                                <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                </div>
+                <div class="items" (click)="setCategory('vehicle')" >
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title class="title"> Others </mat-panel-title>
+
+                          </mat-expansion-panel-header>
+                          <div class="sub_cat-box" >
+                            <div class="items-list">
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let cat of OtherCats">
+                                        <div class="items">
+                                            <p> {{cat}} </p>
+                                            <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                </div>
+    </div>
+</div>
+
