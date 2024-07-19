@@ -2,19 +2,16 @@ import { Injectable, SimpleChanges } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http"
 import {  BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map, take, tap } from 'rxjs/operators';
-import { LoginModel, SignUpModel } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
 import {TokenService} from './token.service'
-import { stringify } from 'querystring';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl              = environment.apiUrl
-  userLoggedIn        = new BehaviorSubject<boolean>(false)
-  userRegistered        = new BehaviorSubject<boolean>(false)
+  apiUrl                =   environment.apiUrl
+  userLoggedIn          =   new BehaviorSubject<boolean>(false)
+  userRegistered        =   new BehaviorSubject<boolean>(false)
 
   save_user_data(refresh_token:string, access_token:string, user_email:string, is_verified:boolean){
     let str_is_verified:string = String(is_verified)

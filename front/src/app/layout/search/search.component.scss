@@ -58,22 +58,28 @@
         .choice_in{
             width: 7rem;
             height: 3rem;
-            display: flex;
-            justify-content: space-around;
 
-            select {
-                -webkit-appearance: none;  
-                -moz-appearance: none;     
-                appearance: none; 
-                background: $light_backgrond_color;
+            p{
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                justify-content: center;
+                display: flex;
+                align-items: center;
             }
 
         }
     }
 
+}
 
-
-
+::ng-deep .cdk-overlay-pane {
+    .mat-mdc-menu-panel{
+        background-color: $light_backgrond_color;
+        span{
+            color: $search_drop_font_color;
+        }
+    }
 }
 
 

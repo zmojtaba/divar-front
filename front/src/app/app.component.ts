@@ -6,6 +6,9 @@ import { NbThemeModule } from '@nebular/theme';
 import { Subscribable, Subscription } from 'rxjs';
 import { UserService } from './core/services/user.service';
 import { CommonModule } from '@angular/common';
+import { ProfileDetailComponent } from './features/user/profile-detail/profile-detail.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './core/services/auth-interceptor.service';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +20,13 @@ import { CommonModule } from '@angular/common';
     HomeComponent, 
     HeaderComponent,
     RouterModule,
+    ProfileDetailComponent,
+    HttpClientModule
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [
+  ]
 })
 export class AppComponent implements OnInit {
   verifySatus : string;

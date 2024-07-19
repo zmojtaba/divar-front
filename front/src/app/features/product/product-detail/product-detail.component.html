@@ -1,1 +1,57 @@
-<p>product-detail works!</p>
+
+
+
+<div class="detail-box">
+    <div class="ads_image">
+        <!-- <div *ngIf="adsDetailData.images.length > 0; else ImageElseBlock"> -->
+            <img [src]="adsDetailData.images[imageId].image" alt="" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
+        <!-- </div> -->
+        <ng-template #ImageElseBlock>
+            <img src="assets/profile_img/profile.png" alt="">
+        </ng-template>
+        <nb-icon 
+        class="forward_icon" 
+        icon="arrow-ios-forward-outline" 
+        *ngIf="adsDetailData.images.length > 0"
+        (click)="onSetImage('previous')"
+        [class.disabled] = "imageId == 0"
+        >
+
+        </nb-icon>
+        <nb-icon 
+        class="backward_icon" 
+        icon="arrow-ios-back-outline" 
+        *ngIf="adsDetailData.images.length > 0" 
+        (click)="onSetImage('next')"
+        [class.disabled] = "imageId == adsDetailData.images.length-1"
+        ></nb-icon>
+        <div class="dot_icons" *ngIf="adsDetailData.images.length > 0" >
+                <div class="dot" *ngFor="let image of  adsDetailData.images; let i = index" [class.active_dot]="i==imageId">
+                </div>
+        </div>
+    </div>
+    <div class="car_cat" *ngIf="category=='car'">
+        <div class="items-list">
+            <ul class="list-group">
+    
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Body Type </p>
+                        <span> sedan  </span>
+                    </div>
+                </li>
+    
+   
+            </ul>
+        </div>
+    </div>
+    <div class="real_estate_cat" *ngIf="category=='realestate'">
+        <p> its car cat</p>
+
+    </div>
+    <div class="other_cat" *ngIf="category=='other'">
+        <p> its car cat</p>
+
+    </div>
+
+</div>

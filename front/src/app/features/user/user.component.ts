@@ -13,6 +13,10 @@ import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { RouterModule, Routes } from '@angular/router';
+import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
+import { ProfileService } from '../../core/services/profile.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from '../../core/services/auth-interceptor.service';
 
 @Component({
   selector: 'app-user',
@@ -27,14 +31,17 @@ import { RouterModule, Routes } from '@angular/router';
     CommonModule,
     RegisterComponent, 
     LoginComponent, 
+    ProfileDetailComponent,
     MatButtonModule, 
     MatMenuModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
-  providers: [NbStatusService]
+  
+  providers: [NbStatusService ,],
 })
 export class UserComponent implements OnInit {
 
@@ -43,10 +50,16 @@ export class UserComponent implements OnInit {
   registerSubscription: Subscription = new Subscription()
   userIsVerified: boolean;
 
+
   constructor( 
     private userService: UserService,
+    private profileService: ProfileService,
     private router: Router
     ){
+    }
+
+    onSetTitle(title:string){
+      this.router.navigate(['profile', title]);
     }
 
   ngOnInit(): void {
@@ -60,7 +73,11 @@ export class UserComponent implements OnInit {
     } )
 
     this.userIsLogedIn = this.userService.userIsLogedIn()
-    
+    if (this.userIsLogedIn){
+      this.profileService.getProfileService().subscribe(data=>{
+        console.log('__________________________', data)
+      })
+    }
   }
 
   onLogout(){

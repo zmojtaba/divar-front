@@ -5,7 +5,7 @@
     </ng-template>
     
     
-    <div *ngIf="userIsLogedIn; else elseBlock">
+    <div class="user_profile" *ngIf="userIsLogedIn; else elseBlock">
         <div class="profile_bio" >
             <div class="img"> <img src="assets/profile_img/profile.png" alt=""> </div>
             <div class="content" > <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
@@ -24,14 +24,14 @@
     
         <div class="items-list">
             <ul class="list-group">
-                <li class="list-group-item">
+                <li (click)="onSetTitle('my-ads')" class="list-group-item">
                     <div class="items">
                         <p> My Ad </p>
                         <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
                     </div>
                 </li>
     
-                <li class="list-group-item">
+                <li (click)="onSetTitle('saved-ads')"  class="list-group-item">
                     <div class="items">
                         <p> Saved </p>
                         <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
@@ -45,7 +45,7 @@
                     </div>
                 </li>
     
-                <li class="list-group-item">
+                <li (click)="onSetTitle('my-visit')" class="list-group-item">
                     <div class="items">
                         <p> My Visits </p>
                         <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
@@ -61,5 +61,8 @@
     
             </ul>
         </div>
+        <!-- <router-outlet></router-outlet> -->
     </div>
+
 </div>
+

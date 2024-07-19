@@ -13,11 +13,15 @@
                     <p>|</p>
             </div>
             <div class="choice_in">
-                <select class="input" aria-label="Default select example">
-                        <option class="city" value="1">gorgan</option>
-                        <option class="city" value="2">tehran</option>
-                        <option class="city" value="3">shiraz</option>
-                  </select>
+                    <p  [matMenuTriggerFor]="menu">City</p>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Lefkosa</button>
+                        <button mat-menu-item>Grine</button>
+                        <button mat-menu-item>Gazimagusa</button>
+                        <button mat-menu-item>Guzelyurt</button>
+                        <button mat-menu-item>Iskele</button>
+                        <button mat-menu-item>Lefke</button>
+                    </mat-menu>
             </div>
             <div class="loc_icon">
                     <nb-icon icon="map" ></nb-icon>

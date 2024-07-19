@@ -1,5 +1,13 @@
 @import "../../../styles/them.scss";
 
+.register{
+    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 1rem;
+}
+
 form{
     width: 100%;
     .form-control:focus{

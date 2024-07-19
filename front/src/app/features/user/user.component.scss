@@ -2,10 +2,11 @@
 
 .user_box{
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 1rem;
+    width: 100%;
+    background: #fff;
+    .user_profile{
+        padding: 2rem;
+    }
 }
 
 .profile_bio{

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbCardModule, NbIconModule, NbStatusService, NbThemeModule } from '@nebular/theme';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -14,7 +16,9 @@ import {MatSelectModule} from '@angular/material/select';
     NbEvaIconsModule, 
     NbIconModule, 
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule, 
+    MatMenuModule,
    ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss', 
@@ -23,11 +27,10 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 
-export class SearchComponent {
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
+export class SearchComponent implements OnInit  {
+
+  ngOnInit(): void {
+    
+  }
 
 }

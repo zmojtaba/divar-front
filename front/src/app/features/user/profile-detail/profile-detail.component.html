@@ -1,0 +1,40 @@
+<div class="profile_detail">
+    <div class="items-list">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let obj of adsData">
+                <div class="items" (click)="onDetailView(obj)">
+                    <div class="content" >
+                        <div class="title">
+                            <p>Title:  {{obj.title}}</p>
+                        </div>
+                        <div class="price" >
+                            <p>Price: {{obj.Price}} </p>
+                        </div>
+                        <div class="city" >
+                            <p>City: {{obj.City}}</p>
+                        </div>
+                        <div class="view_count" *ngIf="title == 'my-visit' " >
+                            <p> Views: {{obj.Visit_count}} </p>
+                        </div>
+                    </div>
+                    <div class="chat" >
+                        <nb-icon icon="message-circle-outline" ></nb-icon>
+                    </div>
+                    <div class="image" *ngIf="obj.images.length > 0 ; else elseBlock" >
+                        <img [src]="obj.images[0]['image']" alt=""  >
+                    </div>
+                    <ng-template  #elseBlock>
+                        <div class="image">
+                            <img src="assets/profile_img/profile.png" alt="" >
+                        </div>
+                    </ng-template>
+
+
+
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

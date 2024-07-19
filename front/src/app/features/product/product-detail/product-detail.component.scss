@@ -1,0 +1,55 @@
+@import '../../../styles/them.scss';
+
+.detail-box{
+    height: 100%;
+    .ads_image{
+
+        position: relative;
+        height: 40% !important;
+        ::ng-deep svg{
+            color: #fff;
+            height: 3rem;
+            width: 3rem;
+            background-color: #748DA6;
+        }
+        img{
+            height: 100%;
+            width: 100%;
+        }
+        .forward_icon{
+            position: absolute;
+            top: 9rem;
+            right: 1rem;
+            &.disabled{
+                display: none;
+            }
+        }
+        .backward_icon{
+            position: absolute;
+            top: 9rem;
+            left: 1rem;
+            &.disabled{
+                display: none;
+            }
+        }
+
+        .dot_icons{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: row-reverse;
+            position: absolute;
+            bottom: 1rem;
+            .dot{
+                margin: 0 0.125rem;
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 50%;
+                background: rgb(133, 130, 130);
+            }
+            .active_dot{
+                background: #fff;
+            }
+        }
+    }
+}
