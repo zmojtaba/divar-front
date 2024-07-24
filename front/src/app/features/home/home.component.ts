@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { Router } from '@angular/router';
 import { text } from 'stream/consumers';
+import { NotFoundComponent } from '../../layout/not-found/not-found.component';
 // import { NewsService } from './news.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { text } from 'stream/consumers';
     NbIconModule, 
     NbListModule,
     CommonModule,
+    NotFoundComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -55,10 +57,14 @@ export class HomeComponent implements OnInit {
   }
 
   searchData(value:any){
-    console.log('************************home emitter***************',value)
+    console.log('************************home emitter***************',this.adsData)
     this.productService.searchAds(value['text'], value['city']).subscribe(
-      data =>{
-        console.log(data, 'ooooooooooooooooooooooooo')
+      (data:any) =>{
+
+        data = typeof data === 'string' ? JSON.parse(data) : data
+        this.adsData = data['All_ads']
+        this.processAdsData(this.adsData)
+
       }
     )
   }

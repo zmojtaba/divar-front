@@ -23,9 +23,9 @@ export class ProductService {
 
   searchAds(text:string, city:string){
     return this.http.post(`${this.apiUrl}/advertisement/search-ads/`, {
-      "title":text,
-      "city":city
-    })
+      "title":text.toLocaleLowerCase(),
+      "city":city.toLocaleLowerCase()
+    });
   }
 
 }

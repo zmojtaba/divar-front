@@ -7,7 +7,7 @@
 
 <div class="cat-box" >
     <div class="items-list">
-                <div class="items" (click)="setCategory('vehicle')" >
+                <div class="items" >
                     <mat-accordion>
                         <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
                           <mat-expansion-panel-header>
@@ -18,7 +18,7 @@
                                 <div class="items-list">
                                     <ul class="list-group">
                                         <li class="list-group-item" *ngFor="let cat of realStateCats">
-                                            <div class="items">
+                                            <div class="items" (click)="onSetCategory( 'realestate' ,cat)">
                                                 <p> {{cat}} </p>
                                                 <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
                                             </div>
@@ -29,7 +29,7 @@
                         </mat-expansion-panel>
                       </mat-accordion>
                 </div>
-                <div class="items" (click)="setCategory('vehicle')" >
+                <div class="items" >
                     <mat-accordion>
                         <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
                           <mat-expansion-panel-header>
@@ -39,7 +39,7 @@
                                 <div class="items-list">
                                     <ul class="list-group">
                                         <li class="list-group-item" *ngFor="let cat of CarCats">
-                                            <div class="items">
+                                            <div class="items" (click)="onSetCategory( 'car' ,cat)">
                                                 <p> {{cat}} </p>
                                                 <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
                                             </div>
@@ -50,7 +50,7 @@
                         </mat-expansion-panel>
                       </mat-accordion>
                 </div>
-                <div class="items" (click)="setCategory('vehicle')" >
+                <div class="items" >
                     <mat-accordion>
                         <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
                           <mat-expansion-panel-header>
@@ -61,7 +61,7 @@
                             <div class="items-list">
                                 <ul class="list-group">
                                     <li class="list-group-item" *ngFor="let cat of OtherCats">
-                                        <div class="items">
+                                        <div class="items" (click)="onSetCategory( 'other' ,cat)">
                                             <p> {{cat}} </p>
                                             <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
                                         </div>

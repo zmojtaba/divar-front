@@ -2,7 +2,7 @@
     <div class="search_bar">
         <app-search (searchEmitter)="searchData($event)" ></app-search>
     </div>
-    <div class="items-list">
+    <div class="items-list" *ngIf="adsData; else notFoundBlock">
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let obj of adsData">
                 <div class="items" (click)="onDetailView(obj)">
@@ -32,4 +32,7 @@
             </li>
         </ul>
     </div>
+    <ng-template #notFoundBlock>
+        <app-not-found></app-not-found>
+    </ng-template>
 </div>

@@ -19,12 +19,16 @@ import { CommonModule } from '@angular/common';
 })
 export class CategoryComponent {
   readonly panelOpenState = signal(false);
-  realStateCats = ["apartment", "House", "Villa", "Studio", "Penthouse", "Residence", "Under Construction Building", "Land", "Commercial Property", "Warehouse"]
-  CarCats = ["Cabriolet", "coupe", "Hatchback 5 Door", "Hatchback 5 Door", "Sedan", "stationwagon", "SUV"]
-  OtherCats = ["Ashpaxkhane", "Electronic", "Animal"]
+  realStateCats = ["Apartment", "House", "Villa", "Studio", "Penthouse", "Residence", "Under Construction Building", "Land", "Commercial Property", "Warehouse"]
+  CarCats = ["Cabriolet", "Coupe", "Hatchback 5 Door", "Hatchback 5 Door", "Sedan", "Stationwagon", "SUV"]
+  OtherCats = ["Digital Goods", "Kitchen", "Intertainment", "Personal Items"]
 
-  setCategory(cat_name:string){
-    console.log(cat_name)
+  onSetCategory(category:string, sub_category:string){
+    console.log(category)
+  }
+
+  onSetSubCategory(sub_category:string){
+    console.log(sub_category)
   }
 
 }

@@ -32,7 +32,7 @@ import { CommonModule } from '@angular/common';
 
 export class SearchComponent implements OnInit  {
   searchText: string = '';
-  selectedCity: string = '';
+  selectedCity: string = 'Lefkosa';
   cities = ['Lefkosa', 'Grine', 'Gazimagusa', 'Guzelyurt', 'Iskele', 'Lefke'];
   @Output() searchEmitter = new EventEmitter<any>();
 
