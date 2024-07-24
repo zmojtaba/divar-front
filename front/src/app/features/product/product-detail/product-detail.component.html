@@ -1,6 +1,3 @@
-
-
-
 <div class="detail-box">
     <div class="ads_image">
         <!-- <div *ngIf="adsDetailData.images.length > 0; else ImageElseBlock"> -->
@@ -33,24 +30,180 @@
     <div class="car_cat" *ngIf="category=='car'">
         <div class="items-list">
             <ul class="list-group">
-    
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Title </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Body Type </p>
-                        <span> sedan  </span>
+                        <span> {{adsDetailData.BodyType}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Fuel Type </p>
+                        <span> {{adsDetailData.FuelType}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Mileage </p>
+                        <span> {{adsDetailData.Mileage}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Price </p>
+                        <span> {{adsDetailData.Price}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Status </p>
+                        <span> {{adsDetailData.Status}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Description </p>
+                        <span> {{adsDetailData.description}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Date </p>
+                        <span> {{adsDetailData.created_date | timeAgo }} </span>
+                    </div>
+                </li> 
+            </ul>
+        </div>
+    </div>
+    <div class="real_estate_cat" *ngIf="category=='realestate'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Title </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> City </p>
+                        <span> {{adsDetailData.City}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Furnishing Status </p>
+                        <span> {{adsDetailData.FurnishingStatus}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Number Of Bedrooms </p>
+                        <span> {{adsDetailData.NumberOfBedrooms}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Price: </p>
+                        <span> {{adsDetailData.Price}}$  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Propertytype: </p>
+                        <span> {{adsDetailData.Propertytype}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Size </p>
+                        <span> {{adsDetailData.Size}} meter  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Status </p>
+                        <span> {{adsDetailData.Status}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Title Deed Type </p>
+                        <span> {{adsDetailData.TitleDeedType}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Category </p>
+                        <span> {{adsDetailData.category.name}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Date </p>
+                        <span> {{adsDetailData.created_date | timeAgo }} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Description </p>
+                        <span> {{adsDetailData.description}} </span>
                     </div>
                 </li>
     
    
             </ul>
         </div>
-    </div>
-    <div class="real_estate_cat" *ngIf="category=='realestate'">
-        <p> its car cat</p>
 
     </div>
     <div class="other_cat" *ngIf="category=='other'">
-        <p> its car cat</p>
+        <div class="items-list">
+            <ul class="list-group">
+    
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Title </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> City </p>
+                        <span> {{adsDetailData.City}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Property Type</p>
+                        <span> {{adsDetailData.Propertytype}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Status </p>
+                        <span> {{adsDetailData.Status}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Category </p>
+                        <span> {{adsDetailData.category.name}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Date </p>
+                        <span> {{adsDetailData.created_date | timeAgo}}  </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
     </div>
 

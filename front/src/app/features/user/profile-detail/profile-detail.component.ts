@@ -81,7 +81,6 @@ export class ProfileDetailComponent implements OnInit {
         ads.images = typeof ads.images === 'string' ? JSON.parse(ads.images) : ads.images;
       }
     }
-
   }
 
   ngOnInit(): void {

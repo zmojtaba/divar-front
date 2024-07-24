@@ -1,75 +1,33 @@
 <div class="home_box" >
     <div class="search_bar">
-        <app-search></app-search>
+        <app-search (searchEmitter)="searchData($event)" ></app-search>
     </div>
     <div class="items-list">
         <ul class="list-group">
-            <li class="list-group-item">
-                <div class="items">
+            <li class="list-group-item" *ngFor="let obj of adsData">
+                <div class="items" (click)="onDetailView(obj)">
                     <div class="content" >
-                        <p>title</p>
-                        <p>price</p>
-                        <p>city</p>
+                        <div class="title">
+                            <p>{{obj.title}}</p>
+                        </div>
+                        <div class="price" >
+                            <p>Price: {{obj.Price}} </p>
+                        </div>
+                        <div class="city" >
+                            <p>City: {{obj.City}}</p>
+                        </div>
                     </div>
                     <div class="chat" >
                         <nb-icon icon="message-circle-outline" ></nb-icon>
                     </div>
-                    <div class="image">
-                        <img src="" alt="">
-
+                    <div class="image" *ngIf="obj.images.length > 0 ; else elseBlock" >
+                        <img [src]="obj.images[0]['image']" alt=""  >
                     </div>
-
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="items">
-                    <div class="content" >
-                        <p>title</p>
-                        <p>price</p>
-                        <p>city</p>
-                    </div>
-                    <div class="chat" >
-                        <nb-icon icon="message-circle-outline" ></nb-icon>
-                    </div>
-                    <div class="image">
-                        <img src="" alt="">
-
-                    </div>
-
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="items">
-                    <div class="content" >
-                        <p>title</p>
-                        <p>price</p>
-                        <p>city</p>
-                    </div>
-                    <div class="chat" >
-                        <nb-icon icon="message-circle-outline" ></nb-icon>
-                    </div>
-                    <div class="image">
-                        <img src="" alt="">
-
-                    </div>
-
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="items">
-                    <div class="content" >
-                        <p>title</p>
-                        <p>price</p>
-                        <p>city</p>
-                    </div>
-                    <div class="chat" >
-                        <nb-icon icon="message-circle-outline" ></nb-icon>
-                    </div>
-                    <div class="image">
-                        <img src="" alt="">
-
-                    </div>
-
+                    <ng-template  #elseBlock>
+                        <div class="image">
+                            <img src="assets/profile_img/profile.png" alt="" >
+                        </div>
+                    </ng-template>
                 </div>
             </li>
         </ul>

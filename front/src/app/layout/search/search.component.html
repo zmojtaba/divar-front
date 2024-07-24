@@ -1,30 +1,25 @@
-<form class="form-group search_form" >
+<form  (ngSubmit)="onSearch()" class="form-group search_form">
     <div class="search_box">
-        <div class="search_in-box" >
+        <div class="search_in-box">
             <div class="search_input">
-                <input type="text" class="input" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input [(ngModel)]="searchText" name="searchText" type="text" class="input" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             </div>
         </div>
         <div class="search_other-box">
-            <div class="search_icon">
-                    <nb-icon  icon="search"></nb-icon>
-            </div>
-            <div class="sep_icon" >
-                    <p>|</p>
+            <button type="submit" class="search_icon">
+                <nb-icon icon="search"></nb-icon>
+            </button>
+            <div class="sep_icon">
+                <p>|</p>
             </div>
             <div class="choice_in">
-                    <p  [matMenuTriggerFor]="menu">City</p>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>Lefkosa</button>
-                        <button mat-menu-item>Grine</button>
-                        <button mat-menu-item>Gazimagusa</button>
-                        <button mat-menu-item>Guzelyurt</button>
-                        <button mat-menu-item>Iskele</button>
-                        <button mat-menu-item>Lefke</button>
-                    </mat-menu>
+                <p [matMenuTriggerFor]="menu">{{ selectedCity || 'City' }}</p>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item *ngFor="let city of cities" (click)="selectedCity = city">{{ city }}</button>
+                </mat-menu>
             </div>
             <div class="loc_icon">
-                    <nb-icon icon="map" ></nb-icon>
+                <nb-icon icon="map"></nb-icon>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileService } from '../../../core/services/profile.service';
 import { ProductService } from '../../../core/services/product.service';
 import {MatCardModule} from '@angular/material/card';
+import { TimeAgoPipe } from '../../../core/pipes/time-ago.pipe';
 
 @Component({
   selector: 'app-product-detail',
@@ -29,12 +30,13 @@ import {MatCardModule} from '@angular/material/card';
     MatMenuModule,
     RouterModule,
     MatCardModule,
-    NbCardModule
+    NbCardModule,
+    TimeAgoPipe
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NbStatusService]
+  providers: [NbStatusService],
 })
 export class ProductDetailComponent implements OnInit {
 
@@ -45,6 +47,8 @@ export class ProductDetailComponent implements OnInit {
   imageId = 0;
   disabledNextIcon:boolean;
   disabledPreviousIcon:boolean
+  createdDate = "2024-07-20T10:49:30.041372Z";
+  date = new Date(this.createdDate);
 
   constructor(
     private route: ActivatedRoute,
@@ -61,10 +65,18 @@ export class ProductDetailComponent implements OnInit {
 
     this.productService.adsDetailData.subscribe(
       data=>{
-        console.log('(((((((((()))))))))))))))))', typeof(data), data)
         this.adsDetailData = data
       }
     )
+
+    if (!this.adsDetailData){
+      this.productService.getAdsDetailData(this.category, this.id).subscribe(
+        data =>{
+          this.adsDetailData = data
+          this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
+        }
+      )
+    }
     
   }
 
@@ -76,9 +88,6 @@ export class ProductDetailComponent implements OnInit {
     if (action == 'previous'){
       this.imageId = this.imageId - 1
     }
-    
-    console.log(this.imageId, this.adsDetailData.images.length)
-
   }
 
 
