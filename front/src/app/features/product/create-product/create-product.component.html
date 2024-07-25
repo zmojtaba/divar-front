@@ -1,0 +1,359 @@
+<div class="create-ads">
+    <form [formGroup]="carForm" (ngSubmit)="onCarSubmit(carForm)" *ngIf="category?.toLowerCase()=='car'">
+    <div class="items-list">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Category</p>
+                    <span>{{category}}</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Property Type</p>
+                    <span>{{subCategory}}</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>City</p>
+                    <div class="choice_in">
+                        <p [matMenuTriggerFor]="cityMenu">{{ carForm.value.city || 'City' }}</p>
+                        <mat-menu #cityMenu="matMenu">
+                            <button mat-menu-item *ngFor="let city of cities" (click)="selectCarCity(city)">{{ city }}</button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="title">
+                    <p>Title</p>
+                    <input type="text" formControlName="title" class="form-control" placeholder="Your Ads title">
+                </div>
+                <div class="error" *ngIf="(!carForm.controls['title'].value && carForm.controls['title'].touched) || (!carForm.controls['title'].value && clickedOnCarSubmit)">
+                    <small > Title is required!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Upload images</p>
+                    <input type="file" id="files" name="files" multiple="multiple" (change)="onFilesSelected($event)">
+                </div>
+                <div class="uploaded_images">
+                    <div class="image-preview" *ngFor="let imageUrl of previewImages">
+                        <img [src]="imageUrl" alt="Image Preview">
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Body Type</p>
+                    <div class="choice_in">
+                        <p [matMenuTriggerFor]="carBodyMenu">{{ carForm.value.bodyType || 'Choose' }}</p>
+                        <mat-menu #carBodyMenu="matMenu">
+                            <button mat-menu-item *ngFor="let bodyType of carBodyTypes" (click)="selectBodyType(bodyType)">{{ bodyType }}</button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div class="error" *ngIf="!carForm.controls['bodyType'].value && clickedOnCarSubmit">
+                    <small > Please choose a body type!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="mileage">
+                    <p>Mileage</p>
+                    <input type="text" formControlName="mileage" class="form-control">
+                </div>
+                <div class="error" *ngIf="(!carForm.controls['mileage'].value && carForm.controls['mileage'].touched) || (!carForm.controls['mileage'].value && clickedOnCarSubmit)">
+                    <small > Mileage is required!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Fuel Type</p>
+                    <div class="choice_in">
+                        <p [matMenuTriggerFor]="carFuelMenu">{{ carForm.value.fuelType || 'Choose' }}</p>
+                        <mat-menu #carFuelMenu="matMenu">
+                            <button mat-menu-item *ngFor="let fuelType of carFuelTypes" (click)="selectFuelType(fuelType)">{{ fuelType }}</button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div class="error" *ngIf="!carForm.controls['fuelType'].value && clickedOnCarSubmit">
+                    <small > Please choose a fuel type!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Transmission Type</p>
+                    <div class="choice_in">
+                        <p [matMenuTriggerFor]="carTransmissionMenu">{{ carForm.value.transmissionType || 'Choose' }}</p>
+                        <mat-menu #carTransmissionMenu="matMenu">
+                            <button mat-menu-item *ngFor="let transmissionType of carTransmissionTypes" (click)="selectTransmissionType(transmissionType)">{{ transmissionType }}</button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div class="error" *ngIf="!carForm.controls['transmissionType'].value && clickedOnCarSubmit">
+                    <small > Please choose a transmission type!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="items">
+                    <p>Status</p>
+                    <div class="choice_in">
+                        <p [matMenuTriggerFor]="carStatusMenu">{{ carForm.value.status || 'Choose' }}</p>
+                        <mat-menu #carStatusMenu="matMenu">
+                            <button mat-menu-item *ngFor="let status of statuses" (click)="selectCarStatus(status)">{{ status }}</button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div class="error" *ngIf="!carForm.controls['status'].value && clickedOnCarSubmit">
+                    <small > Please choose a status!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="price">
+                    <p>Price</p>
+                    <input type="text" formControlName="price" class="form-control">
+                </div>
+                <div class="error" *ngIf="(!carForm.controls['price'].value && carForm.controls['price'].touched) || (!carForm.controls['price'].value && clickedOnCarSubmit)">
+                    <small > Price is required!</small>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="description">
+                    <p>Description</p>
+                    <textarea formControlName="description" class="form-control" placeholder="Enter your Description"></textarea>
+                </div>
+                <div class="error" *ngIf="(!carForm.controls['description'].value && carForm.controls['description'].touched) || (!carForm.controls['description'].value && clickedOnCarSubmit)">
+                    <small > Description is required!</small>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <button type="submit" class="btn mt-1">submit</button>
+    </form>
+
+
+    <form [formGroup]="realEstateForm" (ngSubmit)="onRealEstateSubmit(realEstateForm)" *ngIf="category?.toLowerCase()=='real estate'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Category</p>
+                        <span>{{category}}</span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Property Type</p>
+                        <span>{{subCategory}}</span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>City</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="cityMenu">{{ realEstateForm.value.city || 'City' }}</p>
+                            <mat-menu #cityMenu="matMenu">
+                                <button mat-menu-item *ngFor="let city of cities" (click)="selectRealEstateCity(city)">{{ city }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="title">
+                        <p>Title</p>
+                        <input type="text" formControlName="title" class="form-control" placeholder="Your Ads title">
+                    </div>
+                    <div class="error" *ngIf="(!realEstateForm.controls['title'].value && realEstateForm.controls['title'].touched) || (!realEstateForm.controls['title'].value && clickedOnRealEstateSubmit)">
+                        <small > Title is required!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Upload images</p>
+                        <input type="file" id="files" name="files" multiple="multiple" (change)="onFilesSelected($event)">
+                    </div>
+                    <div class="uploaded_images">
+                        <div class="image-preview" *ngFor="let imageUrl of previewImages">
+                            <img [src]="imageUrl" alt="Image Preview">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Title Deed Type</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="carBodyMenu">{{ realEstateForm.value.titleDeedType || 'Choose' }}</p>
+                            <mat-menu #carBodyMenu="matMenu">
+                                <button mat-menu-item *ngFor="let titleDeedType of realEstateTitleDeedType" (click)="selectTitleDeedType(titleDeedType)">{{ titleDeedType }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="!realEstateForm.controls['titleDeedType'].value && clickedOnRealEstateSubmit">
+                        <small > Please choose a title deed type!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="size">
+                        <p>Size</p>
+                        <input type="text" formControlName="size" class="form-control">
+                    </div>
+                    <div class="error" *ngIf="(!realEstateForm.controls['size'].value && realEstateForm.controls['size'].touched) || (!realEstateForm.controls['size'].value && clickedOnRealEstateSubmit)">
+                        <small > Size is required!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Number Of Bedrooms</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="carFuelMenu">{{ realEstateForm.value.fuelType || 'Choose' }}</p>
+                            <mat-menu #carFuelMenu="matMenu">
+                                <button mat-menu-item *ngFor="let numOfBedrooms of realEstateNumberOfBedrooms" (click)="selectNumOfBedrooms(numOfBedrooms)">{{ numOfBedrooms }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="!realEstateForm.controls['numberOfBedrooms'].value && clickedOnRealEstateSubmit">
+                        <small > Please choose number of bedrooms!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Furnishing Status</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="carTransmissionMenu">{{ realEstateForm.value.furnishingStatus || 'Choose' }}</p>
+                            <mat-menu #carTransmissionMenu="matMenu">
+                                <button mat-menu-item *ngFor="let furnishingStatus of realEstateFurnishingStatus" (click)="selectFurnishingStatus(furnishingStatus)">{{ furnishingStatus }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="!realEstateForm.controls['furnishingStatus'].value && clickedOnRealEstateSubmit">
+                        <small > Please choose furnishing status!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Status</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="carStatusMenu">{{ realEstateForm.value.status || 'Choose' }}</p>
+                            <mat-menu #carStatusMenu="matMenu">
+                                <button mat-menu-item *ngFor="let status of statuses" (click)="selectRealEstateStatus(status)">{{ status }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="!realEstateForm.controls['status'].value && clickedOnRealEstateSubmit">
+                        <small > Please choose a status!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="price">
+                        <p>Price</p>
+                        <input type="text" formControlName="price" class="form-control">
+                    </div>
+                    <div class="error" *ngIf="(!realEstateForm.controls['price'].value && realEstateForm.controls['price'].touched) || (!realEstateForm.controls['price'].value && clickedOnRealEstateSubmit)">
+                        <small > Price is required!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="description">
+                        <p>Description</p>
+                        <textarea formControlName="description" class="form-control" placeholder="Enter your Description"></textarea>
+                    </div>
+                    <div class="error" *ngIf="(!realEstateForm.controls['description'].value && realEstateForm.controls['description'].touched) || (!realEstateForm.controls['description'].value && clickedOnRealEstateSubmit)">
+                        <small > Description is required!</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button type="submit" class="btn mt-1">submit</button>
+    </form>
+
+
+    <form [formGroup]="otherForm" (ngSubmit)="onOtherSubmit(otherForm)" *ngIf="category?.toLowerCase()=='other'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Category</p>
+                        <span>{{category}}</span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Property Type</p>
+                        <span>{{subCategory}}</span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>City</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="cityMenu">{{ otherForm.value.city || 'City' }}</p>
+                            <mat-menu #cityMenu="matMenu">
+                                <button mat-menu-item *ngFor="let city of cities" (click)="selectOtherCity(city)">{{ city }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="title">
+                        <p>Title</p>
+                        <input type="text" formControlName="title" class="form-control" placeholder="Your Ads title">
+                    </div>
+                    <div class="error" *ngIf="(!otherForm.controls['title'].value && otherForm.controls['title'].touched) || (!otherForm.controls['title'].value && clickedOnOtherSubmit)">
+                        <small > Title is required!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Upload images</p>
+                        <input type="file" id="files" name="files" multiple="multiple" (change)="onFilesSelected($event)">
+                    </div>
+                    <div class="uploaded_images">
+                        <div class="image-preview" *ngFor="let imageUrl of previewImages">
+                            <img [src]="imageUrl" alt="Image Preview">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>Status</p>
+                        <div class="choice_in">
+                            <p [matMenuTriggerFor]="carStatusMenu">{{ otherForm.value.status || 'Choose' }}</p>
+                            <mat-menu #carStatusMenu="matMenu">
+                                <button mat-menu-item *ngFor="let status of statuses" (click)="selectOtherStatus(status)">{{ status }}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="!otherForm.controls['status'].value && clickedOnOtherSubmit">
+                        <small > Please choose a status!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="price">
+                        <p>Price</p>
+                        <input type="text" formControlName="price" class="form-control">
+                    </div>
+                    <div class="error" *ngIf="(!otherForm.controls['price'].value && otherForm.controls['price'].touched) || (!otherForm.controls['price'].value && clickedOnOtherSubmit)">
+                        <small > Price is required!</small>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="description">
+                        <p>Description</p>
+                        <textarea formControlName="description" class="form-control" placeholder="Enter your Description"></textarea>
+                    </div>
+                    <div class="error" *ngIf="(!otherForm.controls['description'].value && otherForm.controls['description'].touched) || (!otherForm.controls['description'].value && clickedOnOtherSubmit)">
+                        <small > Description is required!</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button type="submit" class="btn mt-1">submit</button>
+    </form>
+
+
+</div>
+
+

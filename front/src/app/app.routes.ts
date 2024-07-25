@@ -9,6 +9,7 @@ import { RegisterComponent } from './features/user/register/register.component';
 import { ProfileDetailComponent } from './features/user/profile-detail/profile-detail.component';
 import { ProductDetailComponent } from './features/product/product-detail/product-detail.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
+import { CreateProductComponent } from './features/product/create-product/create-product.component';
 
 export const routes: Routes = [
     {path: '', title: 'home page', component: HomeComponent },
@@ -26,5 +27,6 @@ export const routes: Routes = [
     {path: 'category', title: 'category page', component: CategoryComponent},
     {path: 'ads/product', title: 'product page', component: ProductComponent },
     {path: 'ads/detail-view', title: 'detail-view', component:ProductDetailComponent},
+    {path: 'ads/product/create-ads/:category/:subCategory', title:'create-ads', component:CreateProductComponent},
     { path: '**', title: 'Not Found', component: NotFoundComponent }
 ];

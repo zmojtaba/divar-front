@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule, NbStatusService } from '@nebular/theme';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../core/services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -17,18 +19,34 @@ import { CommonModule } from '@angular/common';
   providers: [NbStatusService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryComponent {
+export class CategoryComponent implements OnInit {
   readonly panelOpenState = signal(false);
   realStateCats = ["Apartment", "House", "Villa", "Studio", "Penthouse", "Residence", "Under Construction Building", "Land", "Commercial Property", "Warehouse"]
-  CarCats = ["Cabriolet", "Coupe", "Hatchback 5 Door", "Hatchback 5 Door", "Sedan", "Stationwagon", "SUV"]
+  CarCats = ["Cabriolet", "Coupe", "Hatchback 3 Door", "Hatchback 5 Door", "Sedan", "Stationwagon", "SUV"]
   OtherCats = ["Digital Goods", "Kitchen", "Intertainment", "Personal Items"]
 
-  onSetCategory(category:string, sub_category:string){
-    console.log(category)
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ){}
+
+  ngOnInit(): void {
+    
   }
 
-  onSetSubCategory(sub_category:string){
-    console.log(sub_category)
+  onSetCategory(category:string, sub_category:string){
+    console.log(category, sub_category)
+    this.productService.searchByCategory(category,sub_category).subscribe(
+      data =>{
+        if (data){
+          if (typeof data === 'string'){}else{
+            console.log(data, '===')
+            this.productService._searchByCategory.next(data)
+            this.router.navigate(['home'])
+          }
+        }
+      }
+    )
   }
 
 }

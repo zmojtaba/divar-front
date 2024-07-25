@@ -33,14 +33,27 @@ export class HomeComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.productService.getHomeAdsData().subscribe(
-      (data:any) =>{
-        this.adsData = data['All_ads']
-        this.processAdsData(this.adsData)
-        console.log(data)
-        console.log(typeof(data['All_ads'][0]['images']))
+
+
+    this.productService._searchByCategory.subscribe(
+      (data:any)=>{
+        // it for when data from search by category
+        if (data){
+          this.adsData = data
+          this.processAdsData(this.adsData)
+        }
+        else{
+          this.productService.getHomeAdsData().subscribe(
+            (data:any) =>{
+              this.adsData = data['All_ads']
+              this.processAdsData(this.adsData)
+            }
+          )
+        }
       }
     )
+
+
   }
 
   processAdsData(ads_data:any[]){
@@ -60,6 +73,7 @@ export class HomeComponent implements OnInit {
     console.log('************************home emitter***************',this.adsData)
     this.productService.searchAds(value['text'], value['city']).subscribe(
       (data:any) =>{
+        console.log('************************home emitter***************',data)
 
         data = typeof data === 'string' ? JSON.parse(data) : data
         this.adsData = data['All_ads']

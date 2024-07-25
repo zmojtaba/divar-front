@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 export class ProductService {
   apiUrl                =   environment.apiUrl
   adsDetailData          =   new BehaviorSubject<any>(null)
+  _searchByCategory  = new BehaviorSubject<any>(null)
 
   constructor(private http:HttpClient,) { }
 
@@ -27,5 +28,33 @@ export class ProductService {
       "city":city.toLocaleLowerCase()
     });
   }
+
+  searchByCategory(category:string, subcategory:string){
+    let sub = subcategory.replace(/ /g, "").toLocaleLowerCase()
+    return this.http.get(`${this.apiUrl}/advertisement/category/${category}/${sub}`)
+  }
+
+  // sendImageRequest() {
+  //   const formData = new FormData();
+
+  //   // Add files to FormData
+  //   this.selectedFiles.forEach(file => {
+  //     formData.append('uploaded_images', file, file.name);
+  //   });
+
+  //   // Append other form fields if needed
+  //   formData.append('title', this.productForm.get('title').value);
+  //   formData.append('city', this.productForm.get('city').value);
+  //   // Add other fields similarly...
+
+  //   this.http.post(`${this.apiUrl}/advertisement/category/create-ads`, formData).subscribe(
+  //     response => {
+  //       console.log('Upload successful!', response);
+  //     },
+  //     error => {
+  //       console.error('Upload failed!', error);
+  //     }
+  //   );
+  // }
 
 }
