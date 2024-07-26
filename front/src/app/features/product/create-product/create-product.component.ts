@@ -4,9 +4,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule, NbListModule, NbStatusService } from '@nebular/theme';
+import { ProductService } from '../../../core/services/product.service';
 
 @Component({
   selector: 'app-create-product',
@@ -27,7 +28,7 @@ import { NbIconModule, NbListModule, NbStatusService } from '@nebular/theme';
 })
 export class CreateProductComponent implements OnInit {
   category:string|null;
-  subCategory:string|null;
+  subCategory:any;
   clickedOnCarSubmit = false;
   clickedOnRealEstateSubmit = false;
   clickedOnOtherSubmit=false;
@@ -53,6 +54,8 @@ export class CreateProductComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private productService: ProductService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -113,8 +116,8 @@ export class CreateProductComponent implements OnInit {
   selectFuelType(fuelType: string) {
     this.carForm.patchValue({ fuelType });
   }
-  selectNumOfBedrooms(numOfBedrooms:string){
-    this.realEstateForm.patchValue({numOfBedrooms})
+  selectNumOfBedrooms(numberOfBedrooms:string){
+    this.realEstateForm.patchValue({numberOfBedrooms})
   }
 
   selectTransmissionType(transmissionType: string) {
@@ -139,17 +142,39 @@ export class CreateProductComponent implements OnInit {
   onCarSubmit(form:any){
     this.clickedOnCarSubmit = true;
     console.log('--------------------', form.status)
+    if (form.status == "VALID"){
+      this.productService.createCarAds(form, this.selectedFiles, this.subCategory).subscribe(
+        data => {
+          this.router.navigate(['profile', 'my-ads']);
+        }
+      )
+    }
   }
   onRealEstateSubmit(form:any){
     this.clickedOnRealEstateSubmit = true
     console.log('--------------------', form.status)
-    console.log('--------------------', form)
+    console.log('--------------------', form.value)
+    if (form.status == "VALID"){
+      this.productService.createRealEstateAds(form, this.selectedFiles, this.subCategory).subscribe(
+        data =>{
+          this.router.navigate(['profile', 'my-ads']);
+        }
+      )
+    }
   }
 
   onOtherSubmit(form:any){
-    this.clickedOnRealEstateSubmit = true
+    this.clickedOnOtherSubmit = true
     console.log('--------------------', form.status)
-    console.log('--------------------', form)
+    console.log('--------------------', form.value)
+
+    if (form.status){
+      this.productService.createOtherAds(form, this.selectedFiles, this.subCategory).subscribe(
+        data =>{
+          this.router.navigate(['profile', 'my-ads']);
+        }
+      )
+    }
   }
 
 

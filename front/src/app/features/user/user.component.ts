@@ -59,6 +59,11 @@ export class UserComponent implements OnInit {
     }
 
     onSetTitle(title:string){
+      this.profileService.getProfileService().subscribe(
+        data =>{
+          this.profileService.profileData.next(data)
+        }
+      )
       this.router.navigate(['profile', title]);
     }
 

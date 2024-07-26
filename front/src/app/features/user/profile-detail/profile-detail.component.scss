@@ -1,8 +1,13 @@
 @import "../../../styles/them.scss";
+
+::ng-deep app-profile-detail{
+    overflow-y: scroll;
+    height: 100%;
+    display: block;
+}
 .profile_detail{
     height: 100%;
     background: #fff;
-    padding: 1rem 1rem;
 }
 
 .items-list{

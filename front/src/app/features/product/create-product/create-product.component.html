@@ -207,9 +207,9 @@
                     <div class="items">
                         <p>Number Of Bedrooms</p>
                         <div class="choice_in">
-                            <p [matMenuTriggerFor]="carFuelMenu">{{ realEstateForm.value.fuelType || 'Choose' }}</p>
+                            <p [matMenuTriggerFor]="carFuelMenu">{{ realEstateForm.value.numberOfBedrooms || 'Choose' }}</p>
                             <mat-menu #carFuelMenu="matMenu">
-                                <button mat-menu-item *ngFor="let numOfBedrooms of realEstateNumberOfBedrooms" (click)="selectNumOfBedrooms(numOfBedrooms)">{{ numOfBedrooms }}</button>
+                                <button mat-menu-item *ngFor="let numberOfBedrooms of realEstateNumberOfBedrooms" (click)="selectNumOfBedrooms(numberOfBedrooms)">{{ numberOfBedrooms }}</button>
                             </mat-menu>
                         </div>
                     </div>

@@ -21,9 +21,6 @@ export class ProfileService {
       // 'Custom-Header': 'custom-value' // Add any other custom headers here
     });
     return this.http.get<any>(`${this.apiUrl}/account/api-vi/profile/`, {headers}).pipe(
-      tap((data) => {
-        this.profileData.next(data)
-      }),
       catchError(this.handleError)
     );
   }

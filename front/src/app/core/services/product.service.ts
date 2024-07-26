@@ -34,27 +34,97 @@ export class ProductService {
     return this.http.get(`${this.apiUrl}/advertisement/category/${category}/${sub}`)
   }
 
-  // sendImageRequest() {
-  //   const formData = new FormData();
 
-  //   // Add files to FormData
-  //   this.selectedFiles.forEach(file => {
-  //     formData.append('uploaded_images', file, file.name);
-  //   });
+  createRealEstateAds(form:any, uploaded_image:any, subCategory:string){
 
-  //   // Append other form fields if needed
-  //   formData.append('title', this.productForm.get('title').value);
-  //   formData.append('city', this.productForm.get('city').value);
-  //   // Add other fields similarly...
+    const token = localStorage.getItem('access_token')
+    const user_id:any  = localStorage.getItem('user_id')
+    const formData = new FormData();
+    if (uploaded_image.length > 0){
+      uploaded_image.forEach((file:any) => {
+        formData.append('real_estate_uploaded_images', file, file.name);
+      });
+    }else{
+    }
+   
+    formData.append('title',  form.get('title').value);
+    formData.append('City',  form.get('city').value)
+    formData.append('user', user_id)
+    formData.append( 'category', '2' )
+    formData.append('Propertytype', subCategory.toLowerCase())
+    formData.append('TitleDeedType', form.get('titleDeedType').value)
+    formData.append('Price', form.get('price').value)
+    formData.append('Size', form.get('size').value)
+    formData.append('NumberOfBedrooms', form.get('numberOfBedrooms').value)
+    formData.append('FurnishingStatus', form.get('furnishingStatus').value)
+    formData.append('Status', form.get('status').value)
+    formData.append('description', form.get('description').value)
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+    return this.http.post("http://127.0.0.1:8000/advertisement/real-estate/", formData, {headers})
+  }
 
-  //   this.http.post(`${this.apiUrl}/advertisement/category/create-ads`, formData).subscribe(
-  //     response => {
-  //       console.log('Upload successful!', response);
-  //     },
-  //     error => {
-  //       console.error('Upload failed!', error);
-  //     }
-  //   );
-  // }
+
+
+  createCarAds(form:any, uploaded_image:any, subCategory:string){
+
+    const token = localStorage.getItem('access_token')
+    const user_id:any  = localStorage.getItem('user_id')
+    const formData = new FormData();
+    if (uploaded_image.length > 0){
+      uploaded_image.forEach((file:any) => {
+        formData.append('uploaded_images', file, file.name);
+      });
+    }else{
+    }
+   
+    formData.append('title',  form.get('title').value);
+    formData.append('City',  form.get('city').value)
+    formData.append('user', user_id)
+    formData.append( 'category', '1' )
+    formData.append('BodyType', subCategory.replace(/ /g, "").toLocaleLowerCase())
+    formData.append('Mileage', form.get('mileage').value)
+    formData.append('Price', form.get('price').value)
+    formData.append('FuelType', form.get('fuelType').value)
+    formData.append('TransmissionType', form.get('transmissionType').value)
+    formData.append('Status', form.get('status').value)
+    formData.append('description', form.get('description').value)
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+    return this.http.post("http://127.0.0.1:8000/advertisement/car/", formData, {headers})
+  }
+
+
+  createOtherAds(form:any, uploaded_image:any, subCategory:string){
+
+    const token = localStorage.getItem('access_token')
+    const user_id:any  = localStorage.getItem('user_id')
+    const formData = new FormData();
+    if (uploaded_image.length > 0){
+      uploaded_image.forEach((file:any) => {
+        formData.append('other_uploaded_images', file, file.name);
+      });
+    }else{
+    }
+   
+    formData.append('title',  form.get('title').value);
+    formData.append('City',  form.get('city').value)
+    formData.append('user', user_id)
+    formData.append( 'category', '3' )
+    formData.append('Price', form.get('price').value)
+    formData.append('Propertytype', subCategory.replace(/ /g, "").toLocaleLowerCase())
+
+    formData.append('Status', form.get('status').value)
+    formData.append('description', form.get('description').value)
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+    return this.http.post("http://127.0.0.1:8000/advertisement/otherAds/", formData, {headers})
+  }
 
 }

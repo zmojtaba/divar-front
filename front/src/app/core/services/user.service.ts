@@ -13,11 +13,12 @@ export class UserService {
   userLoggedIn          =   new BehaviorSubject<boolean>(false)
   userRegistered        =   new BehaviorSubject<boolean>(false)
 
-  save_user_data(refresh_token:string, access_token:string, user_email:string, is_verified:boolean){
+  save_user_data(refresh_token:string, access_token:string, user_email:string, user_id:string, is_verified:boolean){
     let str_is_verified:string = String(is_verified)
     localStorage.setItem('refresh_token',refresh_token)
     localStorage.setItem('access_token', access_token)
     localStorage.setItem('user_email', user_email)
+    localStorage.setItem('user_id', user_id)
     localStorage.setItem('is_verified', str_is_verified)
   }
   
@@ -46,7 +47,7 @@ export class UserService {
         
         tap( (data:any)=> {
           catchError(this.handleError),
-          this.save_user_data(data.detail['refresh_token'],  data.detail['access_token'], email, false)
+          this.save_user_data(data.detail['refresh_token'],  data.detail['access_token'],  email, data.detail['user_id'], false)
           }),
       
       )
@@ -78,6 +79,7 @@ export class UserService {
         localStorage.removeItem('access_token')
         localStorage.removeItem('user_email')
         localStorage.removeItem('is_verified')
+        localStorage.removeItem('user_id')
     }),
   )}
 
@@ -91,7 +93,7 @@ export class UserService {
         tap( (data:any)=> {
           const response = JSON.parse(JSON.stringify(data)) 
           catchError(this.handleError);
-          this.save_user_data(response['refresh'],  response['access'], email, true)
+          this.save_user_data(response['refresh'],  response['access'], email, response['user_id'], true)
         }),
         )
 
