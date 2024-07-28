@@ -153,7 +153,10 @@
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Description </p>
-                        <span> {{adsDetailData.description}} </span>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
                     </div>
                 </li>
     
@@ -205,6 +208,10 @@
             </ul>
         </div>
 
+    </div>
+
+    <div class="chat" >
+        <button (click)="onChat()" type="submit" class="btn mt-1" >Chat</button>
     </div>
 
 </div>

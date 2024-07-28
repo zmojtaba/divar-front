@@ -1,0 +1,65 @@
+@import "../../../styles/them.scss";
+
+.chat-box{
+    height: 100%;
+    .ads_detail{
+        display: flex;
+        flex-direction: row;
+        padding: 1rem;
+        border-bottom: solid 1px $search_border_color;
+        box-shadow: 1px 0px 6px 1px;
+
+        img{
+            width: 4rem;
+            height: 4rem;
+        }
+        .ads_title{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            p{
+                margin: 0;
+                margin-left: 1rem;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+#chat2{
+    height: calc(100% - 10.5rem);
+}
+
+#chat2 .form-control {
+    border-color: transparent;
+  }
+  
+  #chat2 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+  }
+  
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+  }
+  
+  .card-body {
+    overflow-y: auto;
+  }
+  
+  .bg-body-tertiary {
+    background-color: #f1f1f1;
+  }
+  
+  .bg-primary {
+    background-color: #007bff;
+  }
+  
+  .text-white {
+    color: #fff;
+  }
+  

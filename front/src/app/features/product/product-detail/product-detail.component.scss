@@ -53,6 +53,14 @@
             }
         }
     }
+
+    .chat{
+        margin: 1rem;
+        button{
+            background-color: $button_submit_color;
+            color: #fff;
+        }
+    }
 }
 
 .items-list{

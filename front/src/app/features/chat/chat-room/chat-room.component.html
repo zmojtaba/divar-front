@@ -1,0 +1,50 @@
+<div class="chat-box">
+
+  <div class="ads_detail" >
+    <div class="ads_image">
+      <div class="image" *ngIf="adsDetailData.images.length > 0 ; else elseBlock" >
+        <img [src]="adsDetailData.images[0]['image']" alt=""  >
+    </div>
+    <ng-template  #elseBlock>
+        <div class="image">
+            <img src="assets/profile_img/profile.png" alt="" >
+        </div>
+    </ng-template>
+    </div>
+    <div class="ads_title">
+        <p>{{ adsDetailData['title'] }}</p>
+    </div>
+  </div>
+  <div class="card" id="chat2">
+    <div class="card-body" style="position: relative; height: 400px; overflow-y: auto;">
+      <div *ngFor="let group of groupedMessages">
+        <div *ngFor="let message of group; let isLast = last">
+          <div *ngIf="message.sender.username === currentUser" class="d-flex flex-row justify-content-start mb-4">
+            <div>
+              <p class="small p-2 ms-3 mb-1 rounded-3 bg-body-tertiary">{{ message.context }}</p>
+              <p *ngIf="isLast" class="small ms-3 mb-3 rounded-3 text-muted">{{ message.created_at | date:'HH:mm' }}</p>
+            </div>
+          </div>
+          <div *ngIf="message.sender.username !== currentUser" class="d-flex flex-row justify-content-end mb-4">
+            <div>
+              <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{ message.context }}</p>
+              <p *ngIf="isLast" class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">{{ message.created_at | date:'HH:mm' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
+      placeholder="Type message">
+    <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
+    <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
+    <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a>
+  </div>
+</div>
+
+
+
+
+

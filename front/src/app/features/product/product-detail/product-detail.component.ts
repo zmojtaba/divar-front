@@ -52,7 +52,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
 
   ){}
 
@@ -66,6 +67,7 @@ export class ProductDetailComponent implements OnInit {
     this.productService.adsDetailData.subscribe(
       data=>{
         this.adsDetailData = data
+        console.log('-------------------------------', this.adsDetailData)
       }
     )
 
@@ -77,6 +79,9 @@ export class ProductDetailComponent implements OnInit {
         }
       )
     }
+
+
+    
     
   }
 
@@ -88,6 +93,14 @@ export class ProductDetailComponent implements OnInit {
     if (action == 'previous'){
       this.imageId = this.imageId - 1
     }
+  }
+
+  onChat(){
+    let starter_user_id = localStorage.getItem('user_id')
+
+    this.productService.adsDetailData.next(this.adsDetailData)
+
+    this.router.navigate(['chat/chat-room', starter_user_id, this.category, this.adsDetailData['id'] ])
   }
 
 

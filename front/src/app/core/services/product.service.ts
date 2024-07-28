@@ -63,7 +63,7 @@ export class ProductService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
     });
-    return this.http.post("http://127.0.0.1:8000/advertisement/real-estate/", formData, {headers})
+    return this.http.post(`${this.apiUrl}/advertisement/real-estate/`, formData, {headers})
   }
 
 
@@ -95,7 +95,7 @@ export class ProductService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
     });
-    return this.http.post("http://127.0.0.1:8000/advertisement/car/", formData, {headers})
+    return this.http.post(`${this.apiUrl}/advertisement/car/`, formData, {headers})
   }
 
 
@@ -124,7 +124,7 @@ export class ProductService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
     });
-    return this.http.post("http://127.0.0.1:8000/advertisement/otherAds/", formData, {headers})
+    return this.http.post(`${this.apiUrl}/advertisement/otherAds/`, formData, {headers})
   }
 
 }
