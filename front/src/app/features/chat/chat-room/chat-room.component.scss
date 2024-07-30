@@ -62,4 +62,19 @@
   .text-white {
     color: #fff;
   }
+
+
+  .send-message{
+    ::ng-deep nb-icon{
+      margin-left: 1rem;
+      svg{
+        color: $button_submit_color;
+        width: 2rem;
+        height: 2rem;
+      }
+      svg:hover{
+        cursor: pointer;
+      }
+    }
+  }
   

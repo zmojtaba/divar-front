@@ -8,8 +8,79 @@ import { environment } from '../../../environments/environment';
 })
 export class ChatService {
   apiUrl                =   environment.apiUrl
+  webSocketUrl          = environment.webSocketUrl
+  receivedMessage       = new BehaviorSubject<any>(null)
+  private socket: WebSocket;
 
   constructor(private http:HttpClient,) { }
+
+
+
+
+
+  connect(starter_id: string, category:string, ads_id:string, current_user:string): void {
+    this.socket = new WebSocket(`${this.webSocketUrl}/ws/chat/conversations/${starter_id}/${category}/${ads_id}/`);
+
+    this.socket.onopen = (event) => {
+      console.log('WebSocket connection established:', event);
+    };
+
+    this.socket.onmessage = (event) => {
+      let sender_user = JSON.parse(event.data).sender
+      if (sender_user != current_user){
+        this.handleMessage(event.data);
+      }
+    };
+
+    this.socket.onclose = (event) => {
+      console.log('WebSocket connection closed:', event);
+    };
+
+    this.socket.onerror = (event) => {
+      console.error('WebSocket error observed:', event);
+    };
+  }
+
+  sendMessage(message: string, sender:string): void {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+      this.socket.send(
+        JSON.stringify(
+        {
+          "message":message,
+          "sender": sender
+        })
+      );
+    } else {
+      console.error('WebSocket is not open. Ready state:', this.socket.readyState);
+    }
+  }
+
+  private handleMessage(message: string): void {
+    console.log('lllllllllllllllllllllllllllllll', message)
+    try {
+      const parsedMessage = JSON.parse(message);
+      const formattedMessage = {
+        context: parsedMessage.message,
+        created_at: new Date().toISOString(), // You may need to adjust this depending on your server's response
+        sender: {
+          id: 2, // This should be dynamic based on the actual sender ID if available
+          username: parsedMessage.sender
+        }
+      };
+      this.receivedMessage.next(formattedMessage);
+    } catch (error) {
+      console.error('Failed to parse message', error);
+    }
+  }
+
+
+  close(): void {
+    if (this.socket) {
+      this.socket.close();
+    }
+  }
+
+
 
   getChatMessages(starter_id:string, category:string, ads_id:string){
     return this.http.get(`${this.apiUrl}/advertisement/messages-list/${starter_id}/${category}/${ads_id}`)
