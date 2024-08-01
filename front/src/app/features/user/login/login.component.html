@@ -36,7 +36,7 @@
                     <small *ngIf="!loginForm.controls['password'].value && loginForm.controls['password'].touched" > password is required! </small>
                 </div>
                 <div class="form-info" >
-                    <small> <a > forgot password? </a> </small>
+                    <small (click)="onForgetPass()" > <a > forgot password? </a> </small>
                     <small (click)="onRegisterForm()"> <a > didn't have an account? register! </a> </small>
                 </div>
 

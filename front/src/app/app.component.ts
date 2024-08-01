@@ -44,8 +44,9 @@ export class AppComponent implements OnInit {
           this.verifySatus = 'not_verified'
 
         }else{
+          this.verifySatus = 'verified'
           setTimeout(()=>{
-            this.verifySatus = 'verified'
+            this.verifySatus = ''
           }, 3000)
         }
       }

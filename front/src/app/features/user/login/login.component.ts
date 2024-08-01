@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl,FormBuilder, Validators } from '@angular/forms';
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
@@ -8,6 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet, Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { UserComponent } from '../user.component';
+import {
+  MatDialog,
+} from '@angular/material/dialog';
+import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
 
 
 
@@ -33,6 +37,7 @@ export class LoginComponent implements OnInit {
   loginError : string = ''
   loginForm : FormGroup;
   @Output() formChanger = new EventEmitter<string>();
+  readonly dialog = inject(MatDialog);
 
   constructor(
     private fb: FormBuilder,
@@ -78,6 +83,16 @@ export class LoginComponent implements OnInit {
 
   onRegisterForm(){
     this.formChanger.emit('register')
+  }
+
+
+  onForgetPass(){
+    const dialogRef = this.dialog.open(ForgetPasswordComponent, {
+      height: '600px',
+      width: '600px',
+      // data: {hash_code: hash_code,},
+      panelClass: 'forget_pass-dialog'
+  });
   }
 
 

@@ -12,6 +12,7 @@ export class UserService {
   apiUrl                =   environment.apiUrl
   userLoggedIn          =   new BehaviorSubject<boolean>(false)
   userRegistered        =   new BehaviorSubject<boolean>(false)
+  passwordChanged        =   new BehaviorSubject<boolean>(false)
 
   save_user_data(refresh_token:string, access_token:string, user_email:string, user_id:string, is_verified:boolean){
     let str_is_verified:string = String(is_verified)
@@ -98,14 +99,30 @@ export class UserService {
         )
 
   }
+
+  forgetPassWordEmail(username:string){
+    return this.http.post(`${this.apiUrl}/account/api-vi/forget-pass/`,{
+      "username":username
+    })
+  }
+
+  forgetPasswordChange(username:string, code:string, password:string){
+    return this.http.post(`${this.apiUrl}/account/api-vi/reset-pass/`, {
+      "username" : username,
+      "forget_code" : code,
+      "new_password" : password,
+      "new_password_confirm" : password
+    })
+  }
  
   constructor(
     private http:HttpClient,
     private tokenService: TokenService,
      ) { 
-     }
+  }
 
-
+    
+    
 
 
   private handleError(errorRes:HttpErrorResponse){

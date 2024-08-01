@@ -49,6 +49,7 @@ export class UserComponent implements OnInit {
   formStatus: string = 'register'
   registerSubscription: Subscription = new Subscription()
   userIsVerified: boolean;
+  passwordChangeMessage:string;
 
 
   constructor( 
@@ -83,6 +84,20 @@ export class UserComponent implements OnInit {
         console.log('__________________________', data)
       })
     }
+
+    this.userService.passwordChanged.subscribe(
+      data =>{
+        if (data){
+          console.log('((((((((((((((((((((((((((((((((((asdjkfhkasdhfkhasdkfh))))))))))', data)
+          this.passwordChangeMessage = "Password has changed Succussfully!"
+          setTimeout(
+            ()=>{
+              this.passwordChangeMessage = ''
+            }, 2000
+          )
+        }
+      }
+    )
   }
 
   onLogout(){

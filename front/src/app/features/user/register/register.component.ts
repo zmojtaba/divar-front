@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnChanges, EventEmitter, Output, output, Optional, InjectionToken, inject } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl,FormBuilder, Validators } from '@angular/forms';
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -8,16 +7,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
-import { SignUpModel } from '../../../models/user.model';
 import { CodeBoxComponent } from '../../../layout/code-box/code-box.component';
 import {
-  MAT_DIALOG_DATA,
   MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
 } from '@angular/material/dialog';
 import { TokenService } from '../../../core/services/token.service';
 

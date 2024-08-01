@@ -1,6 +1,7 @@
 @import "../../styles/them.scss";
 
 .user_box{
+    overflow: hidden;
     height: 100%;
     width: 100%;
     background: #fff;
@@ -89,3 +90,16 @@
     }
 }
 
+
+
+.pass_changed{
+    background:$input_success_border_color ;
+    margin: 3px 0;
+    border-radius: 4px;
+    color: $font_color_light;
+
+    small, p{
+        padding: 13px;
+        
+    };
+}

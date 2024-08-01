@@ -1,5 +1,8 @@
 <div class="user_box">
     <ng-template #elseBlock>
+        <div class="pass_changed">
+            <p *ngIf="passwordChangeMessage" >{{passwordChangeMessage}}</p>
+        </div>
         <app-register *ngIf="formStatus=='register'"  (formChanger)="receiveValue($event)"></app-register>
         <app-login *ngIf="formStatus=='login'" (formChanger)="receiveValue($event)" ></app-login>
     </ng-template>
