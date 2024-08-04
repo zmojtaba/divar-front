@@ -11,6 +11,7 @@ import { ProductDetailComponent } from './features/product/product-detail/produc
 import { NotFoundComponent } from './layout/not-found/not-found.component';
 import { CreateProductComponent } from './features/product/create-product/create-product.component';
 import { ChatRoomComponent } from './features/chat/chat-room/chat-room.component';
+import { EditProductComponent } from './features/product/edit-product/edit-product.component';
 
 export const routes: Routes = [
     {path: '', title: 'home page', component: HomeComponent },
@@ -30,5 +31,6 @@ export const routes: Routes = [
     {path: 'ads/product', title: 'product page', component: ProductComponent },
     {path: 'ads/detail-view', title: 'detail-view', component:ProductDetailComponent},
     {path: 'ads/product/create-ads/:category/:subCategory', title:'create_ads', component:CreateProductComponent},
+    {path: 'ads/product/edit-ads/:category/:ads_id', title:'create_ads', component:EditProductComponent},
     { path: '**', title: 'Not Found', component: NotFoundComponent }
 ];

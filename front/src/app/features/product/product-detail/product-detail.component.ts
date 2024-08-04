@@ -106,6 +106,11 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onEdit(){
+    this.productService.adsDetailData.next(this.adsDetailData)
+    this.router.navigate(['ads/product/edit-ads', this.category, this.adsDetailData.id])
+  }
+
+  ondelete(){
     
   }
 

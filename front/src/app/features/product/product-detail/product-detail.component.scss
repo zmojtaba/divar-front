@@ -65,6 +65,9 @@
             width: $button_width;
             height: $button_height;
         }
+        .danger{
+            background-color: red;
+        }
         p{
             margin: 0;
             background: $button_submit_color;

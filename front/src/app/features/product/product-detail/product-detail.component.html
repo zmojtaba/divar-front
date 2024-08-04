@@ -221,7 +221,8 @@
     <div class="chat" >
         <button (click)="onChat()" type="submit" class="btn mt-1" *ngIf="currentUser!=adsDetailData.user['username'] && currentUser" >Chat</button>
         <button (click)="onEdit()" type="submit" class="btn mt-1" *ngIf="currentUser==adsDetailData.user['username']" >Edit</button>
-        <p>{{adsDetailData.user['username']}}</p>
+        <p *ngIf="currentUser!=adsDetailData.user['username'] && currentUser" >{{adsDetailData.user['username']}}</p>
+        <button (click)="ondelete()" type="submit" class="btn mt-1 danger" *ngIf="currentUser==adsDetailData.user['username']" >Delete</button>
     </div>
 
 </div>

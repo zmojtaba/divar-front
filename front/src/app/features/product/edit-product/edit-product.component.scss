@@ -1,0 +1,148 @@
+@import "../../../styles/them.scss";
+
+::ng-deep app-create-product{
+    height: 100%;
+    display: block;
+    overflow-y: scroll;
+}
+.create-ads{
+    height: 100%;
+
+}
+
+.items-list{
+    ul{
+        border-radius: 0;
+        li{
+            border-left: 0;
+            border-right: 0;
+
+            ::ng-deep svg {
+                width: 1rem;
+              }
+        }
+        .items {
+            padding: 5px;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            p {
+                margin: 0;
+            }
+        }    
+    }
+}
+
+::ng-deep .cdk-overlay-pane {
+    .mat-mdc-menu-panel{
+        background-color: $light_backgrond_color;
+        span{
+            color: $search_drop_font_color;
+        }
+    }
+}
+
+form{
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom:1rem;
+    
+    .form-control:focus{
+        box-shadow: none;
+    }
+
+    button{
+        background: $button_submit_color;
+        margin-top: 30px !important;
+        margin-left: 1rem;
+        color:  $button_font_color;
+        width:  $button_width;
+        height: $button_height;
+    }
+    .hide{
+        display: none;
+    }
+
+    .invalid{
+        border-color: $input_wrong_border_color;
+    }
+    .valid, .valid:focus{
+        border-color: $input_success_border_color;
+    }
+    label{
+        margin-top: 15px;
+    }
+
+}
+
+.error{
+    height: 1.5rem;
+    background:$input_wrong_border_color ;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    color: $font_color_light;
+
+    small{
+        padding: 13px;
+        
+    };
+}
+
+.success{
+    height: 1.5rem;
+    background:$input_success_border_color ;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    color: $font_color_light;
+
+    small, p{
+        padding: 13px;
+        
+    };
+}
+
+
+.uploaded_images {
+    
+    margin: 1rem 0rem;
+    .removed{
+        display: none !important;
+    }
+    ::ng-deep nb-icon{
+      position: absolute;
+      background: $header_navbar_background ;
+      color: #fff;
+      top: 10px;
+      right: 10px;
+    }
+  
+    ::ng-deep nb-icon:hover{
+      color: red;
+      cursor: pointer;
+    }
+    .ad_images{
+      position: relative;
+    }
+  
+  
+    
+    .image-preview {
+  
+      display: inline-block;
+      margin: 5px;
+    }
+    
+    .image-preview img {
+      width: 10rem;
+      height: 10rem;
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
+
+
+  .app-box{
+    height: 100%;
+  }
