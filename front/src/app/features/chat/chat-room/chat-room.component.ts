@@ -46,42 +46,83 @@ export class ChatRoomComponent implements OnInit {
     this.currentUser = localStorage.getItem('user_email')
 
 
-    console.log(this.category, this.adsId )
+    
     
     this.productService.adsDetailData.subscribe(
-      data=>{
+      data=>{        
         this.adsDetailData = data
-        console.log('-------------------------------', this.adsDetailData)
       }
     )
 
-    if (!this.adsDetailData){
-      this.productService.getAdsDetailData(this.category, this.adsId).subscribe(
+    
+    if (this.starterId != 'admin'){
+      if (!this.adsDetailData){
+        this.productService.getAdsDetailData(this.category, this.adsId).subscribe(
+          data =>{
+            this.adsDetailData = data
+            this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
+          }
+        )
+      }
+      this.chatService.chatMessages.subscribe(
         data =>{
-          this.adsDetailData = data
-          this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
-          console.log('--------------!!!!!!!!!!-----------------', this.adsDetailData)
+          this.messages = JSON.parse(JSON.stringify(data))
+          this.groupedMessages = this.groupMessagesBySender(this.messages);
         }
       )
+  
+      if (!this.messages){
+        this.chatService.getChatMessages(this.starterId, this.category, this.adsId).subscribe(
+          (data:any) =>{
+            
+            this.messages = JSON.parse(JSON.stringify(data['messages']))
+            this.groupedMessages = this.groupMessagesBySender(this.messages);
+          }
+        )
+      }
+  
+  
+  
+      this.chatService.connect(this.starterId, this.category, this.adsId, this.currentUser)
+      this.chatService.receivedMessage.subscribe(
+        (data:any) =>{
+          this.messages.push( data)
+          this.groupedMessages = this.groupMessagesBySender(this.messages);
+        }
+      )
+    }else{
+      if (!this.adsDetailData){
+        this.productService.getAdsDetailData(this.category, this.adsId).subscribe(
+          data =>{
+            this.adsDetailData = data
+            this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
+            this.messages = [ {
+              'context':  this.adsDetailData.admin_message,
+              'created_at': this.adsDetailData.updated_date,
+              'sender' : {
+                'id':0,
+                'username': 'admin'
+              }
+            } ]
+            this.groupedMessages = this.groupMessagesBySender(this.messages);
+          }
+        )
+      }
+
+      this.messages = [ {
+        'context':  this.adsDetailData.admin_message,
+        'created_at': this.adsDetailData.updated_date,
+        'sender' : {
+          'id':0,
+          'username': 'admin'
+        }
+      } ]
+      this.groupedMessages = this.groupMessagesBySender(this.messages);
     }
 
-    this.chatService.getChatMessages(this.starterId, this.category, this.adsId).subscribe(
-      (data:any) =>{
-        this.messages = JSON.parse(JSON.stringify(data['messages']))
-        console.log('^^^^^^^^^^^^^^^^^^^',data)
-        this.groupedMessages = this.groupMessagesBySender(this.messages);
-      }
-    )
 
 
-    this.chatService.connect(this.starterId, this.category, this.adsId, this.currentUser)
-    this.chatService.receivedMessage.subscribe(
-      (data:any) =>{
-        console.log('*****####***###***##***###***', data)
-        this.messages.push( data)
-        this.groupedMessages = this.groupMessagesBySender(this.messages);
-      }
-    )
+
 
 
   }

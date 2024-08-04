@@ -141,7 +141,7 @@ export class CreateProductComponent implements OnInit {
 
   onCarSubmit(form:any){
     this.clickedOnCarSubmit = true;
-    console.log('--------------------', form.status)
+    
     if (form.status == "VALID"){
       this.productService.createCarAds(form, this.selectedFiles, this.subCategory).subscribe(
         data => {
@@ -152,8 +152,7 @@ export class CreateProductComponent implements OnInit {
   }
   onRealEstateSubmit(form:any){
     this.clickedOnRealEstateSubmit = true
-    console.log('--------------------', form.status)
-    console.log('--------------------', form.value)
+
     if (form.status == "VALID"){
       this.productService.createRealEstateAds(form, this.selectedFiles, this.subCategory).subscribe(
         data =>{
@@ -165,8 +164,7 @@ export class CreateProductComponent implements OnInit {
 
   onOtherSubmit(form:any){
     this.clickedOnOtherSubmit = true
-    console.log('--------------------', form.status)
-    console.log('--------------------', form.value)
+
 
     if (form.status){
       this.productService.createOtherAds(form, this.selectedFiles, this.subCategory).subscribe(

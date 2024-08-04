@@ -47,8 +47,7 @@ export class ProductDetailComponent implements OnInit {
   imageId = 0;
   disabledNextIcon:boolean;
   disabledPreviousIcon:boolean
-  createdDate = "2024-07-20T10:49:30.041372Z";
-  date = new Date(this.createdDate);
+  currentUser:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -58,6 +57,7 @@ export class ProductDetailComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.currentUser = localStorage.getItem('user_email')
     this.route.queryParams.subscribe(params => {
       this.title = params['title']
       this.category = params['category']
@@ -67,13 +67,15 @@ export class ProductDetailComponent implements OnInit {
     this.productService.adsDetailData.subscribe(
       data=>{
         this.adsDetailData = data
-        console.log('-------------------------------', this.adsDetailData)
+
       }
     )
 
     if (!this.adsDetailData){
       this.productService.getAdsDetailData(this.category, this.id).subscribe(
         data =>{
+          console.log('((((((', data)
+
           this.adsDetailData = data
           this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
         }
@@ -101,6 +103,10 @@ export class ProductDetailComponent implements OnInit {
     this.productService.adsDetailData.next(this.adsDetailData)
 
     this.router.navigate(['chat/chat-room', starter_user_id, this.category, this.adsDetailData['id'] ])
+  }
+
+  onEdit(){
+    
   }
 
 

@@ -35,12 +35,12 @@ export class CategoryComponent implements OnInit {
   }
 
   onSetCategory(category:string, sub_category:string){
-    console.log(category, sub_category)
+    
     this.productService.searchByCategory(category,sub_category).subscribe(
       data =>{
         if (data){
           if (typeof data === 'string'){}else{
-            console.log(data, '===')
+
             this.productService._searchByCategory.next(data)
             this.router.navigate(['home'])
           }

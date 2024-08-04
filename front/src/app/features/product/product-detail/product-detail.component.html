@@ -33,6 +33,12 @@
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Title </p>
+                        <span> {{adsDetailData.category['name']}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Title </p>
                         <span> {{adsDetailData.title}}  </span>
                     </div>
                 </li>
@@ -84,6 +90,12 @@
     <div class="real_estate_cat" *ngIf="category=='realestate'">
         <div class="items-list">
             <ul class="list-group">
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Category </p>
+                        <span> {{adsDetailData.category.name}} </span>
+                    </div>
+                </li>
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Title </p>
@@ -138,12 +150,7 @@
                         <span> {{adsDetailData.TitleDeedType}} </span>
                     </div>
                 </li>
-                <li  class="list-group-item">
-                    <div class="items">
-                        <p> Category </p>
-                        <span> {{adsDetailData.category.name}} </span>
-                    </div>
-                </li>
+
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Date </p>
@@ -168,6 +175,12 @@
     <div class="other_cat" *ngIf="category=='other'">
         <div class="items-list">
             <ul class="list-group">
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Category </p>
+                        <span> {{adsDetailData.category.name}}  </span>
+                    </div>
+                </li>
     
                 <li  class="list-group-item">
                     <div class="items">
@@ -193,12 +206,7 @@
                         <span> {{adsDetailData.Status}}  </span>
                     </div>
                 </li>
-                <li  class="list-group-item">
-                    <div class="items">
-                        <p> Category </p>
-                        <span> {{adsDetailData.category.name}}  </span>
-                    </div>
-                </li>
+
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Date </p>
@@ -211,7 +219,9 @@
     </div>
 
     <div class="chat" >
-        <button (click)="onChat()" type="submit" class="btn mt-1" >Chat</button>
+        <button (click)="onChat()" type="submit" class="btn mt-1" *ngIf="currentUser!=adsDetailData.user['username'] && currentUser" >Chat</button>
+        <button (click)="onEdit()" type="submit" class="btn mt-1" *ngIf="currentUser==adsDetailData.user['username']" >Edit</button>
+        <p>{{adsDetailData.user['username']}}</p>
     </div>
 
 </div>

@@ -1,1 +1,60 @@
-<p>chat works!</p>
+<div class="chat_list_box" >
+    <div class="chat_page-title">
+        <p>Chat Room</p>
+    </div>
+    <div class="items-list">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let obj of mergedData">
+                <div class="items" (click)="onAdminDetailView(obj)" *ngIf="obj.type == 'admin_message'">
+                    <div class="content" >
+                        <div class="title">
+                            <p>{{obj.data.title}}</p>
+                        </div>
+                        <div class="price" >
+                            <p>Price: {{obj.data.Price}} </p>
+                        </div>
+                        <div class="city" >
+                            <p>City: {{obj.data.City}}</p>
+                        </div>
+                    </div>
+                    <div class="chat" >
+                        <nb-icon icon="message-circle-outline" ></nb-icon>
+                    </div>
+                    <div class="image" *ngIf="obj.data.images.length > 0 ; else elseBlock" >
+                        <img [src]="obj.data.images[0]['image']" alt=""  >
+                    </div>
+                    <ng-template  #elseBlock>
+                        <div class="image">
+                            <img src="assets/profile_img/profile.png" alt="" >
+                        </div>
+                    </ng-template>
+                </div>
+
+                <div class="items" (click)="onConversationDetailView(obj)" *ngIf="obj.type == 'conversation'">
+                    <div class="content" >
+                        <div class="title">
+                            <p>{{obj.data.ad.title}}</p>
+                        </div>
+                        <div class="price" >
+                            <p>Price: {{obj.data.ad.Price}} </p>
+                        </div>
+                        <div class="city" >
+                            <p>City: {{obj.data.ad.City}}</p>
+                        </div>
+                    </div>
+                    <div class="chat" >
+                        <nb-icon icon="message-circle-outline" ></nb-icon>
+                    </div>
+                    <div class="image" *ngIf="obj.data.ad.images.length > 0 ; else elseBlock" >
+                        <img [src]="obj.data.ad.images[0]['image']" alt=""  >
+                    </div>
+                    <ng-template  #elseBlock>
+                        <div class="image">
+                            <img src="assets/profile_img/profile.png" alt="" >
+                        </div>
+                    </ng-template>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

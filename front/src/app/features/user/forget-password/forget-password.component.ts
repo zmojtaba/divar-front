@@ -56,11 +56,11 @@ export class ForgetPasswordComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    console.log(this.username)
+
   }
 
   onUserName(){
-    console.log(this.username)
+
     if(this.username){
       // this.snippingLoading = true
       this.userService.forgetPassWordEmail(this.username).subscribe(
@@ -120,7 +120,6 @@ export class ForgetPasswordComponent implements OnInit {
           this.userService.passwordChanged.next(true)
           this.dialogRef.close()
         }, err =>{
-          console.log('---------------------reset pass---!!!!-----------', err.error.detail)
           this.submitError = err.error.detail
         }
       )

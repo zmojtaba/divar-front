@@ -28,6 +28,12 @@
 
 #chat2{
     height: calc(100% - 10.5rem);
+    border-radius: 0;
+    border: 0;
+}
+
+.full-screen{
+  height: 100% !important;
 }
 
 #chat2 .form-control {

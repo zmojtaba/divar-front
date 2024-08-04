@@ -15,7 +15,7 @@
         <p>{{ adsDetailData['title'] }}</p>
     </div>
   </div>
-  <div class="card" id="chat2">
+  <div class="card" id="chat2"  [class]="{'full-screen' : (starterId === 'admin') }">
     <div class="card-body" style="position: relative; height: 400px; overflow-y: auto;">
       <div *ngFor="let group of groupedMessages">
         <div *ngFor="let message of group; let isLast = last">
@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="send-message d-flex justify-content-start align-items-center p-3">
+  <div class="send-message d-flex justify-content-start align-items-center p-3" *ngIf="starterId != 'admin'">
     <input type="textarea" class="form-control form-control-lg" id="exampleFormControlInput1"
       placeholder="Type message" [(ngModel)]="messageContent">
       <span class="icon"> <nb-icon (click)="onSendMessage()" icon="paper-plane-outline"></nb-icon> </span>

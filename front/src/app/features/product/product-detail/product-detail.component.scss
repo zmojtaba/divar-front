@@ -56,9 +56,30 @@
 
     .chat{
         margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         button{
             background-color: $button_submit_color;
             color: #fff;
+            width: $button_width;
+            height: $button_height;
+        }
+        p{
+            margin: 0;
+            background: $button_submit_color;
+            color: #fff;
+            min-width: 100px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            height: $button_height;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+        p:hover{
+            cursor: pointer;
         }
     }
 }

@@ -81,14 +81,14 @@ export class UserComponent implements OnInit {
     this.userIsLogedIn = this.userService.userIsLogedIn()
     if (this.userIsLogedIn){
       this.profileService.getProfileService().subscribe(data=>{
-        console.log('__________________________', data)
+
       })
     }
 
     this.userService.passwordChanged.subscribe(
       data =>{
         if (data){
-          console.log('((((((((((((((((((((((((((((((((((asdjkfhkasdhfkhasdkfh))))))))))', data)
+
           this.passwordChangeMessage = "Password has changed Succussfully!"
           setTimeout(
             ()=>{

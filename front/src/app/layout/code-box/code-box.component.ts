@@ -37,7 +37,7 @@ export class CodeBoxComponent implements OnInit {
   
   // this called only if user entered full code
   onCodeCompleted(code: string) {
-    console.log('----------------',code)
+
     let hash = this.utilsService.hashCode(code)
     console.log(this.hash_code.hash_code)
     if (hash === this.hash_code.hash_code ){

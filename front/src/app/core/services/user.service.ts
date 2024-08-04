@@ -39,7 +39,7 @@ export class UserService {
 
 
   signUpService(email:string, password:string, password1:string) {
-    console.log('========================user service===========', email, password, password1)
+    
     return this.http.post<any>(`${this.apiUrl}/account/api-vi/sign-up/`, {
       username: email,
       password: password, 
@@ -127,7 +127,7 @@ export class UserService {
 
   private handleError(errorRes:HttpErrorResponse){
     let errorMessage = 'an unknown error occurred'
-    console.log('-----------',errorRes)
+    
     if (!errorRes.error){
       
       return throwError(() => new Error(errorMessage))
@@ -144,7 +144,7 @@ export class UserService {
     if (errorRes.error['detail']){
       errorMessage=errorRes.error['detail']
     }
-    console.log('=========================================',errorMessage)
+
     return throwError(() => new Error(errorMessage))
   }
 

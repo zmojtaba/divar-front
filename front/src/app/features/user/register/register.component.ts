@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
         this.userService.userLoggedIn.next(true)
         const response = JSON.parse(JSON.stringify(data)) 
         const hash_code = this.tokenService.decodeJwt(response.detail['access_token']).hash_code
-        console.log('================================hash doce=====', hash_code)
+
         const dialogRef = this.dialog.open(CodeBoxComponent, {
           height: '400px',
           width: '600px',
@@ -95,8 +95,7 @@ export class RegisterComponent implements OnInit {
     }, 
       error: (errorMessage) => {
         this.snippingLoading = false
-        console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', JSON.parse(JSON.stringify(errorMessage)).error.username[0] )
-        console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+
         this.signupError = JSON.parse(JSON.stringify(errorMessage)).error.username[0]
     }
   }); 

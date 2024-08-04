@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
         else{
           this.productService.getHomeAdsData().subscribe(
             (data:any) =>{
+              console.log('***************', data)
               this.adsData = data['All_ads']
               this.processAdsData(this.adsData)
             }
@@ -70,10 +71,10 @@ export class HomeComponent implements OnInit {
   }
 
   searchData(value:any){
-    console.log('************************home emitter***************',this.adsData)
+    
     this.productService.searchAds(value['text'], value['city']).subscribe(
       (data:any) =>{
-        console.log('************************home emitter***************',data)
+        
 
         data = typeof data === 'string' ? JSON.parse(data) : data
         this.adsData = data['All_ads']

@@ -17,8 +17,7 @@ export class ProfileService {
   getProfileService() {
     const token = localStorage.getItem('access_token')
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`, // Replace with your actual token
-      // 'Custom-Header': 'custom-value' // Add any other custom headers here
+      'Authorization': `Bearer ${token}`, 
     });
     return this.http.get<any>(`${this.apiUrl}/account/api-vi/profile/`, {headers}).pipe(
       catchError(this.handleError)
@@ -35,7 +34,7 @@ export class ProfileService {
 
   private handleError(errorRes:HttpErrorResponse){
     let errorMessage = 'an unknown error occurred'
-    console.log('-----------',errorRes)
+    
     if (!errorRes.error){
       
       return throwError(() => new Error(errorMessage))
@@ -52,7 +51,7 @@ export class ProfileService {
     if (errorRes.error['detail']){
       errorMessage=errorRes.error['detail']
     }
-    console.log('=========================================',errorMessage)
+    
     return throwError(() => new Error(errorMessage))
   }
 

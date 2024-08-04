@@ -5,6 +5,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule, NbStatusService } from '@nebular/theme';
 import { ProductService } from '../../core/services/product.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-product',
@@ -27,15 +28,18 @@ export class ProductComponent implements OnInit{
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ){}
 
   ngOnInit(): void {
-    
+    if (!this.userService.userIsLogedIn()){
+      this.router.navigate(['user'])
+    }
   }
 
   onSetCategory(category:string, sub_category:string){
-    console.log(category, sub_category)
+
     this.router.navigate(['ads/product/create-ads', category, sub_category])
   }
 }

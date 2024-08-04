@@ -11,11 +11,18 @@ export class ChatService {
   webSocketUrl          = environment.webSocketUrl
   receivedMessage       = new BehaviorSubject<any>(null)
   private socket: WebSocket;
+  chatMessages       = new BehaviorSubject<any>(null)
 
   constructor(private http:HttpClient,) { }
 
 
-
+  chatConverstationList(){
+    const token = localStorage.getItem('access_token')
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`, 
+    });
+    return this.http.get(`${this.apiUrl}/advertisement/carconversation-list/`, {headers})
+  }
 
 
   connect(starter_id: string, category:string, ads_id:string, current_user:string): void {
@@ -56,7 +63,7 @@ export class ChatService {
   }
 
   private handleMessage(message: string): void {
-    console.log('lllllllllllllllllllllllllllllll', message)
+    
     try {
       const parsedMessage = JSON.parse(message);
       const formattedMessage = {
