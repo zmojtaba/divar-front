@@ -12,7 +12,7 @@ import { jwtDecode } from "jwt-decode";
 export class TokenService {
   apiUrl = environment.apiUrl
 
-  decodeJwt(token:string){
+  decodeJwt(token:any){
     const jwt_data: any = JSON.parse( atob(token.split('.')[1]) )
     return jwt_data
   }

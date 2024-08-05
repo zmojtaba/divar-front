@@ -3,7 +3,7 @@
     <div class="user-verify" *ngIf="verifySatus">
         <div 
         [class]="{'verified' : (verifySatus === 'verified') , 'not_verified': (verifySatus === 'not_verified')}">
-            <p *ngIf="verifySatus=='not_verified'" >Your email did not verify. click <a> here</a>  to verify</p>
+            <p *ngIf="verifySatus=='not_verified'" >Your email did not verify. click <a (click)="onVerifyEmail()"> here</a>  to verify</p>
             <p *ngIf="verifySatus=='verified'" >your verification has been successfully</p>
         </div>
     </div>

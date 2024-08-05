@@ -64,27 +64,13 @@ export class ProductDetailComponent implements OnInit {
       this.id = params['id']
     });
 
-    this.productService.adsDetailData.subscribe(
-      data=>{
+    this.productService.getAdsDetailData(this.category, this.id).subscribe(
+      data =>{
         this.adsDetailData = data
-
+        this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
       }
     )
 
-    if (!this.adsDetailData){
-      this.productService.getAdsDetailData(this.category, this.id).subscribe(
-        data =>{
-          console.log('((((((', data)
-
-          this.adsDetailData = data
-          this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
-        }
-      )
-    }
-
-
-    
-    
   }
 
   onSetImage(action:string){

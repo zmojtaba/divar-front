@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -9,7 +9,9 @@ import { CommonModule } from '@angular/common';
 import { ProfileDetailComponent } from './features/user/profile-detail/profile-detail.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './core/services/auth-interceptor.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { TokenService } from './core/services/token.service';
+import { CodeBoxComponent } from './layout/code-box/code-box.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -33,9 +35,11 @@ export class AppComponent implements OnInit {
   title = 'divar';
   verifySubs: Subscription = new Subscription()
   userIsloggedIn :boolean
+  readonly dialog = inject(MatDialog);
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private tokenService: TokenService
   ){}
   ngOnInit(): void {
     this.verifySubs = this.userService.userLoggedIn.subscribe( data=>{
@@ -63,4 +67,16 @@ export class AppComponent implements OnInit {
     }
 
   }
+
+  onVerifyEmail(){
+    const accessToken = localStorage.getItem('access_token')
+    const hash_code = this.tokenService.decodeJwt(accessToken).hash_code
+    const dialogRef = this.dialog.open(CodeBoxComponent, {
+      height: '400px',
+      width: '600px',
+      data: {hash_code: hash_code,},
+      panelClass: 'code_box-dialog'
+  });
+  }
+
 }

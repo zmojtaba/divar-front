@@ -58,6 +58,8 @@ form{
         width:  $button_width;
         height: $button_height;
     }
+
+
     .hide{
         display: none;
     }
@@ -72,6 +74,9 @@ form{
         margin-top: 15px;
     }
 
+}
+.choice_in:hover{
+    cursor: pointer;
 }
 
 .error{

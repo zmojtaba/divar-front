@@ -79,7 +79,10 @@
             p {
                 margin: 0;
             }
-        }    
+        }   
+        .items:hover{
+            cursor: pointer;
+        } 
     }
 }
 

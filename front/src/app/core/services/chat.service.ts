@@ -21,6 +21,7 @@ export class ChatService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`, 
     });
+    console.log('*************asdfsdaf%%%%%%')
     return this.http.get(`${this.apiUrl}/advertisement/carconversation-list/`, {headers})
   }
 

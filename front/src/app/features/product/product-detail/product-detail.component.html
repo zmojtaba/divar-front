@@ -30,9 +30,16 @@
     <div class="car_cat" *ngIf="category=='car'">
         <div class="items-list">
             <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Published </p>
+                        <span *ngIf="adsDetailData.is_published"> Published  </span>
+                        <span *ngIf="!adsDetailData.is_published"> Not yet  </span>
+                    </div>
+                </li>
                 <li  class="list-group-item">
                     <div class="items">
-                        <p> Title </p>
+                        <p> Category </p>
                         <span> {{adsDetailData.category['name']}}  </span>
                     </div>
                 </li>
@@ -84,12 +91,34 @@
                         <span> {{adsDetailData.created_date | timeAgo }} </span>
                     </div>
                 </li> 
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Number Of Visited </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Description </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
     <div class="real_estate_cat" *ngIf="category=='realestate'">
         <div class="items-list">
             <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Published </p>
+                        <span *ngIf="adsDetailData.is_published"> Published  </span>
+                        <span *ngIf="!adsDetailData.is_published"> Not yet  </span>
+                    </div>
+                </li>
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Category </p>
@@ -157,6 +186,12 @@
                         <span> {{adsDetailData.created_date | timeAgo }} </span>
                     </div>
                 </li>
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Number Of Visited </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Description </p>
@@ -175,6 +210,13 @@
     <div class="other_cat" *ngIf="category=='other'">
         <div class="items-list">
             <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Published </p>
+                        <span *ngIf="adsDetailData.is_published"> Published  </span>
+                        <span *ngIf="!adsDetailData.is_published"> Not yet  </span>
+                    </div>
+                </li>
                 <li  class="list-group-item">
                     <div class="items">
                         <p> Category </p>
@@ -211,6 +253,21 @@
                     <div class="items">
                         <p> Date </p>
                         <span> {{adsDetailData.created_date | timeAgo}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Number Of Visited </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Description </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
                     </div>
                 </li>
             </ul>
