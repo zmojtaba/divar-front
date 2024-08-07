@@ -85,7 +85,7 @@ export class ProductService {
       });
     }
 
-    console.log('--------sadfasdfdsa-fasdfsadf-sadf-sdaf-sadf--------', form)
+    
    
     formData.append('title',  form.get('title').value);
     formData.append('City',  form.get('city').value)
@@ -100,7 +100,7 @@ export class ProductService {
     formData.append('Status', form.get('status').value)
     formData.append('description', form.get('description').value)
 
-    console.log('--------sadfasdfdsa-fasdfsadf-sadf-sdaf-sadf--------', formData)
+    
     
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
@@ -165,7 +165,7 @@ export class ProductService {
     formData.append('Status', form.get('status').value)
     formData.append('description', form.get('description').value)
     
-    console.log('{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}', formData)
+   
     
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
@@ -215,7 +215,7 @@ export class ProductService {
     }else{
     }
     if (deletedImageId.length > 0) {
-      console.log('Array before sending:', deletedImageId);
+      
       deletedImageId.forEach((id:any) => {
         formData.append(`delete_images`, id); // Append each integer as a string
       });
@@ -231,7 +231,7 @@ export class ProductService {
     formData.append('Status', form.get('status').value)
     formData.append('description', form.get('description').value)
 
-    console.log("<<<<<<<<<>>>>>>>>>>>>>:::::::::::::::", formData)
+   
     
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,

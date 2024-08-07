@@ -152,7 +152,7 @@ export class ChatRoomComponent implements OnInit {
   }
 
   sendMessage(event: any) {
-    console.log(event)
+    
   }
 
 

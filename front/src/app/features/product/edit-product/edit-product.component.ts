@@ -72,14 +72,14 @@ export class EditProductComponent  implements OnInit{
         if (data){
           this.adsData = data
           this.adsData.images = typeof this.adsData.images === 'string' ? JSON.parse(this.adsData.images) : this.adsData.images;
-          console.log('-------------------', this.adsData)
+          
           this.initialCarForm()
           this.initialOtherForm()
           this.initialRealStateForm()
         }else{
           this.productService.getAdsDetailData(this.category, this.adsId).subscribe(
             data =>{
-              console.log('********************', data)
+              
               this.adsData = data
               this.adsData.images = typeof this.adsData.images === 'string' ? JSON.parse(this.adsData.images) : this.adsData.images;
               this.initialCarForm()
@@ -219,12 +219,12 @@ export class EditProductComponent  implements OnInit{
     this.clickedOnOtherSubmit = true
 
     if (form.status){
-      console.log('{{{{{{{{{{', this.deletedImageId)
+      
       this.productService.editOtherAds(form, this.selectedFiles, this.deletedImageId, this.adsData.id).subscribe(
         data=> {
           this.router.navigate(['profile', 'my-ads']);
         }, err => {
-          console.log('::::::::::::::::::::::', err)
+          
         }
       )
     }

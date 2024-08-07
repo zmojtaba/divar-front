@@ -30,6 +30,6 @@ export class HeaderComponent {
 
   setActive(index: number) {
     this.activeIndex = index;
-    console.log(this.activeIndex)
+    
   }
 }

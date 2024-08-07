@@ -31,7 +31,7 @@ export class CodeBoxComponent implements OnInit {
   }
 
   onCodeChanged(code: string) {
-    console.log( code )
+    
     this.codeStatus = ''
   }
   
@@ -39,7 +39,7 @@ export class CodeBoxComponent implements OnInit {
   onCodeCompleted(code: string) {
 
     let hash = this.utilsService.hashCode(code)
-    console.log(this.hash_code.hash_code)
+    
     if (hash === this.hash_code.hash_code ){
       this.userService.saveVerifyUser(true)
       this.codeStatus = 'correct'

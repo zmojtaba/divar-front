@@ -182,7 +182,7 @@ export class CreateProductComponent implements OnInit {
 
   onFilesSelected(event: any): void {
     this.selectedFiles = Array.from(event.target.files);
-    console.log(this.selectedFiles);
+    
     const input = event.target as HTMLInputElement;
     if (input.files) {
       this.previewImages = [];

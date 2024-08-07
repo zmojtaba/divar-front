@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
         else{
           this.productService.getHomeAdsData().subscribe(
             (data:any) =>{
-              console.log('***************', data)
+              
               this.adsData = data['All_ads']
               this.processAdsData(this.adsData)
             }

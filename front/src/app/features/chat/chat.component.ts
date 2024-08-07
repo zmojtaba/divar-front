@@ -41,7 +41,7 @@ export class ChatComponent implements OnInit {
 
     this.chatService.chatConverstationList().subscribe(
       (data:any) => {
-        console.log('---------------------', data)
+        
         
         const conversationList = data.conversation_list
         this.processAdminAdsImage(conversationList)

@@ -21,7 +21,6 @@ export class ChatService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`, 
     });
-    console.log('*************asdfsdaf%%%%%%')
     return this.http.get(`${this.apiUrl}/advertisement/carconversation-list/`, {headers})
   }
 
@@ -30,7 +29,6 @@ export class ChatService {
     this.socket = new WebSocket(`${this.webSocketUrl}/ws/chat/conversations/${starter_id}/${category}/${ads_id}/`);
 
     this.socket.onopen = (event) => {
-      console.log('WebSocket connection established:', event);
     };
 
     this.socket.onmessage = (event) => {
@@ -41,11 +39,11 @@ export class ChatService {
     };
 
     this.socket.onclose = (event) => {
-      console.log('WebSocket connection closed:', event);
+      
     };
 
     this.socket.onerror = (event) => {
-      console.error('WebSocket error observed:', event);
+      
     };
   }
 
@@ -59,7 +57,7 @@ export class ChatService {
         })
       );
     } else {
-      console.error('WebSocket is not open. Ready state:', this.socket.readyState);
+      
     }
   }
 
@@ -77,7 +75,7 @@ export class ChatService {
       };
       this.receivedMessage.next(formattedMessage);
     } catch (error) {
-      console.error('Failed to parse message', error);
+      
     }
   }
 
