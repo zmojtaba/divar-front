@@ -85,26 +85,17 @@ export class ProfileDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = this.route.snapshot.paramMap.get('title');
-    this.profileService.profileData.subscribe(data=>{
-
-      if (data){
-        const response = typeof data === 'string' ? JSON.parse(data) : data; 
-        this.setProfileData(response)
-        this.setAdsData(this.title)
-        this.processAdsData(this.adsData)
-      }
-    })
 
 
-    if (this.adsData.length==0){
       this.profileService.getProfileService().subscribe(data=>{
         const response = typeof data === 'string' ? JSON.parse(data) : data;
+        console.log('================$$$$$$$$$$$$$===========================', response)
         this.setProfileData(response)
         this.setAdsData(this.title)
         this.processAdsData(this.adsData)
         
       })
-    }
+
 
   }
 

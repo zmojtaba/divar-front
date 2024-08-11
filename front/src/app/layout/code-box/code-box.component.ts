@@ -16,7 +16,8 @@ import { UserService } from '../../core/services/user.service';
 })
 export class CodeBoxComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<CodeBoxComponent>);
-  readonly hash_code = inject<any>(MAT_DIALOG_DATA);
+  readonly _hash_code = inject<any>(MAT_DIALOG_DATA);
+  hash_code:string;
   codeStatus: string
   
 
@@ -40,7 +41,7 @@ export class CodeBoxComponent implements OnInit {
 
     let hash = this.utilsService.hashCode(code)
     
-    if (hash === this.hash_code.hash_code ){
+    if (hash === this.hash_code ){
       this.userService.saveVerifyUser(true)
       this.codeStatus = 'correct'
       setTimeout( ()=>{
@@ -54,8 +55,20 @@ export class CodeBoxComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  onResendEmail(){
+    this.userService.resendVeryficationEmail().subscribe(
+      (data:any) =>{
+        console.log('(((((((((((WWWWWWWW)))))))))))))', data)
+        this.hash_code = data['hash_code']
+      }
+    )
+  }
 
+  ngOnInit(): void {
+    if (this._hash_code){
+      this.hash_code = this._hash_code.hash_code
+    }
+    console.log('::::::::::SSSS::::::::::::::::', this.hash_code)
   }
 
 }

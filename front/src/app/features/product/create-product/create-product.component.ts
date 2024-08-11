@@ -66,11 +66,11 @@ export class CreateProductComponent implements OnInit {
       title: ['', Validators.required,],
       city: ['Lefkosa'],
       bodyType: ['', Validators.required,],
-      mileage: ['', Validators.required,],
+      mileage: ['',[ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       fuelType: ['', Validators.required,],
       transmissionType: ['', Validators.required,],
       status: ['', Validators.required,],
-      price: ['', Validators.required,],
+      price: ['', [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")],],
       description: ['', Validators.required,]
     });
 
@@ -78,10 +78,10 @@ export class CreateProductComponent implements OnInit {
       title: ['', Validators.required,],
       city: ['Lefkosa'],
       titleDeedType: ['', Validators.required,],
-      size: ['', Validators.required,],
+      size: ['', [ Validators.required,Validators.pattern("^[0-9]+(\\.[0-9]*)?$")],],
       numberOfBedrooms: ['', Validators.required,],
       furnishingStatus: ['', Validators.required,],
-      price: ['', Validators.required,],
+      price: ['', [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")],],
       description: ['', Validators.required,],
       status:['', Validators.required]
     });
@@ -89,7 +89,7 @@ export class CreateProductComponent implements OnInit {
     this.otherForm = this.fb.group({
       title: ['', Validators.required,],
       city: ['Lefkosa'],
-      price: ['', Validators.required,],
+      price: ['', [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")],],
       description: ['', Validators.required,],
       status:['', Validators.required]
     });

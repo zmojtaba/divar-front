@@ -15,7 +15,27 @@ export class ProductService {
   constructor(private http:HttpClient,) { }
 
   getAdsDetailData(category:string, id:string){
+    const token = localStorage.getItem('access_token')
+    if (token){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+      });
+      return this.http.get(`${this.apiUrl}/advertisement/ads-detail/${category}/${id}`, {headers})
+    }
+
     return this.http.get(`${this.apiUrl}/advertisement/ads-detail/${category}/${id}`)
+  }
+
+  saveAds(status:string, category:string, id: string){
+    const token = localStorage.getItem('access_token')
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+    return this.http.post(`${this.apiUrl}/advertisement/saved-ads/`,{
+      "status": status,
+      "category_name": category,
+      "ads_id": id
+    }, {headers})
   }
 
   getHomeAdsData(){

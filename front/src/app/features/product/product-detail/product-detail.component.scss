@@ -3,15 +3,44 @@
 .detail-box{
     height: 100%;
     overflow-y: scroll;
+
     .ads_image{
 
         position: relative;
         height: 40% !important;
+
+        .ads_icon{
+            ::ng-deep nb-icon{
+                position: absolute;
+                z-index: 1;
+                &.save_icon{
+                    top: .6rem;
+                    left: 1.6rem;
+                }
+                &.star_icon{
+                    top: .6rem;
+                    right: 1.6rem;
+                }
+    
+                svg{
+                    width: 2rem;
+                    height: 2rem;
+                    background-color: inherit;
+                }
+                svg:hover{
+                    cursor: pointer;
+                }
+            }
+        }
         ::ng-deep svg{
             color: #fff;
             height: 3rem;
             width: 3rem;
             background-color: #748DA6;
+            
+        }
+        ::ng-deep svg:hover{
+            cursor: pointer;
         }
         img{
             height: 100%;

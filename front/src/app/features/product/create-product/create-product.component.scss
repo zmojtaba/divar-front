@@ -34,6 +34,37 @@
     }
 }
 
+.mileage{
+    position:relative;
+    .mileage_km{
+        position: absolute;
+        top: 2.6rem;
+        right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
+.price{
+    position:relative;
+    .price_km{
+        position: absolute;
+        top: 2.6rem;
+        right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
+.size{
+    position:relative;
+    .size_km{
+        position: absolute;
+        top: 2.6rem;
+        right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
+
 ::ng-deep .cdk-overlay-pane {
     .mat-mdc-menu-panel{
         background-color: $light_backgrond_color;

@@ -48,6 +48,10 @@ export class ProductDetailComponent implements OnInit {
   disabledNextIcon:boolean;
   disabledPreviousIcon:boolean
   currentUser:any;
+  AdIsSaved: boolean = false;
+  userIsStar : boolean = false
+  savedIconName:string = "bookmark-outline"
+  starIconName : string = "star-outline"
 
   constructor(
     private route: ActivatedRoute,
@@ -65,12 +69,39 @@ export class ProductDetailComponent implements OnInit {
     });
 
     this.productService.getAdsDetailData(this.category, this.id).subscribe(
-      data =>{
+      (data:any) =>{
         this.adsDetailData = data
         this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
+        console.log('aaaaaaaaaaaaaa', this.adsDetailData)
+        if (JSON.parse(JSON.stringify(this.adsDetailData['is_saved'])) == 'true'){
+          this.savedIconName = 'bookmark'
+          this.AdIsSaved = true
+        }
+        if (JSON.parse(JSON.stringify(this.adsDetailData['is_star'])) == 'true'){
+          this.starIconName = 'star'
+          this.userIsStar = true
+        }
       }
     )
 
+  }
+  onSavedIcon(){
+    if (this.AdIsSaved){
+      this.productService.saveAds('delete', this.adsDetailData.category.name, this.adsDetailData.id).subscribe(
+        data =>{
+
+        }
+      )
+    }else{
+      this.productService.saveAds('save', this.adsDetailData.category.name, this.adsDetailData.id).subscribe(
+        data =>{
+
+        }
+      )
+    }
+    this.AdIsSaved = !this.AdIsSaved
+    this.savedIconName = this.AdIsSaved  ? 'bookmark' : 'bookmark-outline'
+    
   }
 
   onSetImage(action:string){
@@ -85,10 +116,13 @@ export class ProductDetailComponent implements OnInit {
 
   onChat(){
     let starter_user_id = localStorage.getItem('user_id')
+    if (starter_user_id){
+      this.productService.adsDetailData.next(this.adsDetailData)
+      this.router.navigate(['chat/chat-room', starter_user_id, this.category, this.adsDetailData['id'] ])
+    }else{
+      this.router.navigate(['user/'])
+    }
 
-    this.productService.adsDetailData.next(this.adsDetailData)
-
-    this.router.navigate(['chat/chat-room', starter_user_id, this.category, this.adsDetailData['id'] ])
   }
 
   onEdit(){

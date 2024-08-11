@@ -1,8 +1,21 @@
 <div class="detail-box">
     <div class="ads_image">
-        <!-- <div *ngIf="adsDetailData.images.length > 0; else ImageElseBlock"> -->
-            <img [src]="adsDetailData.images[imageId].image" alt="" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
-        <!-- </div> -->
+        
+        <div class="ads_icon">
+            <nb-icon 
+            (click)="onSavedIcon()"
+            class="save_icon" 
+            [icon]="savedIconName" 
+            ></nb-icon>
+            <nb-icon 
+            class="star_icon" 
+            [icon]="starIconName" 
+            ></nb-icon>
+        </div>
+        <div style="width: 100%;height: 100%;" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
+            <img  [src]="adsDetailData.images[imageId].image" alt="" >
+        </div>
+
         <ng-template #ImageElseBlock>
             <img src="assets/profile_img/profile.png" alt="">
         </ng-template>
@@ -26,6 +39,7 @@
                 <div class="dot" *ngFor="let image of  adsDetailData.images; let i = index" [class.active_dot]="i==imageId">
                 </div>
         </div>
+
     </div>
     <div class="car_cat" *ngIf="category=='car'">
         <div class="items-list">
@@ -276,9 +290,9 @@
     </div>
 
     <div class="chat" >
-        <button (click)="onChat()" type="submit" class="btn mt-1" *ngIf="currentUser!=adsDetailData.user['username'] && currentUser" >Chat</button>
+        <button (click)="onChat()" type="submit" class="btn mt-1" *ngIf="currentUser!=adsDetailData.user['username']" >Chat</button>
         <button (click)="onEdit()" type="submit" class="btn mt-1" *ngIf="currentUser==adsDetailData.user['username']" >Edit</button>
-        <p *ngIf="currentUser!=adsDetailData.user['username'] && currentUser" >{{adsDetailData.user['username']}}</p>
+        <p *ngIf="currentUser!=adsDetailData.user['username']" >{{adsDetailData.user['username']}}</p>
         <button (click)="ondelete()" type="submit" class="btn mt-1 danger" *ngIf="currentUser==adsDetailData.user['username']" >Delete</button>
     </div>
 

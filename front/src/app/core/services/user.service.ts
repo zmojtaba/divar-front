@@ -1,5 +1,5 @@
 import { Injectable, SimpleChanges } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http"
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http"
 import {  BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map, take, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -104,6 +104,14 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/account/api-vi/forget-pass/`,{
       "username":username
     })
+  }
+
+  resendVeryficationEmail(){
+    const token = localStorage.getItem('access_token')
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`, 
+    });
+    return this.http.get(`${this.apiUrl}/account/api-vi/resend-verificaiton-code/`, {headers})
   }
 
   forgetPasswordChange(username:string, code:string, password:string){

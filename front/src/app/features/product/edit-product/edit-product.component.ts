@@ -103,11 +103,11 @@ export class EditProductComponent  implements OnInit{
       title: [this.adsData.title, Validators.required,],
       city: [this.adsData.City],
       bodyType: [this.adsData.BodyType, Validators.required,],
-      mileage: [this.adsData.Mileage, Validators.required,],
+      mileage: [this.adsData.Mileage,  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       fuelType: [this.adsData.FuelType, Validators.required,],
       transmissionType: [this.adsData.TransmissionType, Validators.required,],
       status: [this.adsData.Status, Validators.required,],
-      price: [this.adsData.Price, Validators.required,],
+      price: [this.adsData.Price,  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       description: [this.adsData.description, Validators.required,]
     });
 
@@ -118,10 +118,10 @@ export class EditProductComponent  implements OnInit{
       title: [this.adsData.title, Validators.required,],
       city: [this.adsData.City],
       titleDeedType: [this.adsData.TitleDeedType, Validators.required,],
-      size: [this.adsData.Size, Validators.required,],
+      size: [this.adsData.Size, [ Validators.required,  Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       numberOfBedrooms: [this.adsData.NumberOfBedrooms, Validators.required,],
       furnishingStatus: [this.adsData.FurnishingStatus, Validators.required,],
-      price: [this.adsData.Price, Validators.required,],
+      price: [this.adsData.Price, [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       description: [this.adsData.description, Validators.required,],
       status:[this.adsData.Status, Validators.required],
       propertyType : [this.adsData.Propertytype]
@@ -132,7 +132,7 @@ export class EditProductComponent  implements OnInit{
     this.otherForm = this.fb.group({
       title: [this.adsData.title, Validators.required,],
       city: [this.adsData.City],
-      price: [this.adsData.Price, Validators.required,],
+      price: [this.adsData.Price,  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       description: [this.adsData.description, Validators.required,],
       status:[this.adsData.Status, Validators.required],
       propertyType : [this.adsData.Propertytype]

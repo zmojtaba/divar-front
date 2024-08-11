@@ -76,6 +76,36 @@ form{
 
 }
 
+.mileage{
+    position:relative;
+    .mileage_km{
+        position: absolute;
+        top: 2.6rem;
+        right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
+.price{
+    position:relative;
+    .price_km{
+        position: absolute;
+        top: 2.6rem;
+        right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
+.size{
+    position:relative;
+    .size_km{
+        position: absolute;
+        top: 2.6rem;
+        right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
 .error{
     height: 1.5rem;
     background:$input_wrong_border_color ;

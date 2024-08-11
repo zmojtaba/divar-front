@@ -63,9 +63,13 @@
                 <div class="mileage">
                     <p>Mileage</p>
                     <input type="text" formControlName="mileage" class="form-control">
+                    <p class="mileage_km">Km</p>
                 </div>
                 <div class="error" *ngIf="(!carForm.controls['mileage'].value && carForm.controls['mileage'].touched) || (!carForm.controls['mileage'].value && clickedOnCarSubmit)">
                     <small > Mileage is required!</small>
+                </div>
+                <div class="error" *ngIf="(carForm.controls['mileage'].value && carForm.controls['mileage'].touched && carForm.controls['mileage'].errors)">
+                    <small > Mileage most be number!</small>
                 </div>
             </li>
             <li class="list-group-item">
@@ -114,9 +118,13 @@
                 <div class="price">
                     <p>Price</p>
                     <input type="text" formControlName="price" class="form-control">
+                    <p class="price_km">$</p>
                 </div>
                 <div class="error" *ngIf="(!carForm.controls['price'].value && carForm.controls['price'].touched) || (!carForm.controls['price'].value && clickedOnCarSubmit)">
-                    <small > Price is required!</small>
+                    <small >Price is required!</small>
+                </div>
+                <div class="error" *ngIf="(carForm.controls['price'].value && carForm.controls['price'].touched && carForm.controls['price'].errors)  ">
+                    <small >Price most be number</small>
                 </div>
             </li>
             <li class="list-group-item">
@@ -198,9 +206,13 @@
                     <div class="size">
                         <p>Size</p>
                         <input type="text" formControlName="size" class="form-control">
+                        <p class="size_km">m</p>
                     </div>
                     <div class="error" *ngIf="(!realEstateForm.controls['size'].value && realEstateForm.controls['size'].touched) || (!realEstateForm.controls['size'].value && clickedOnRealEstateSubmit)">
                         <small > Size is required!</small>
+                    </div>
+                    <div class="error" *ngIf="(realEstateForm.controls['size'].value && realEstateForm.controls['size'].touched && realEstateForm.controls['size'].errors )">
+                        <small > Size most be number!</small>
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -249,9 +261,13 @@
                     <div class="price">
                         <p>Price</p>
                         <input type="text" formControlName="price" class="form-control">
+                        <p class="price_km">$</p>
                     </div>
                     <div class="error" *ngIf="(!realEstateForm.controls['price'].value && realEstateForm.controls['price'].touched) || (!realEstateForm.controls['price'].value && clickedOnRealEstateSubmit)">
                         <small > Price is required!</small>
+                    </div>
+                    <div class="error" *ngIf="(realEstateForm.controls['price'].value && realEstateForm.controls['price'].touched && realEstateForm.controls['price'].errors) ">
+                        <small > Price most be number!</small>
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -334,9 +350,13 @@
                     <div class="price">
                         <p>Price</p>
                         <input type="text" formControlName="price" class="form-control">
+                        <p class="price_km">$</p>
                     </div>
                     <div class="error" *ngIf="(!otherForm.controls['price'].value && otherForm.controls['price'].touched) || (!otherForm.controls['price'].value && clickedOnOtherSubmit)">
                         <small > Price is required!</small>
+                    </div>
+                    <div class="error" *ngIf="(otherForm.controls['price'].value && otherForm.controls['price'].touched && otherForm.controls['price'].errors)">
+                        <small > Price most be number!</small>
                     </div>
                 </li>
                 <li class="list-group-item">

@@ -8,6 +8,6 @@
     (codeChanged)="onCodeChanged($event)"
     (codeCompleted)="onCodeCompleted($event)">
     </code-input>
-    <span><p>Didn't get a code? click <a > here </a> to resend. </p> </span>
+    <span><p>Didn't get a code? click <a (click)="onResendEmail()"> here </a> to resend. </p> </span>
 
 </div>
