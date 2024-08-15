@@ -61,7 +61,9 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     'http://172.0.0.1:4200',
-    "http://192.168.2.1"
+    "http://192.168.2.1",
+    "https://rozaart.ir/api/",
+    "https://rozaart.ir/"
 ]
 from corsheaders.defaults import default_headers
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -219,6 +221,6 @@ EMAIL_PORT = 587
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
 MEDIA_URL = '/mediafiles/'
-DOMAIN_URL = 'http://127.0.0.1:8000'
+DOMAIN_URL = 'https://rozaart.ir/api'
 # DOMAIN_URL = 'http://0.0.0.0:8000'
 
