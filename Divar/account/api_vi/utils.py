@@ -11,7 +11,7 @@ class customRefreshToken(RefreshToken):
     @classmethod
     def for_user(cls, user, code):
         token = super().for_user(user)
-        print('==================',hash_user_code(code))
+
         token['hash_code'] = hash_user_code(code)
         return token
 

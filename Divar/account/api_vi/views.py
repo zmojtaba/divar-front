@@ -14,7 +14,7 @@ class UserRegistrationAPIView(APIView):
     serializer_class = UserRegistrationSerializer
 
     def post(self,request, *args, **kwargs):
-        # print('----------*********************-----------', json.dumps(request.data))
+
         serializer= self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -118,9 +118,9 @@ class ResetPassAPIView(APIView):
 
     def post(self,request):
         serializer = self.serializer_class(data=request.data)
-        print( '555555555555555555555555555555555555555____', request.data)
+
         serializer.is_valid(raise_exception=True)
-        print( '555555555555555555555555555555555555555____', serializer.data)
+
         user = User.objects.get(username=serializer.data['username'])
         if user.forget_code == serializer.data['forget_code']:
             user.set_password(serializer.data['new_password'])

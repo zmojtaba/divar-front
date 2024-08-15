@@ -223,7 +223,7 @@ class OthersAds(models.Model):
     def get_other_images(self):
         domain_url = settings.DOMAIN_URL
         images_url = []
-        print('-------------------------------')
+
         for profile_image in self.other_image.all():
             images_url.append( {'image':domain_url+profile_image.image.url, 'id':profile_image.id})
         return json.dumps(images_url)
@@ -268,7 +268,7 @@ class OthersAds(models.Model):
 import os
 def image_upload_to_car(instance, filename):
     file_dir = instance.car.user.email.split('@')[0]
-    print('-----------------------------------', os.getcwd())
+
     return f"advertisements/cars/{file_dir}/{filename}"
 
 class CarImage(models.Model):
@@ -284,7 +284,7 @@ import os
 
 def image_upload_to_real_estate(instance, filename):
     file_dir = instance.real_estate.user.email.split('@')[0]
-    print('-----------------------------------', os.getcwd())
+
     return f"advertisements/real_estate/{file_dir}/{filename}"
 
 class RealEstateImage(models.Model):
@@ -297,7 +297,7 @@ class RealEstateImage(models.Model):
 
 def image_upload_to_other(instance, filename):
     file_dir = instance.other.user.email.split('@')[0]
-    print('-----------------------------------', os.getcwd())
+
     return f"advertisements/other/{file_dir}/{filename}"
 
 class OtherImage(models.Model):

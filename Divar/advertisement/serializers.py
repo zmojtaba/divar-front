@@ -113,7 +113,6 @@ class CarImagesSerializer(serializers.ModelSerializer):
 
         if validated_data.get('uploaded_images'):
             uploaded_images = validated_data.pop('uploaded_images')
-            print('***&&&',uploaded_images)
             car = Car.objects.create(**validated_data)
         
             for image in uploaded_images:
@@ -192,7 +191,6 @@ class RealestateImagesSerializer(serializers.ModelSerializer):
             for image in real_estate_uploaded_images:
                 RealEstateImage.objects.create(real_estate=real_estate, image = image)
         else:
-            print('----------------------------------------77777777', validated_data)
             real_estate = RealEstate.objects.create(**validated_data)
         
         return real_estate

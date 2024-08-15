@@ -26,7 +26,7 @@ class RealEstateView(APIView):
         return Response(serializer.data)
 
     def post(self,request):
-        print('---------------------------', request.data)
+
         user = request.user
         if user == User.objects.get(id = request.data['user']):
 
@@ -48,7 +48,7 @@ class CarView(APIView):
 
     def post(self,request):
         user = request.user
-        print(user.id)
+
         if user == User.objects.get(id = request.data['user']):
 
             serializer = CarImagesSerializer( data= request.data)
@@ -106,7 +106,7 @@ def chek_saved_ads_for_user(user, category, ad_id):
         
         saved_ads = SavedAds.objects.filter(Q(user=user) & Q( category_name__icontains = category))
         for ad in saved_ads:
-            print('save ad id is: ', ad.ads_id, '--- ad is is : ', ad_id)
+
             if int(ad.ads_id) == int(ad_id):
                 return True
         return False    
@@ -143,7 +143,6 @@ class AdsDetailView(APIView):
             final_response['is_saved'] = "true"
         else: 
             final_response['is_saved'] = "false"
-        print('----------------',add.user.stars)
 
         if add.user.stars:
             if int(add.user.stars)  > 0 :
@@ -241,9 +240,9 @@ class SaveAdsView(APIView):
             
     def post(self, request):
         profile = Profile.objects.get(user=request.user)
-        print('----------------------------------------------------------', request.data)
+
         saved_ads = SavedAds.objects.filter(user=request.user, category_name=request.data['category_name'], ads_id=request.data['ads_id'])
-        print('====================================================', saved_ads )
+
         if request.data['status']=='save':
             if not saved_ads.exists():
                 saved_ads = SavedAds.objects.create(user=request.user, category_name=request.data['category_name'], ads_id=request.data['ads_id'])
@@ -251,7 +250,6 @@ class SaveAdsView(APIView):
                 profile.save()
         if request.data['status'] == 'delete':
             if saved_ads.exists():
-                print('----------------------------------------------------------', saved_ads)
                 profile.Saved_Ads.remove(saved_ads[0])
                 saved_ads[0].delete()
                 profile.save()
@@ -265,7 +263,7 @@ class SearchByCategoryView(APIView):
     
     def get(self, request, category_name, sub_name, *args, **kwargs):
 
-        print('(((((())))))', category_name, sub_name)
+
 
         if category_name.lower() == 'car':
             adds = Car.objects.filter(Q(Is_show=True) & Q(is_published = True) & Q(BodyType=sub_name)).order_by('-id')
@@ -273,10 +271,10 @@ class SearchByCategoryView(APIView):
             
 
         elif category_name.lower() == 'realestate':
-            print('pppppppppppppppppp', sub_name)
+
             real_state = RealEstate.objects.filter(Q(Is_show=True) & Q(is_published = True) & Q(Propertytype=sub_name)).order_by('-id')
             serializer = RealEstateSerializer(real_state,many=True)
-            print('pppppppppppppppppp', real_state)
+
 
         
         elif category_name.lower() == 'other':
@@ -341,7 +339,7 @@ def get_data_by_search(title_name, city_name ):
         all_data.append(data)
 
     sorted_data = sorted(all_data, key=lambda x: x['created_date'], reverse=True)
-    print(sorted_data,'******&&&&&&&&%^$%')
+
 
     return sorted_data
 
