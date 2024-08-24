@@ -93,7 +93,7 @@ form{
         background: $button_submit_color!important;
     }
     .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
-        background:#598bff !important ;
+        background:$button_submit_color !important ;
     }
 
 }

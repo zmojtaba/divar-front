@@ -37,6 +37,8 @@ export class AppComponent implements OnInit {
   userIsloggedIn :boolean
   readonly dialog = inject(MatDialog);
 
+  showLogo : boolean = true;
+
   constructor(
     private userService: UserService,
     private tokenService: TokenService
@@ -65,6 +67,10 @@ export class AppComponent implements OnInit {
 
       }
     }
+
+    setTimeout( ()=>{
+      this.showLogo = false;
+    }, 3000 )
 
   }
 

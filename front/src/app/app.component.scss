@@ -5,7 +5,7 @@
     background: $body_background_color ;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 408px) {
     ::ng-deep body {
       display: flex; /* Change this to whatever display property you want */
     }
@@ -60,5 +60,36 @@
             margin: 0;
         }
     
+    }
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    background: #fff;
+    img{
+        width: 5.5rem;
+        // height: 8.5rem;
+    }
+}
+
+@media (min-width:700px){
+
+    .logo{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+        background: #fff;
+        img{
+            width: 9rem;
+            // height: 8.5rem;
+        }
     }
 }

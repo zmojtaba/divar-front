@@ -1,5 +1,5 @@
 
-<div class="app_box">
+<div class="app_box" *ngIf="!showLogo">
     <div class="user-verify" *ngIf="verifySatus">
         <div 
         [class]="{'verified' : (verifySatus === 'verified') , 'not_verified': (verifySatus === 'not_verified')}">
@@ -11,4 +11,8 @@
 </div>
 
 
-<app-header></app-header>
+<app-header *ngIf="!showLogo"></app-header>
+
+<div class="logo" *ngIf="showLogo">
+    <img src="assets/logo_vini.png" alt="">
+</div>

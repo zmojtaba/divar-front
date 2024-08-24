@@ -25,6 +25,7 @@ export const routes: Routes = [
     ,
 
     {path: 'home', title:'home page', component:HomeComponent},
+    // {path: '/', title:'home page', component:HomeComponent},
     {path: 'chat', title: 'chat page', component:ChatComponent},
     {path: 'chat/chat-room/:starter_id/:category/:ads_id', title: 'chat_room_page', component:ChatRoomComponent},
     {path: 'category', title: 'category page', component: CategoryComponent},

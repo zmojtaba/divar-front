@@ -9,6 +9,8 @@
         position: relative;
         height: 40% !important;
 
+
+
         .ads_icon{
             ::ng-deep nb-icon{
                 position: absolute;
@@ -26,6 +28,7 @@
                     width: 2rem;
                     height: 2rem;
                     background-color: inherit;
+                    color: #748DA6;
                 }
                 svg:hover{
                     cursor: pointer;
@@ -33,6 +36,7 @@
             }
         }
         ::ng-deep svg{
+            border-radius: 50%;
             color: #fff;
             height: 3rem;
             width: 3rem;
@@ -42,10 +46,27 @@
         ::ng-deep svg:hover{
             cursor: pointer;
         }
-        img{
-            height: 100%;
-            width: 100%;
+        .ads_image-image{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+
+            img{
+                height: 100%;
+                width: 40rem;
+            }
         }
+        .ads_image-else_image{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+
         .forward_icon{
             position: absolute;
             top: 9rem;
@@ -98,7 +119,7 @@
             background-color: red;
         }
         p{
-            margin: 0;
+            margin: 4px 0px;
             background: $button_submit_color;
             color: #fff;
             min-width: 100px;

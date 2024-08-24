@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://rozaart.ir/api/',
-    webSocketUrl: 'ws://rozaart.ir/api/'
+    apiUrl: 'https://api.vini1.ir',
+    webSocketUrl: 'ws://api.vini1.ir'
   };

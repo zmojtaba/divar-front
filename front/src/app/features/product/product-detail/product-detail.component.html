@@ -12,12 +12,15 @@
             [icon]="starIconName" 
             ></nb-icon>
         </div>
-        <div style="width: 100%;height: 100%;" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
+        <div class="ads_image-image" style="width: 100%;height: 100%;" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
             <img  [src]="adsDetailData.images[imageId].image" alt="" >
         </div>
 
         <ng-template #ImageElseBlock>
-            <img src="assets/profile_img/profile.png" alt="">
+            <div class="ads_image-else_image" style="width: 100%;height: 100%;" >
+                <img src="assets/profile_img/profile.png" alt="">
+            </div>
+            
         </ng-template>
         <nb-icon 
         class="forward_icon" 
