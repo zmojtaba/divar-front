@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
     private tokenService: TokenService
   ){}
   ngOnInit(): void {
+    
     this.verifySubs = this.userService.userLoggedIn.subscribe( data=>{
       if (data){
         if ( !this.userService.CheckVerifyUser() ){

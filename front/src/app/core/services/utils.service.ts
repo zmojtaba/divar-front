@@ -11,5 +11,10 @@ export class UtilsService {
     return hash
   }
 
+  checkLan (){
+    let lan = localStorage.getItem('lan')
+    console.log('--------------------------', lan)
+  }
+
   constructor() { }
 }

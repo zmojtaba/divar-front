@@ -24,6 +24,37 @@ export class CategoryComponent implements OnInit {
   realStateCats = ["Apartment", "House", "Villa", "Studio", "Penthouse", "Residence", "Under Construction Building", "Land", "Commercial Property", "Warehouse"]
   CarCats = ["Cabriolet", "Coupe", "Hatchback 3 Door", "Hatchback 5 Door", "Sedan", "Stationwagon", "SUV"]
   OtherCats = ["Digital Goods", "Kitchen", "Intertainment", "Personal Items"]
+  language:any
+  turkishRealStateCats = [
+    "Daire",          // Apartment
+    "Ev",             // House
+    "Villa",          // Villa
+    "Stüdyo",         // Studio
+    "Çatı Katı",      // Penthouse
+    "Rezidans",       // Residence
+    "İnşaat Halinde Bina",  // Under Construction Building
+    "Arsa",           // Land
+    "Ticari Mülk",    // Commercial Property
+    "Depo"            // Warehouse
+  ];
+  
+  turkishCarCats = [
+    "Kabrio",           // Cabriolet
+    "Coupe",            // Coupe
+    "3 Kapılı Hatchback", // Hatchback 3 Door
+    "5 Kapılı Hatchback", // Hatchback 5 Door
+    "Sedan",            // Sedan
+    "Stationwagon",     // Stationwagon
+    "SUV"               // SUV
+  ];
+  
+  turkishOtherCats = [
+    "Dijital Ürünler",    // Digital Goods
+    "Mutfak",             // Kitchen
+    "Eğlence",            // Entertainment
+    "Kişisel Eşyalar"     // Personal Items
+  ];
+  
 
   constructor(
     private productService: ProductService,
@@ -31,6 +62,8 @@ export class CategoryComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.language = localStorage.getItem('lan')
+    console.log(this.language)
     
   }
 

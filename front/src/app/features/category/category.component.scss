@@ -38,6 +38,7 @@
                 p {
                     margin: 0;
                 }
+
             }  
             .items:hover{
                 cursor: pointer;
@@ -77,6 +78,9 @@
                 justify-content: space-between;
                 p {
                     margin: 0;
+                }
+                span{
+                    display: flex;
                 }
                 .item_title{
                     display: flex;
