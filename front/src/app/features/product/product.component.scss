@@ -1,3 +1,5 @@
+@import "../../styles/them.scss";
+
 .title{
     padding: 2rem;
 .cat_title{
@@ -36,6 +38,61 @@
                 p {
                     margin: 0;
                 }
+
+            }  
+            .items:hover{
+                cursor: pointer;
+            }  
+        }
+    }
+}
+
+.other_sub_cat-box{
+    .items-list{
+        ul{
+            border-radius: 0;
+            li{
+                border-left: 0;
+                border-right: 0;
+                border: none;
+                padding: 0;
+    
+                ::ng-deep svg {
+                    width: 1rem;
+                  }
+            }
+            .items {
+                border: 1px #dee2e6 solid;
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+                width: 94%;
+                margin-left: 2rem;
+                height: 48px;
+                padding-left: 1.4rem;
+                padding-right: 2.7rem;
+                // padding: 1rem 3.4rem;
+                // margin: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                p {
+                    margin: 0;
+                }
+                span{
+                    display: flex;
+                }
+                .item_title{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    svg{
+                        width: 2rem;
+                        height: 2rem;
+                        margin-right: 1rem;
+                        color: $icon_color;
+                    }
+                }
             }  
             .items:hover{
                 cursor: pointer;
@@ -48,7 +105,7 @@
     display: block;
 }
 .cat-box{
-    max-height: 46rem !important;
+    max-height: 49rem !important;
     overflow-y: auto;
     ::ng-deep .mat-accordion{
         mat-expansion-panel, mat-expansion-panel-header{
@@ -59,7 +116,21 @@
             padding: 0;
         }
         .title{
-            color: #212529;
+            color: $small_font_color;
+            .category_item{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                p{
+                    margin: 0;
+                }
+                svg{
+                    width: 2rem;
+                    height: 2rem;
+                    margin-right: 1rem;
+                    color: $icon_color;
+                }
+            }
         }
     }
 }

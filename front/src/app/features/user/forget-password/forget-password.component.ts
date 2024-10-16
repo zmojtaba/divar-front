@@ -48,14 +48,17 @@ export class ForgetPasswordComponent implements OnInit {
   newPassword:string;
   submitError:any;
   readonly dialogRef = inject(MatDialogRef<ForgetPasswordComponent>);
+  language:string;
 
   constructor(
     private userService: UserService,
     private utilsService:UtilsService,
-    private router: Router
+    private router: Router,
+    private utilService:UtilsService
   ){}
 
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()
 
   }
 

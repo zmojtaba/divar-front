@@ -1,4 +1,4 @@
-<div class="user_box">
+<div class="user_box" *ngIf="language=='en'">
     <ng-template #elseBlock>
         <div class="pass_changed">
             <p *ngIf="passwordChangeMessage" >{{passwordChangeMessage}}</p>
@@ -64,8 +64,146 @@
     
             </ul>
         </div>
-        <!-- <router-outlet></router-outlet> -->
     </div>
 
 </div>
 
+<div class="user_box" *ngIf="language=='tr'">
+    <ng-template #elseBlock>
+        <div class="pass_changed">
+            <p *ngIf="passwordChangeMessage" >{{passwordChangeMessage}}</p>
+        </div>
+        <app-register *ngIf="formStatus=='register'"  (formChanger)="receiveValue($event)"></app-register>
+        <app-login *ngIf="formStatus=='login'" (formChanger)="receiveValue($event)" ></app-login>
+    </ng-template>
+    
+    
+    <div class="user_profile" *ngIf="userIsLogedIn; else elseBlock">
+        <div class="profile_bio" >
+            <div class="img"> <img src="assets/profile_img/profile_image.png" alt=""> </div>
+            <div class="content" > <p> Lorem Ipsum, matbaacılık ve dizgi endüstrisinin basit sahte metnidir. Lorem Ipsum, 1500'lerden beri sektörün standart sahte metni olmuştur; o zamanlar bilinmeyen bir matbaacı, bir tür galerisini alıp karıştırarak bir yazı örneği kitabı oluşturmuştur.</p> </div>
+            <div class="icon"> 
+                <div class="drop_down_menu">
+                    <button mat-button [matMenuTriggerFor]="menu"><nb-icon  icon="more-vertical-outline"></nb-icon></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onLogout()">Çıkış Yap</button>
+                        <button mat-menu-item>öğe1</button>
+                        <button mat-menu-item>öğe2</button>
+                        <button mat-menu-item>öğe3</button>
+                    </mat-menu>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="items-list">
+            <ul class="list-group">
+                <li (click)="onSetTitle('my-ads')" class="list-group-item">
+                    <div class="items">
+                        <p> Benim İlanım </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li (click)="onSetTitle('saved-ads')"  class="list-group-item">
+                    <div class="items">
+                        <p> Kaydedildi </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> Ödeme </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li (click)="onSetTitle('my-visit')" class="list-group-item">
+                    <div class="items">
+                        <p> Ziyaretlerim </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> kimlik </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="user_box" *ngIf="language=='fr'">
+    <ng-template #elseBlock>
+        <div class="pass_changed">
+            <p *ngIf="passwordChangeMessage" >{{passwordChangeMessage}}</p>
+        </div>
+        <app-register *ngIf="formStatus=='register'"  (formChanger)="receiveValue($event)"></app-register>
+        <app-login *ngIf="formStatus=='login'" (formChanger)="receiveValue($event)" ></app-login>
+    </ng-template>
+    
+    
+    <div class="user_profile" *ngIf="userIsLogedIn; else elseBlock">
+        <div class="profile_bio" >
+            <div class="img"> <img src="assets/profile_img/profile_image.png" alt=""> </div>
+            <div class="content" > <p> لورم ایپسوم به سادگی متن ساختگی صنعت چاپ و تایپ است. لورم ایپسوم از قرن ۱۵۰۰ به عنوان متن ساختگی استاندارد صنعت شناخته شده است، زمانی که یک چاپگر ناشناخته یک گالری از نوع را گرفت و آن را به هم ریخت تا یک کتاب نمونه نوع ایجاد کند</p> </div>
+            <div class="icon"> 
+                <div class="drop_down_menu">
+                    <button mat-button [matMenuTriggerFor]="menu"><nb-icon  icon="more-vertical-outline"></nb-icon></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onLogout()">خروج</button>
+                        <button mat-menu-item>گزینه۱</button>
+                        <button mat-menu-item>گزینه۲</button>
+                        <button mat-menu-item>گزینه۳</button>
+                    </mat-menu>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="items-list">
+            <ul class="list-group">
+                <li (click)="onSetTitle('my-ads')" class="list-group-item">
+                    <div class="items">
+                        <p> آگهی های من </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li (click)="onSetTitle('saved-ads')"  class="list-group-item">
+                    <div class="items">
+                        <p> ذخیره شده </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> پرداخت </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li (click)="onSetTitle('my-visit')" class="list-group-item">
+                    <div class="items">
+                        <p> بازدیدها </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+                <li class="list-group-item">
+                    <div class="items">
+                        <p>  احراز هویت  </p>
+                        <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+    
+            </ul>
+        </div>
+    </div>
+
+</div>

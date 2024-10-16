@@ -17,6 +17,7 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
 import { ProfileService } from '../../core/services/profile.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from '../../core/services/auth-interceptor.service';
+import { UtilsService } from '../../core/services/utils.service';
 
 @Component({
   selector: 'app-user',
@@ -50,12 +51,14 @@ export class UserComponent implements OnInit {
   registerSubscription: Subscription = new Subscription()
   userIsVerified: boolean;
   passwordChangeMessage:string;
+  language:string;
 
 
   constructor( 
     private userService: UserService,
     private profileService: ProfileService,
-    private router: Router
+    private router: Router,
+    private utilService:UtilsService
     ){
     }
 
@@ -69,6 +72,7 @@ export class UserComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()
     this.registerSubscription = this.userService.userLoggedIn.subscribe( data =>{
       if (data){
 

@@ -12,6 +12,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileService } from '../../../core/services/profile.service';
 import { ProductService } from '../../../core/services/product.service';
+import { UtilsService } from '../../../core/services/utils.service';
 
 @Component({
   selector: 'app-profile-detail',
@@ -38,7 +39,8 @@ export class ProfileDetailComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router,
     private profileService: ProfileService,
-    private producutService: ProductService
+    private producutService: ProductService,
+    private utilService:UtilsService
   ){
 
   }
@@ -46,6 +48,7 @@ export class ProfileDetailComponent implements OnInit {
   myAds:any[] = []
   savedAds:any[] = []
   adsData:any[] = []
+  language:string;
   
   setProfileData(data: any) {
     try {
@@ -84,12 +87,12 @@ export class ProfileDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()
     this.title = this.route.snapshot.paramMap.get('title');
 
 
       this.profileService.getProfileService().subscribe(data=>{
         const response = typeof data === 'string' ? JSON.parse(data) : data;
-        console.log('================$$$$$$$$$$$$$===========================', response)
         this.setProfileData(response)
         this.setAdsData(this.title)
         this.processAdsData(this.adsData)

@@ -13,7 +13,11 @@ export class UtilsService {
 
   checkLan (){
     let lan = localStorage.getItem('lan')
-    console.log('--------------------------', lan)
+    if (!lan){
+      localStorage.setItem('lan', 'en')
+      lan = 'en'
+    }
+    return lan
   }
 
   constructor() { }

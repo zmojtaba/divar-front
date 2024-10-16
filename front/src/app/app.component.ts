@@ -12,6 +12,7 @@ import { AuthInterceptorService } from './core/services/auth-interceptor.service
 import { MatDialog } from '@angular/material/dialog';
 import { TokenService } from './core/services/token.service';
 import { CodeBoxComponent } from './layout/code-box/code-box.component';
+import { UtilsService } from './core/services/utils.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -36,14 +37,17 @@ export class AppComponent implements OnInit {
   verifySubs: Subscription = new Subscription()
   userIsloggedIn :boolean
   readonly dialog = inject(MatDialog);
+  language:string;
 
   showLogo : boolean = true;
 
   constructor(
     private userService: UserService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private utilService: UtilsService
   ){}
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()
     
     this.verifySubs = this.userService.userLoggedIn.subscribe( data=>{
       if (data){

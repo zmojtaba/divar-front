@@ -12,6 +12,7 @@ import {
   MatDialog,
 } from '@angular/material/dialog';
 import { TokenService } from '../../../core/services/token.service';
+import { UtilsService } from '../../../core/services/utils.service';
 
 
 @Component({
@@ -39,12 +40,14 @@ export class RegisterComponent implements OnInit {
   showDetails: boolean=true;
   @Output() formChanger = new EventEmitter<string>();
   readonly dialog = inject(MatDialog);
+  language:string;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     public userService: UserService,
-    public tokenService: TokenService
+    public tokenService: TokenService,
+    private utilService:UtilsService
   ){
 
   }
@@ -52,6 +55,7 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()
     this.signUpForm = this.fb.group({
       email: ['', [
         Validators.required, 

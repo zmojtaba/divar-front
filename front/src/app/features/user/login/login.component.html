@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-md-6 col-md-offser-3 login" >
+<div class="col-xs-12 col-md-6 col-md-offser-3 login" *ngIf="language=='en'" >
     <ng-container *ngIf="(loginError && !loadingSpinner )" >
         <div class="alert alert-danger error" role="alert"   >
             {{loginError}}
@@ -6,7 +6,7 @@
     </ng-container> 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)" *ngIf="!loadingSpinner" >
         <div class="form-group">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="email"
                 id="email"
                 placeholder="email@gmail.com" 
@@ -16,11 +16,11 @@
                 formControlName="email">
 
             <div class="error" >
-                <small *ngIf="!loginForm.controls['email'].value && loginForm.controls['email'].touched "> email is required!</small>
-                <small *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors && loginForm.controls['email'].value">please enter valid email address!</small>
+                <small *ngIf="!loginForm.controls['email'].value && loginForm.controls['email'].touched "> Email is required!</small>
+                <small *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors && loginForm.controls['email'].value">Please enter valid email address!</small>
             </div>
 
-            <label for="password">password</label>
+            <label for="password">Password</label>
             <div class="pass-input">  
                 <mat-pass-toggle-visibility class="pass-visible" #toggle></mat-pass-toggle-visibility>     
                 <input class="form-control mt-1 mb-2" matInput #password
@@ -33,14 +33,117 @@
             </div>
                 
                 <div class="error" >
-                    <small *ngIf="!loginForm.controls['password'].value && loginForm.controls['password'].touched" > password is required! </small>
+                    <small *ngIf="!loginForm.controls['password'].value && loginForm.controls['password'].touched" > Password is required! </small>
                 </div>
                 <div class="form-info" >
-                    <small (click)="onForgetPass()" > <a > forgot password? </a> </small>
-                    <small (click)="onRegisterForm()"> <a > didn't have an account? register! </a> </small>
+                    <small (click)="onForgetPass()" > <a > Forgot password? </a> </small>
+                    <small (click)="onRegisterForm()"> <a > Didn't have an account? register! </a> </small>
                 </div>
 
             <button type="submit" class="btn mt-1"  [disabled]="!loginForm.valid">LogIn</button>
+        </div>
+    </form>
+    <div class="spinner">
+        <mat-spinner class="col-xs-12 col-md-6 col-md-offser-3" *ngIf="loadingSpinner"></mat-spinner>
+    </div>
+
+</div>
+
+
+<div class="col-xs-12 col-md-6 col-md-offser-3 login" *ngIf="language=='tr'" >
+    <ng-container *ngIf="(loginError && !loadingSpinner )" >
+        <div class="alert alert-danger error" role="alert"   >
+            {{loginError}}
+          </div>
+    </ng-container> 
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)" *ngIf="!loadingSpinner" >
+        <div class="form-group">
+            <label for="email">e-posta</label>
+            <input type="email"
+                id="email"
+                placeholder="email@gmail.com" 
+                class="form-control" 
+                [ngClass]="{'invalid' : (loginForm.controls['email'].errors && loginForm.controls['email'].touched) ,'valid': (!loginForm.controls['email'].errors && !loginForm.controls['email'].pristine)}" 
+                name="email" 
+                formControlName="email">
+
+            <div class="error" >
+                <small *ngIf="!loginForm.controls['email'].value && loginForm.controls['email'].touched "> E-posta zorunludur!</small>
+                <small *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors && loginForm.controls['email'].value">Lütfen geçerli bir e-posta adresi girin!</small>
+            </div>
+
+            <label for="password">Şifre</label>
+            <div class="pass-input">  
+                <mat-pass-toggle-visibility class="pass-visible" #toggle></mat-pass-toggle-visibility>     
+                <input class="form-control mt-1 mb-2" matInput #password
+                    formControlName="password"
+                    [type]="toggle.type"
+                    id="password"
+                    [class]="{ 'invalid': (loginForm.controls['password'].errors && loginForm.controls['password'].touched ), 'valid' : !loginForm.controls['password'].pristine && ! loginForm.controls['password'].errors }"
+                    >
+                
+            </div>
+                
+                <div class="error" >
+                    <small *ngIf="!loginForm.controls['password'].value && loginForm.controls['password'].touched" > Şifre gereklidir! </small>
+                </div>
+                <div class="form-info" >
+                    <small (click)="onForgetPass()" > <a > Şifrenizi mi unuttunuz? </a> </small>
+                    <small (click)="onRegisterForm()"> <a > Hesabınız yok mu? Kayıt olun! </a> </small>
+                </div>
+
+            <button type="submit" class="btn mt-1"  [disabled]="!loginForm.valid">Giriş Yap</button>
+        </div>
+    </form>
+    <div class="spinner">
+        <mat-spinner class="col-xs-12 col-md-6 col-md-offser-3" *ngIf="loadingSpinner"></mat-spinner>
+    </div>
+
+</div>
+
+<div class="col-xs-12 col-md-6 col-md-offser-3 login" *ngIf="language=='fr'" >
+    <ng-container *ngIf="(loginError && !loadingSpinner )" >
+        <div class="alert alert-danger error" role="alert"   >
+            {{loginError}}
+          </div>
+    </ng-container> 
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)" *ngIf="!loadingSpinner" >
+        <div class="form-group">
+            <label for="email">ایمیل</label>
+            <input type="email"
+                id="email"
+                placeholder="email@gmail.com" 
+                class="form-control" 
+                [ngClass]="{'invalid' : (loginForm.controls['email'].errors && loginForm.controls['email'].touched) ,'valid': (!loginForm.controls['email'].errors && !loginForm.controls['email'].pristine)}" 
+                name="email" 
+                formControlName="email">
+
+            <div class="error" >
+                <small *ngIf="!loginForm.controls['email'].value && loginForm.controls['email'].touched "> !ایمیل الزامی است</small>
+                <small *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors && loginForm.controls['email'].value">!لطفا یک ایمیل معتبر وارد کنید</small>
+            </div>
+
+            <label for="password">کلمه عبور</label>
+            <div class="pass-input">  
+                <mat-pass-toggle-visibility class="pass-visible" #toggle></mat-pass-toggle-visibility>     
+                <input class="form-control mt-1 mb-2" matInput #password
+                    formControlName="password"
+                    [type]="toggle.type"
+                    id="password"
+                    [class]="{ 'invalid': (loginForm.controls['password'].errors && loginForm.controls['password'].touched ), 'valid' : !loginForm.controls['password'].pristine && ! loginForm.controls['password'].errors }"
+                    >
+                
+            </div>
+                
+                <div class="error" >
+                    <small *ngIf="!loginForm.controls['password'].value && loginForm.controls['password'].touched" > !کلمه عبور مورد نیاز است </small>
+                </div>
+                <div class="form-info" >
+                    <small (click)="onForgetPass()" > <a > کلمه عبور را فراموش کرده‌اید؟ </a> </small>
+                    <small (click)="onRegisterForm()"> <a > !حسابی ندارید؟ ثبت نام کنید </a> </small>
+                </div>
+
+            <button type="submit" class="btn mt-1"  [disabled]="!loginForm.valid">ورود</button>
         </div>
     </form>
     <div class="spinner">

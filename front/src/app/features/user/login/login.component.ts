@@ -12,6 +12,7 @@ import {
   MatDialog,
 } from '@angular/material/dialog';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
+import { UtilsService } from '../../../core/services/utils.service';
 
 
 
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   loadingSpinner: boolean = false;
   loginError : string = ''
   loginForm : FormGroup;
+  language:string;
   @Output() formChanger = new EventEmitter<string>();
   readonly dialog = inject(MatDialog);
 
@@ -43,10 +45,12 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utilService:UtilsService
   ){}
 
   ngOnInit() {
+    this.language = this.utilService.checkLan()
     this.loginForm = this.fb.group({
       email: ['', [
         Validators.required, 

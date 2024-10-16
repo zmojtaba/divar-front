@@ -5,6 +5,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { Router } from '@angular/router';
+import { UtilsService } from '../../core/services/utils.service';
 
 @Component({
   selector: 'app-category',
@@ -24,7 +25,7 @@ export class CategoryComponent implements OnInit {
   realStateCats = ["Apartment", "House", "Villa", "Studio", "Penthouse", "Residence", "Under Construction Building", "Land", "Commercial Property", "Warehouse"]
   CarCats = ["Cabriolet", "Coupe", "Hatchback 3 Door", "Hatchback 5 Door", "Sedan", "Stationwagon", "SUV"]
   OtherCats = ["Digital Goods", "Kitchen", "Intertainment", "Personal Items"]
-  language:any
+  language:string;
   turkishRealStateCats = [
     "Daire",          // Apartment
     "Ev",             // House
@@ -58,12 +59,12 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private utilService:UtilsService
   ){}
 
   ngOnInit(): void {
-    this.language = localStorage.getItem('lan')
-    console.log(this.language)
+    this.language = this.utilService.checkLan()
     
   }
 
