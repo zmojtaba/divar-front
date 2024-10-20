@@ -1,4 +1,4 @@
-<div class="detail-box">
+<div class="detail-box" *ngIf="language=='en'">
     <div class="ads_image">
         
         <div class="ads_icon">
@@ -297,6 +297,610 @@
         <button (click)="onEdit()" type="submit" class="btn mt-1" *ngIf="currentUser==adsDetailData.user['username']" >Edit</button>
         <p *ngIf="currentUser!=adsDetailData.user['username']" >{{adsDetailData.user['username']}}</p>
         <button (click)="ondelete()" type="submit" class="btn mt-1 danger" *ngIf="currentUser==adsDetailData.user['username']" >Delete</button>
+    </div>
+
+</div>
+
+
+<div class="detail-box" *ngIf="language=='tr'">
+    <div class="ads_image">
+        
+        <div class="ads_icon">
+            <nb-icon 
+            (click)="onSavedIcon()"
+            class="save_icon" 
+            [icon]="savedIconName" 
+            ></nb-icon>
+            <nb-icon 
+            class="star_icon" 
+            [icon]="starIconName" 
+            ></nb-icon>
+        </div>
+        <div class="ads_image-image" style="width: 100%;height: 100%;" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
+            <img  [src]="adsDetailData.images[imageId].image" alt="" >
+        </div>
+
+        <ng-template #ImageElseBlock>
+            <div class="ads_image-else_image" style="width: 100%;height: 100%;" >
+                <img src="assets/profile_img/profile.png" alt="">
+            </div>
+            
+        </ng-template>
+        <nb-icon 
+        class="forward_icon" 
+        icon="arrow-ios-forward-outline" 
+        *ngIf="adsDetailData.images.length > 0"
+        (click)="onSetImage('previous')"
+        [class.disabled] = "imageId == 0"
+        >
+
+        </nb-icon>
+        <nb-icon 
+        class="backward_icon" 
+        icon="arrow-ios-back-outline" 
+        *ngIf="adsDetailData.images.length > 0" 
+        (click)="onSetImage('next')"
+        [class.disabled] = "imageId == adsDetailData.images.length-1"
+        ></nb-icon>
+        <div class="dot_icons" *ngIf="adsDetailData.images.length > 0" >
+                <div class="dot" *ngFor="let image of  adsDetailData.images; let i = index" [class.active_dot]="i==imageId">
+                </div>
+        </div>
+
+    </div>
+    <div class="car_cat" *ngIf="category=='car'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Yayınlandı </p>
+                        <span *ngIf="adsDetailData.is_published"> Yayınlandı  </span>
+                        <span *ngIf="!adsDetailData.is_published"> Henüz değil  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Kategori </p>
+                        <span> {{adsDetailData.category['name']}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Başlık </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Gövde Türü </p>
+                        <span> {{adsDetailData.BodyType}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Yakıt Türü </p>
+                        <span> {{adsDetailData.FuelType}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Kilometre </p>
+                        <span> {{adsDetailData.Mileage}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Fiyat </p>
+                        <span> {{adsDetailData.Price}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Durum </p>
+                        <span> {{adsDetailData.Status}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Açıklama </p>
+                        <span> {{adsDetailData.description}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Tarih </p>
+                        <span> {{adsDetailData.created_date | timeAgo }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Ziyaret Sayısı </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+            </ul>
+        </div>
+    </div>
+    <div class="real_estate_cat" *ngIf="category=='realestate'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Yayınlandı </p>
+                        <span *ngIf="adsDetailData.is_published"> Yayınlandı  </span>
+                        <span *ngIf="!adsDetailData.is_published"> Henüz değil  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Kategori </p>
+                        <span> {{adsDetailData.category.name}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Başlık </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Şehir </p>
+                        <span> {{adsDetailData.City}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Eşya Durumu </p>
+                        <span> {{adsDetailData.FurnishingStatus}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Yatak Odası Sayısı </p>
+                        <span> {{adsDetailData.NumberOfBedrooms}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Fiyat </p>
+                        <span> {{adsDetailData.Price}}</span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Emlak Türü: </p>
+                        <span> {{adsDetailData.Propertytype}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Boyut </p>
+                        <span> {{adsDetailData.Size}} meter  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Durum </p>
+                        <span> {{adsDetailData.Status}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Tapu Türü </p>
+                        <span> {{adsDetailData.TitleDeedType}} </span>
+                    </div>
+                </li>
+
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Tarih </p>
+                        <span> {{adsDetailData.created_date | timeAgo }} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Ziyaret Sayısı </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Açıklama </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
+                    </div>
+                </li>
+    
+   
+            </ul>
+        </div>
+
+    </div>
+    <div class="other_cat" *ngIf="category=='other'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Yayınlandı </p>
+                        <span *ngIf="adsDetailData.is_published"> Yayınlandı  </span>
+                        <span *ngIf="!adsDetailData.is_published"> Henüz değil  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Kategori </p>
+                        <span> {{adsDetailData.category.name}}  </span>
+                    </div>
+                </li>
+    
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Başlık </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Şehir </p>
+                        <span> {{adsDetailData.City}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Emlak Türü</p>
+                        <span> {{adsDetailData.Propertytype}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Durum </p>
+                        <span> {{adsDetailData.Status}}  </span>
+                    </div>
+                </li>
+
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Tarih </p>
+                        <span> {{adsDetailData.created_date | timeAgo}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> Ziyaret Sayısı </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Fiyat </p>
+                        <span> {{adsDetailData.Price}}</span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> Açıklama </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="chat" >
+        <button (click)="onChat()" type="submit" class="btn mt-1" *ngIf="currentUser!=adsDetailData.user['username']" >Sohbet</button>
+        <button (click)="onEdit()" type="submit" class="btn mt-1" *ngIf="currentUser==adsDetailData.user['username']" >Düzenle</button>
+        <p *ngIf="currentUser!=adsDetailData.user['username']" >{{adsDetailData.user['username']}}</p>
+        <button (click)="ondelete()" type="submit" class="btn mt-1 danger" *ngIf="currentUser==adsDetailData.user['username']" >Sil</button>
+    </div>
+
+</div>
+
+<div class="detail-box" *ngIf="language=='fr'">
+    <div class="ads_image">
+        
+        <div class="ads_icon">
+            <nb-icon 
+            (click)="onSavedIcon()"
+            class="save_icon" 
+            [icon]="savedIconName" 
+            ></nb-icon>
+            <nb-icon 
+            class="star_icon" 
+            [icon]="starIconName" 
+            ></nb-icon>
+        </div>
+        <div class="ads_image-image" style="width: 100%;height: 100%;" *ngIf="adsDetailData.images.length > 0; else ImageElseBlock">
+            <img  [src]="adsDetailData.images[imageId].image" alt="" >
+        </div>
+
+        <ng-template #ImageElseBlock>
+            <div class="ads_image-else_image" style="width: 100%;height: 100%;" >
+                <img src="assets/profile_img/profile.png" alt="">
+            </div>
+            
+        </ng-template>
+        <nb-icon 
+        class="forward_icon" 
+        icon="arrow-ios-forward-outline" 
+        *ngIf="adsDetailData.images.length > 0"
+        (click)="onSetImage('previous')"
+        [class.disabled] = "imageId == 0"
+        >
+
+        </nb-icon>
+        <nb-icon 
+        class="backward_icon" 
+        icon="arrow-ios-back-outline" 
+        *ngIf="adsDetailData.images.length > 0" 
+        (click)="onSetImage('next')"
+        [class.disabled] = "imageId == adsDetailData.images.length-1"
+        ></nb-icon>
+        <div class="dot_icons" *ngIf="adsDetailData.images.length > 0" >
+                <div class="dot" *ngFor="let image of  adsDetailData.images; let i = index" [class.active_dot]="i==imageId">
+                </div>
+        </div>
+
+    </div>
+    <div class="car_cat" *ngIf="category=='car'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> انتشار </p>
+                        <span *ngIf="adsDetailData.is_published"> منتشر شده  </span>
+                        <span *ngIf="!adsDetailData.is_published"> منتشر نشده  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> دسته بندی </p>
+                        <span> {{adsDetailData.category['name']}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> عنوان </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> نوع بدنه </p>
+                        <span> {{adsDetailData.BodyType}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> نوع سوخت </p>
+                        <span> {{adsDetailData.FuelType}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> کارکرد </p>
+                        <span> {{adsDetailData.Mileage}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> قیمت </p>
+                        <span> {{adsDetailData.Price}}</span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> وضعیت </p>
+                        <span> {{adsDetailData.Status}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> تاریخ </p>
+                        <span> {{adsDetailData.created_date | timeAgo }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> تعداد بازدید </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> توضیحات </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="real_estate_cat" *ngIf="category=='realestate'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> انتشار </p>
+                        <span *ngIf="adsDetailData.is_published"> منتشر شده  </span>
+                        <span *ngIf="!adsDetailData.is_published">  منتشر نشده </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> دسته بندی </p>
+                        <span> {{adsDetailData.category.name}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> عنوان </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> شهر </p>
+                        <span> {{adsDetailData.City}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> وضعیت مبلمان </p>
+                        <span> {{adsDetailData.FurnishingStatus}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> تعداد اتاق </p>
+                        <span> {{adsDetailData.NumberOfBedrooms}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> قیمت </p>
+                        <span> {{adsDetailData.Price}}</span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> نوع </p>
+                        <span> {{adsDetailData.Propertytype}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> سایز </p>
+                        <span> {{adsDetailData.Size}} متر  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> وضعیت </p>
+                        <span> {{adsDetailData.Status}} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> نوع سند مالکیت </p>
+                        <span> {{adsDetailData.TitleDeedType}} </span>
+                    </div>
+                </li>
+
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> تاریخ </p>
+                        <span> {{adsDetailData.created_date | timeAgo }} </span>
+                    </div>
+                </li>
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> تعداد بازدید </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> توضیحات </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
+                    </div>
+                </li>
+    
+   
+            </ul>
+        </div>
+
+    </div>
+    <div class="other_cat" *ngIf="category=='other'">
+        <div class="items-list">
+            <ul class="list-group">
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> انتشار </p>
+                        <span *ngIf="adsDetailData.is_published"> منتشر شده  </span>
+                        <span *ngIf="!adsDetailData.is_published"> منتشر نشده  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> دسته بندی </p>
+                        <span> {{adsDetailData.category.name}}  </span>
+                    </div>
+                </li>
+    
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> عنوان </p>
+                        <span> {{adsDetailData.title}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> شهر </p>
+                        <span> {{adsDetailData.City}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> نوع</p>
+                        <span> {{adsDetailData.Propertytype}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> وضعیت </p>
+                        <span> {{adsDetailData.Status}}  </span>
+                    </div>
+                </li>
+
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> تاریخ </p>
+                        <span> {{adsDetailData.created_date | timeAgo}}  </span>
+                    </div>
+                </li>
+                <li  class="list-group-item" *ngIf="currentUser == adsDetailData.user['username']">
+                    <div class="items">
+                        <p> تعداد بازدید </p>
+                        <span> {{adsDetailData.Visit_count }} </span>
+                    </div>
+                </li> 
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> قیمت </p>
+                        <span> {{adsDetailData.Price}}</span>
+                    </div>
+                </li>
+                <li  class="list-group-item">
+                    <div class="items">
+                        <p> توضیحات </p>
+                        
+                    </div>
+                    <div class="items description">
+                        <p> {{adsDetailData.description}} </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="chat" >
+        <button (click)="onChat()" type="submit" class="btn mt-1" *ngIf="currentUser!=adsDetailData.user['username']" >چت</button>
+        <button (click)="onEdit()" type="submit" class="btn mt-1" *ngIf="currentUser==adsDetailData.user['username']" >ویرایش</button>
+        <p *ngIf="currentUser!=adsDetailData.user['username']" >{{adsDetailData.user['username']}}</p>
+        <button (click)="ondelete()" type="submit" class="btn mt-1 danger" *ngIf="currentUser==adsDetailData.user['username']" >حذف</button>
     </div>
 
 </div>

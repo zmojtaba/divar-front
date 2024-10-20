@@ -14,6 +14,7 @@ import { ProfileService } from '../../../core/services/profile.service';
 import { ProductService } from '../../../core/services/product.service';
 import {MatCardModule} from '@angular/material/card';
 import { TimeAgoPipe } from '../../../core/pipes/time-ago.pipe';
+import { UtilsService } from '../../../core/services/utils.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -52,15 +53,18 @@ export class ProductDetailComponent implements OnInit {
   userIsStar : boolean = false
   savedIconName:string = "bookmark-outline"
   starIconName : string = "star-outline"
+  language: string;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private utilService:UtilsService
 
   ){}
 
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()    
     this.currentUser = localStorage.getItem('user_email')
     this.route.queryParams.subscribe(params => {
       this.title = params['title']
@@ -70,6 +74,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.productService.getAdsDetailData(this.category, this.id).subscribe(
       (data:any) =>{
+        
         this.adsDetailData = data
         this.adsDetailData.images  = typeof this.adsDetailData.images === 'string' ? JSON.parse(this.adsDetailData.images) :  this.adsDetailData.images;
         console.log('aaaaaaaaaaaaaa', this.adsDetailData)

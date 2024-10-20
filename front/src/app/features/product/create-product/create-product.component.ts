@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule, NbListModule, NbStatusService } from '@nebular/theme';
 import { ProductService } from '../../../core/services/product.service';
+import { UtilsService } from '../../../core/services/utils.service';
 
 @Component({
   selector: 'app-create-product',
@@ -29,6 +30,7 @@ import { ProductService } from '../../../core/services/product.service';
 export class CreateProductComponent implements OnInit {
   category:string|null;
   subCategory:any;
+  language: string;
   clickedOnCarSubmit = false;
   clickedOnRealEstateSubmit = false;
   clickedOnOtherSubmit=false;
@@ -47,20 +49,25 @@ export class CreateProductComponent implements OnInit {
   realEstateTitleDeedType = [ 'Turkish Title Deed', 'Equivalent Title Deed', 'Foreign Title Deed', 'State Social Housing', 'Martyr Child ', 'Allocation', 'Veteran Points', 'Leasehold']
   realEstateNumberOfBedrooms = [  'Studio', '1 Bedroom', '2 Bedrooms', '3 Bedrooms',  '4 Bedrooms', '5+ Bedrooms']
   realEstateFurnishingStatus = [ 'Unfurnished', 'Partially Furnished' ,'Furnished', 'Only White Goods' ]
+  priceTypesStatus = ['USD', 'EUR', 'TRY']
   carForm: FormGroup;
   realEstateForm:FormGroup;
   otherForm:FormGroup;
+  priceStatus:string
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private utilService:UtilsService
   ){}
 
   ngOnInit(): void {
+    this.language = this.utilService.checkLan()
     this.category = this.route.snapshot.paramMap.get('category');
     this.subCategory = this.route.snapshot.paramMap.get('subCategory');
+    this.priceStatus = "USD"
 
     this.carForm = this.fb.group({
       title: ['', Validators.required,],
@@ -138,12 +145,15 @@ export class CreateProductComponent implements OnInit {
   selectOtherStatus(status:string){
     this.otherForm.patchValue({ status });
   }
+  selectPriceTypeStatus(status:string){
+    this.priceStatus = status;
+  }
 
   onCarSubmit(form:any){
     this.clickedOnCarSubmit = true;
     
     if (form.status == "VALID"){
-      this.productService.createCarAds(form, this.selectedFiles, this.subCategory).subscribe(
+      this.productService.createCarAds(form, this.selectedFiles, this.subCategory, this.priceStatus).subscribe(
         data => {
           this.router.navigate(['profile', 'my-ads']);
         }
@@ -154,7 +164,7 @@ export class CreateProductComponent implements OnInit {
     this.clickedOnRealEstateSubmit = true
 
     if (form.status == "VALID"){
-      this.productService.createRealEstateAds(form, this.selectedFiles, this.subCategory).subscribe(
+      this.productService.createRealEstateAds(form, this.selectedFiles, this.subCategory, this.priceStatus).subscribe(
         data =>{
           this.router.navigate(['profile', 'my-ads']);
         }
@@ -167,7 +177,7 @@ export class CreateProductComponent implements OnInit {
 
 
     if (form.status){
-      this.productService.createOtherAds(form, this.selectedFiles, this.subCategory).subscribe(
+      this.productService.createOtherAds(form, this.selectedFiles, this.subCategory, this.priceStatus).subscribe(
         data =>{
           this.router.navigate(['profile', 'my-ads']);
         }

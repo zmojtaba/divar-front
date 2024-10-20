@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule, NbListModule, NbStatusService } from '@nebular/theme';
 import { ProductService } from '../../../core/services/product.service';
+import { UtilsService } from '../../../core/services/utils.service';
 
 
 @Component({
@@ -55,17 +56,23 @@ export class EditProductComponent  implements OnInit{
   carForm: FormGroup;
   realEstateForm:FormGroup;
   otherForm:FormGroup;
+  priceStatus:string;
+  priceTypesStatus = ['USD', 'EUR', 'TRY']
+  language: string;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private utilService:UtilsService
   ){}
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('category');
     this.adsId = this.route.snapshot.paramMap.get('ads_id');
+    this.priceStatus = "USD"
+    this.language = this.utilService.checkLan()
 
     this.productService.adsDetailData.subscribe(
       (data:any) => {
@@ -188,6 +195,9 @@ export class EditProductComponent  implements OnInit{
   }
   selectOtherStatus(status:string){
     this.otherForm.patchValue({ status });
+  }
+  selectPriceTypeStatus(status:string){
+    this.priceStatus = status;
   }
 
   onCarSubmit(form:any){

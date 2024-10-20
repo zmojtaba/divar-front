@@ -47,6 +47,7 @@
 .price{
     position:relative;
     .price_km{
+        cursor: pointer;
         position: absolute;
         top: 2.6rem;
         right: 0.5rem;

@@ -43,6 +43,7 @@ export class ProductComponent implements OnInit{
   }
 
   onSetCategory(category:string, sub_category:string){
+    console.log('-------------------', category, sub_category)
     this.router.navigate(['ads/product/create-ads', category, sub_category])
   }
 }

@@ -55,7 +55,7 @@ export class ProductService {
   }
 
 
-  createRealEstateAds(form:any, uploaded_image:any, subCategory:string){
+  createRealEstateAds(form:any, uploaded_image:any, subCategory:string, priceType:string){
 
     const token = localStorage.getItem('access_token')
     const user_id:any  = localStorage.getItem('user_id')
@@ -73,7 +73,7 @@ export class ProductService {
     formData.append( 'category', '2' )
     formData.append('Propertytype', subCategory.toLowerCase())
     formData.append('TitleDeedType', form.get('titleDeedType').value)
-    formData.append('Price', form.get('price').value)
+    formData.append('Price', form.get('price').value+priceType)
     formData.append('Size', form.get('size').value)
     formData.append('NumberOfBedrooms', form.get('numberOfBedrooms').value)
     formData.append('FurnishingStatus', form.get('furnishingStatus').value)
@@ -128,7 +128,7 @@ export class ProductService {
     return this.http.patch(`${this.apiUrl}/advertisement/ads-detail/realestate/${ads_id}`, formData, {headers})
   }
 
-  createCarAds(form:any, uploaded_image:any, subCategory:string){
+  createCarAds(form:any, uploaded_image:any, subCategory:string, priceType:string){
 
     const token = localStorage.getItem('access_token')
     const user_id:any  = localStorage.getItem('user_id')
@@ -146,7 +146,7 @@ export class ProductService {
     formData.append('category', '1' )
     formData.append('BodyType', subCategory.replace(/ /g, "").toLocaleLowerCase())
     formData.append('Mileage', form.get('mileage').value)
-    formData.append('Price', form.get('price').value)
+    formData.append('Price', form.get('price').value + priceType)
     formData.append('FuelType', form.get('fuelType').value)
     formData.append('TransmissionType', form.get('transmissionType').value)
     formData.append('Status', form.get('status').value)
@@ -195,7 +195,7 @@ export class ProductService {
   }
 
 
-  createOtherAds(form:any, uploaded_image:any, subCategory:string){
+  createOtherAds(form:any, uploaded_image:any, subCategory:string, priceType:string){
 
     const token = localStorage.getItem('access_token')
     const user_id:any  = localStorage.getItem('user_id')
@@ -211,7 +211,7 @@ export class ProductService {
     formData.append('City',  form.get('city').value)
     formData.append('user', user_id)
     formData.append( 'category', '3' )
-    formData.append('Price', form.get('price').value)
+    formData.append('Price', form.get('price').value + priceType)
     formData.append('Propertytype', subCategory.replace(/ /g, "").toLocaleLowerCase())
 
     formData.append('Status', form.get('status').value)
