@@ -2,9 +2,19 @@
     <div class="search_bar">
         <app-search (searchEmitter)="searchData($event)" ></app-search>
     </div>
+    <div class="filter_box">
+        <p>Filter</p>
+        <div class="filter_input" >
+            <nb-icon icon="funnel-outline"></nb-icon>
+            <p [matMenuTriggerFor]="menu">{{ selectedFilter || 'Choose'}}</p>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngFor="let filter of filterList" (click)="selectFilter(filter)">{{ filter }}</button>
+            </mat-menu>
+        </div>
+    </div> 
     <div class="advertisement_image">
         <img src="assets/advertisement_image.png" alt="">
-    </div>    
+    </div>  
     <div class="items-list" *ngIf="adsData; else notFoundBlock">
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let obj of adsData">

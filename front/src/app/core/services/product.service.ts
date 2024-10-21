@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http"
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http"
 import {  BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map, take, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -52,6 +52,17 @@ export class ProductService {
   searchByCategory(category:string, subcategory:string){
     let sub = subcategory.replace(/ /g, "").toLocaleLowerCase()
     return this.http.get(`${this.apiUrl}/advertisement/category/${category}/${sub}`)
+  }
+
+  filterAds(filter:string){
+    if (filter === "Most Visited"){
+      filter = "most_visited"
+    }
+    if (filter === "Most Expensive"){
+      filter = "most_expensive"
+    }
+    const params = new HttpParams().set('filter_type', filter);
+    return this.http.get(`${this.apiUrl}/advertisement/filter/`, {params})
   }
 
 

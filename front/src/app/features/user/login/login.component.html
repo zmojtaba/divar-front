@@ -1,4 +1,7 @@
 <div class="col-xs-12 col-md-6 col-md-offser-3 login" *ngIf="language=='en'" >
+    <div class="logo">
+        <img src="assets/logo_vini.png" alt="">
+      </div>
     <ng-container *ngIf="(loginError && !loadingSpinner )" >
         <div class="alert alert-danger error" role="alert"   >
             {{loginError}}
@@ -40,7 +43,7 @@
                     <small (click)="onRegisterForm()"> <a > Didn't have an account? register! </a> </small>
                 </div>
 
-            <button type="submit" class="btn mt-1"  [disabled]="!loginForm.valid">LogIn</button>
+            <button type="submit" class="btn mt-1 custom-btn"  [disabled]="!loginForm.valid">LogIn</button>
         </div>
     </form>
     <div class="spinner">
@@ -51,6 +54,9 @@
 
 
 <div class="col-xs-12 col-md-6 col-md-offser-3 login" *ngIf="language=='tr'" >
+    <div class="logo">
+        <img src="assets/logo_vini.png" alt="">
+      </div>
     <ng-container *ngIf="(loginError && !loadingSpinner )" >
         <div class="alert alert-danger error" role="alert"   >
             {{loginError}}
@@ -102,6 +108,9 @@
 </div>
 
 <div class="col-xs-12 col-md-6 col-md-offser-3 login" *ngIf="language=='fr'" >
+    <div class="logo">
+        <img src="assets/logo_vini.png" alt="">
+      </div>
     <ng-container *ngIf="(loginError && !loadingSpinner )" >
         <div class="alert alert-danger error" role="alert"   >
             {{loginError}}

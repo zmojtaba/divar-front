@@ -6,7 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormGroup, FormControl,FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -32,8 +32,8 @@ import { CommonModule } from '@angular/common';
 
 export class SearchComponent implements OnInit  {
   searchText: string = '';
-  selectedCity: string = 'Lefkosa';
-  cities = ['Lefkosa', 'Grine', 'Gazimagusa', 'Guzelyurt', 'Iskele', 'Lefke'];
+  selectedCity: string = 'All';
+  cities = ['All', 'Lefkosa', 'Grine', 'Gazimagusa', 'Guzelyurt', 'Iskele', 'Lefke'];
   @Output() searchEmitter = new EventEmitter<any>();
 
   constructor(
@@ -44,10 +44,15 @@ export class SearchComponent implements OnInit  {
   }
 
   onSearch() {
+    let choosenCity = this.selectedCity
+    if (this.selectedCity == 'All'){
+      choosenCity = ''
+    }
     const data = {
       "text": this.searchText,
-      "city": this.selectedCity
+      "city": choosenCity
     }
+    console.log('-------------search-------------------', data)
     this.searchEmitter.emit(data)
   }
 

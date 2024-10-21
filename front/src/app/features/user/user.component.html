@@ -57,8 +57,17 @@
     
                 <li class="list-group-item">
                     <div class="items">
-                        <p> identity </p>
+                        <p> Identity </p>
                         <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> Language </p>
+                        <p [matMenuTriggerFor]="cityMenu">{{language}}</p>
+                        <mat-menu #cityMenu="matMenu">
+                            <button mat-menu-item *ngFor="let lan of language_list" (click)="selectLanguage(lan)">{{ lan }}</button>
+                        </mat-menu>
                     </div>
                 </li>
     
@@ -131,6 +140,15 @@
                         <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
                     </div>
                 </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> Dil </p>
+                        <p [matMenuTriggerFor]="cityMenu">{{language}}</p>
+                        <mat-menu #cityMenu="matMenu">
+                            <button mat-menu-item *ngFor="let lan of language_list" (click)="selectLanguage(lan)">{{ lan }}</button>
+                        </mat-menu>
+                    </div>
+                </li>
     
             </ul>
         </div>
@@ -199,6 +217,15 @@
                     <div class="items">
                         <p>  احراز هویت  </p>
                         <span> <nb-icon  icon="arrow-ios-forward-outline"></nb-icon>  </span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="items">
+                        <p> زبان </p>
+                        <p [matMenuTriggerFor]="cityMenu">{{language}}</p>
+                        <mat-menu #cityMenu="matMenu">
+                            <button mat-menu-item *ngFor="let lan of language_list" (click)="selectLanguage(lan)">{{ lan }}</button>
+                        </mat-menu>
                     </div>
                 </li>
     

@@ -72,6 +72,7 @@ export class EditProductComponent  implements OnInit{
     this.category = this.route.snapshot.paramMap.get('category');
     this.adsId = this.route.snapshot.paramMap.get('ads_id');
     this.priceStatus = "USD"
+    
     this.language = this.utilService.checkLan()
 
     this.productService.adsDetailData.subscribe(
@@ -79,15 +80,16 @@ export class EditProductComponent  implements OnInit{
         if (data){
           this.adsData = data
           this.adsData.images = typeof this.adsData.images === 'string' ? JSON.parse(this.adsData.images) : this.adsData.images;
-          
+
+          console.log('============================================update0--------------------', this.adsData.price);
           this.initialCarForm()
           this.initialOtherForm()
           this.initialRealStateForm()
         }else{
           this.productService.getAdsDetailData(this.category, this.adsId).subscribe(
             data =>{
-              
               this.adsData = data
+
               this.adsData.images = typeof this.adsData.images === 'string' ? JSON.parse(this.adsData.images) : this.adsData.images;
               this.initialCarForm()
               this.initialOtherForm()
@@ -106,6 +108,8 @@ export class EditProductComponent  implements OnInit{
   }
 
   initialCarForm(){
+    this.priceStatus = this.adsData.Price.match(/(\d+)([a-zA-Z]+)/)[2]
+
     this.carForm = this.fb.group({
       title: [this.adsData.title, Validators.required,],
       city: [this.adsData.City],
@@ -114,13 +118,14 @@ export class EditProductComponent  implements OnInit{
       fuelType: [this.adsData.FuelType, Validators.required,],
       transmissionType: [this.adsData.TransmissionType, Validators.required,],
       status: [this.adsData.Status, Validators.required,],
-      price: [this.adsData.Price,  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
+      price: [parseFloat(this.adsData.Price),  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       description: [this.adsData.description, Validators.required,]
     });
 
   }
 
   initialRealStateForm(){
+    this.priceStatus = this.adsData.Price.match(/(\d+)([a-zA-Z]+)/)[2]
     this.realEstateForm = this.fb.group({
       title: [this.adsData.title, Validators.required,],
       city: [this.adsData.City],
@@ -128,7 +133,7 @@ export class EditProductComponent  implements OnInit{
       size: [this.adsData.Size, [ Validators.required,  Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       numberOfBedrooms: [this.adsData.NumberOfBedrooms, Validators.required,],
       furnishingStatus: [this.adsData.FurnishingStatus, Validators.required,],
-      price: [this.adsData.Price, [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
+      price: [parseFloat(this.adsData.Price), [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       description: [this.adsData.description, Validators.required,],
       status:[this.adsData.Status, Validators.required],
       propertyType : [this.adsData.Propertytype]
@@ -136,10 +141,11 @@ export class EditProductComponent  implements OnInit{
   }
 
   initialOtherForm(){
+    this.priceStatus = this.adsData.Price.match(/(\d+)([a-zA-Z]+)/)[2]
     this.otherForm = this.fb.group({
       title: [this.adsData.title, Validators.required,],
       city: [this.adsData.City],
-      price: [this.adsData.Price,  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
+      price: [parseFloat(this.adsData.Price),  [ Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]*)?$")]],
       description: [this.adsData.description, Validators.required,],
       status:[this.adsData.Status, Validators.required],
       propertyType : [this.adsData.Propertytype]

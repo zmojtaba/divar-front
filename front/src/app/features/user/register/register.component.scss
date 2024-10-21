@@ -1,5 +1,13 @@
 @import "../../../styles/them.scss";
 
+@media (max-width: 408px) {
+    button{
+        width: 100% !important;
+        border-radius:20px 
+    }
+  }
+
+
 .register{
     height: 100%;
     display: flex !important;
@@ -8,6 +16,17 @@
     padding: 1rem;
 }
 
+.logo{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    background: #fff;
+    img{
+        width: 5.5rem;
+        // height: 8.5rem;
+    }
+}
 form{
     width: 100%;
     .form-control:focus{
@@ -20,6 +39,7 @@ form{
         color:  $button_font_color;
         width:  $button_width;
         height: $button_height;
+        border-radius: 20px;
 
     }
     .hide{

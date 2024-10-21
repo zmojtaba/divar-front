@@ -20,5 +20,9 @@ export class UtilsService {
     return lan
   }
 
+  changeLanguage (language:string) {
+    localStorage.setItem('lan', language)
+  }
+
   constructor() { }
 }

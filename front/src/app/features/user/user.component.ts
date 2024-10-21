@@ -52,6 +52,7 @@ export class UserComponent implements OnInit {
   userIsVerified: boolean;
   passwordChangeMessage:string;
   language:string;
+  language_list= ['en', 'tr', 'fr'];
 
 
   constructor( 
@@ -102,6 +103,12 @@ export class UserComponent implements OnInit {
         }
       }
     )
+  }
+
+  selectLanguage(lan:string){
+    
+    this.language = lan
+    this.utilService.changeLanguage(lan)
   }
 
   onLogout(){

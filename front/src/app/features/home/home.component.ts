@@ -7,6 +7,11 @@ import { ProductService } from '../../core/services/product.service';
 import { Router } from '@angular/router';
 import { text } from 'stream/consumers';
 import { NotFoundComponent } from '../../layout/not-found/not-found.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
 // import { NewsService } from './news.service';
 
 @Component({
@@ -18,7 +23,14 @@ import { NotFoundComponent } from '../../layout/not-found/not-found.component';
     NbIconModule, 
     NbListModule,
     CommonModule,
-    NotFoundComponent
+    NotFoundComponent,
+    NbEvaIconsModule, 
+    NbIconModule, 
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule, 
+    MatMenuModule,
+    FormsModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -26,6 +38,8 @@ import { NotFoundComponent } from '../../layout/not-found/not-found.component';
 })
 export class HomeComponent implements OnInit {
   adsData:any;
+  filterList = ["Newest", "Oldest", "Cheapest", "Most Expensive", "Most Visited"];
+  selectedFilter: string;
 
   constructor(
     private productService: ProductService,
@@ -55,6 +69,21 @@ export class HomeComponent implements OnInit {
     )
 
 
+  }
+
+  selectFilter(filter:string) {
+    console.log("selectFilter: ", filter);
+    this.selectedFilter = filter;
+    this.productService.filterAds(this.selectedFilter).subscribe( 
+      (data:any) =>{
+        
+        console.log("adsData: ", data);
+        data = typeof data === 'string' ? JSON.parse(data) : data
+        this.adsData = data['All_ads']
+        this.processAdsData(this.adsData)
+
+      }
+  )
   }
 
   processAdsData(ads_data:any[]){

@@ -32,6 +32,29 @@
     }
 }
 
+.filter_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    padding-bottom: 0;
+    p
+
+    p{
+        margin: 0;
+    }
+
+    .filter_input{   
+        display: flex;     
+            ::ng-deep svg{
+                color: $search_icon_color;
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+
+    }
+}
+
 .items-list{
     // margin-top: 1rem;
     ::ng-deep svg{
